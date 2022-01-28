@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CreatingUser</string>
+    <string name="title_activity_google_maps">GoogleMaps</string>
 </resources>
