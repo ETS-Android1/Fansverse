@@ -18,33 +18,35 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 public class LoginPage extends AppCompatActivity {
+    public static final String TAG = "UserInformation";
+
     //Naming widget references such as EditText and Button
     private EditText login_username;
     private EditText login_password;
     private Button login_button;
     private Button signup_button;
     TextView retrieveUserData;
-    private FirebaseAnalytics mFirebaseAnalytics;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ArrayList<String> sportFansList = new ArrayList<>();
 
     //A Hashmap reference is created and is currently set to null.
-    HashMap<String,String> credentials=null;
+    HashMap<String, String> credentials = null;
     Context context;
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
         retrieveUserData = (TextView) findViewById(R.id.userData);
+        mAuth = FirebaseAuth.getInstance();
 
         //getApplicationContext() renders the current context of the Application which can be used in various ways.
         context = getApplicationContext();
@@ -58,38 +60,10 @@ public class LoginPage extends AppCompatActivity {
         //Creating an HashMap object and assigning to the above mentioned 'credentials' hashmap reference.
         credentials = new HashMap<String, String>();
 
-
-        // We receive a hashmap object from Registration page through intent object and  check if the hashmap has data in it , then we restore . Otherwise the hashmap will be empty.
-        if ((HashMap<String, String>) getIntent().getSerializableExtra("data") != null) {
-            credentials = (HashMap<String, String>) getIntent().getSerializableExtra("data");
-        }
-
         // Setting an onClick listener to Login button
         login_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast toast;
-                db.collection("users")
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    retrieveUserData.setText("");
-                                    sportFansList.clear();
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        Log.d("UserInformation", document.getId() + " => " + document.getData());
-                                        String email, password;
-                                        email = document.getString("email");
-                                        password = document.getString("password");
-                                        sportFansList.add("Username: " + email + "\nPassword: " + password + "\n");
-                                    }
-                                    Collections.sort(sportFansList);
-                                    for (String fan : sportFansList) {
-                                        retrieveUserData.append(fan);
-                                    }
-                                }
-                            }
-                        });
 
                 // If the 'credentials' hashmap has no data in it and login button is clicked,then a toast message saying 'please sign up' will be displayed.
                 if (credentials == null) {
@@ -99,25 +73,47 @@ public class LoginPage extends AppCompatActivity {
                     // Retrieving the data associated with the login and password fields
                     String current_username = login_username.getText().toString();
                     String current_password = login_password.getText().toString();
+                    mAuth.signInWithEmailAndPassword(current_username, current_password)
+                            .addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+//                                         Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "signInWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        Intent intent = new Intent(getApplicationContext(), Welcome.class);
+                                        intent.putExtra("message", current_username);
+                                        startActivity(intent);
+//                                        updateUI(user);
+                                    }
+                                    else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                        Toast.makeText(LoginPage.this, "Authentication failed. Check Email or Password",
+                                                Toast.LENGTH_SHORT).show();
+//                                        updateUI(null);
+                                    }
+                                }
+                            });
 
                     //Checking if entered username is present in the hashmap.If Yes then, then further validation is processed. Else a toast message displayed saying the user to sign up
-                    if (credentials.get(current_username) != null) {
-
-                        // Checking if the current user credentials are correct. If yes, then He is redirected to welcome page. Else a toast message is displayed saying password incorrect.
-                        if (current_password.equals(credentials.get(current_username))) {
-                            Intent intent = new Intent(getApplicationContext(), Welcome.class);
-                            intent.putExtra("message", current_username);
-                            startActivity(intent);
-                        } else {
-                            toast = Toast.makeText(context, "Password incorrect " + current_username, Toast.LENGTH_LONG);
-                            toast.show();
-                            login_password.getText().clear();
-                        }
-                    } else {
-                        toast = Toast.makeText(context, "Please Sign Up " + current_username, Toast.LENGTH_LONG);
-                        toast.show();
-                        login_password.getText().clear();
-                    }
+//                    if (credentials.get(current_username) != null) {
+//
+//                        // Checking if the current user credentials are correct. If yes, then He is redirected to welcome page. Else a toast message is displayed saying password incorrect.
+//                        if (current_password.equals(credentials.get(current_username))) {
+//                            Intent intent = new Intent(getApplicationContext(), Welcome.class);
+//                            intent.putExtra("message", current_username);
+//                            startActivity(intent);
+//                        } else {
+//                            toast = Toast.makeText(context, "Password incorrect " + current_username, Toast.LENGTH_LONG);
+//                            toast.show();
+//                            login_password.getText().clear();
+//                        }
+//                    } else {
+//                        toast = Toast.makeText(context, "Please Sign Up " + current_username, Toast.LENGTH_LONG);
+//                        toast.show();
+//                        login_password.getText().clear();
+//                    }
                 }
 
             }
@@ -133,7 +129,5 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 }
