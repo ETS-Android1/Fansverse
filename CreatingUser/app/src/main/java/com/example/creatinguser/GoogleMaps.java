@@ -43,9 +43,20 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // Adding markers based on their coordinates and then adding them to a map
+        LatLng interlude = new LatLng(33.788542199826665, -118.13353625782406);
+        LatLng blondies = new LatLng(33.79668758396616, -118.14309084425682);
+        LatLng portCity = new LatLng(33.78254749337177, -118.14340355111402);
+        LatLng crookedDuck = new LatLng(33.783980693882555, -118.13390584960761);
+        LatLng mvpGrill = new LatLng(33.7957953681204, -118.12622952011328);
+
+        mMap.addMarker(new MarkerOptions().position(interlude).title("Interlude pub"));
+        mMap.addMarker(new MarkerOptions().position(blondies).title("Blondie's"));
+        mMap.addMarker(new MarkerOptions().position(portCity).title("Port City Tavern"));
+        mMap.addMarker(new MarkerOptions().position(crookedDuck).title("The Crooked Duck"));
+        mMap.addMarker(new MarkerOptions().position(mvpGrill).title("MVP Grill"));
+
+        //second value is zoom, can be from 1 to 20
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(interlude, 15));
     }
 }
