@@ -16,6 +16,7 @@ public class Welcome extends AppCompatActivity {
     //Naming widget references such as TextView
     private TextView welcome;
     private Button logout_button;
+    //testing
 
 
     @Override
