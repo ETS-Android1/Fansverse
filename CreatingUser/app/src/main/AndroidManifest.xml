@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CreatingUser">
         <activity android:name=".Welcome"></activity>
+        <activity android:name=".HomePage"></activity>
         <activity android:name=".Registration" />
         <activity android:name=".LoginPage"
             android:exported="true">
