@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CreatingUser">
         <activity
+            android:name=".DetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".Newsfeed"
             android:exported="false" />
         <activity android:name=".Welcome" />
