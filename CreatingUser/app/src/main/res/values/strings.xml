@@ -8,4 +8,5 @@
 
     <string name="edit_message">Enter a message</string>
     <string name="button_map">Map</string>
+    <string name="api_key">d4137699118e4f0587afd11d17bb54bf</string>
 </resources>
