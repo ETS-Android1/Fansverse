@@ -9,10 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CreatingUser">
-        <activity
-            android:name=".Messaging"
-            android:exported="false" />
-        <activity android:name=".Welcome" />
+        <activity android:name=".Welcome"></activity>
+        <activity android:name=".HomePage"></activity>
         <activity android:name=".Registration" />
         <activity
             android:name=".LoginPage"
