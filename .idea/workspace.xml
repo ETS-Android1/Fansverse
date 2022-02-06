@@ -1,7 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ff5a910-42b5-490d-b2a1-266ceccb5b98" name="Default Changelist" comment="" />
+    <list default="true" id="7ff5a910-42b5-490d-b2a1-266ceccb5b98" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Fanverse.tar.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/google-services.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/androidTest/java/com/example/fanverse/ExampleInstrumentedTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/java/com/example/fanverse/AddPost.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/java/com/example/fanverse/LoginActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/java/com/example/fanverse/LoginPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/java/com/example/fanverse/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/java/com/example/fanverse/PasswordResetActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/java/com/example/fanverse/ProfileActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/java/com/example/fanverse/RegisterActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/java/com/example/fanverse/Registration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/java/com/example/fanverse/SetUpProfileActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/java/com/example/fanverse/UploadProfileActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/java/com/example/fanverse/models/Post.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/drawable-v24/default_avatar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/drawable-v24/img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/drawable/add_image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/drawable/ic_add.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/drawable/loading.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/layout/activity_add_post.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/layout/activity_login.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/layout/activity_password_reset.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/layout/activity_profile.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/layout/activity_register.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/layout/activity_registration.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/layout/activity_set_up_profile.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/layout/activity_upload_profile.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/layout/app_bar_layout.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/layout/login_page.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/layout/single_post.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/menu/main_menu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-hdpi/ic_add.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-mdpi/ic_add.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-xhdpi/ic_add.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-xxhdpi/ic_add.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-xxxhdpi/ic_add.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/values-night/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/values/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/main/res/values/themes.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/app/src/test/java/com/example/fanverse/ExampleUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fanverse/settings.gradle" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,14 +97,17 @@
     </option>
   </component>
   <component name="ProjectId" id="21w7hkuRJ0Vyx3w1PcWnFGJEqTO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/CreatingUser" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
