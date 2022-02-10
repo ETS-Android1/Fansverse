@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                 });
 
     }
-
     public void retrieveData(View v){
         db.collection("users")
                 .get()
