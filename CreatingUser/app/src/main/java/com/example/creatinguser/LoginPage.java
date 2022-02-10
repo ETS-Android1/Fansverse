@@ -45,7 +45,7 @@ public class LoginPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
-        retrieveUserData = (TextView) findViewById(R.id.userData);
+//        retrieveUserData = (TextView) findViewById(R.id.userData);
         mAuth = FirebaseAuth.getInstance();
 
         //getApplicationContext() renders the current context of the Application which can be used in various ways.
@@ -95,25 +95,6 @@ public class LoginPage extends AppCompatActivity {
                                     }
                                 }
                             });
-
-                    //Checking if entered username is present in the hashmap.If Yes then, then further validation is processed. Else a toast message displayed saying the user to sign up
-//                    if (credentials.get(current_username) != null) {
-//
-//                        // Checking if the current user credentials are correct. If yes, then He is redirected to welcome page. Else a toast message is displayed saying password incorrect.
-//                        if (current_password.equals(credentials.get(current_username))) {
-//                            Intent intent = new Intent(getApplicationContext(), Welcome.class);
-//                            intent.putExtra("message", current_username);
-//                            startActivity(intent);
-//                        } else {
-//                            toast = Toast.makeText(context, "Password incorrect " + current_username, Toast.LENGTH_LONG);
-//                            toast.show();
-//                            login_password.getText().clear();
-//                        }
-//                    } else {
-//                        toast = Toast.makeText(context, "Please Sign Up " + current_username, Toast.LENGTH_LONG);
-//                        toast.show();
-//                        login_password.getText().clear();
-//                    }
                 }
 
             }

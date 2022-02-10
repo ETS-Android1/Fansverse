@@ -63,7 +63,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        retrieveUserData = (TextView) findViewById(R.id.userData);
+//        retrieveUserData = (TextView) findViewById(R.id.userData);
         mAuth = FirebaseAuth.getInstance();
 
         //getApplicationContext() renders the current context of the Application which can be used in various ways.

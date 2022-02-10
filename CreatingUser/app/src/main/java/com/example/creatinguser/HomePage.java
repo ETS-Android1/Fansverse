@@ -25,6 +25,7 @@ public class HomePage extends AppCompatActivity {
         liveScores = findViewById(R.id.buttonLScores);
         stats = findViewById(R.id.buttonStats);
         myProfile = findViewById(R.id.buttonProfile);
+//        myProfile = findViewById(R.id.)
 
     }
 }
