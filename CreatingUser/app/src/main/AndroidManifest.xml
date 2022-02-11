@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.creatinguser">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,8 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CreatingUser">
-        <activity android:name=".Welcome"></activity>
-        <activity android:name=".HomePage"></activity>
+        <activity
+            android:name=".DetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Newsfeed"
+            android:exported="false" />
+        <activity android:name=".Welcome" />
+        <activity android:name=".HomePage" />
         <activity android:name=".Registration" />
 
         <activity
@@ -26,7 +34,6 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.SignInActivity"
-            android:exported="true">
         </activity>
         <activity
             android:name="MainActivity"
