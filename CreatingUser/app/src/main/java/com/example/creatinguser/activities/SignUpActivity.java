@@ -34,7 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
     private PreferenceManager preferenceManager;
-    private String encodedImage;
+//    private String encodedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +52,6 @@ public class SignUpActivity extends AppCompatActivity {
                 signUp();
             }
         });
-        binding.layoutImage.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            pickImage.launch(intent);
-        });
     }
 
     private void showToast(String message) {
@@ -70,7 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
         user.put(Constants.KEY_NAME, binding.inputName.getText().toString());
         user.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
         user.put(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString());
-        user.put(Constants.KEY_IMAGE, encodedImage);
+//        user.put(Constants.KEY_IMAGE, encodedImage);
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
@@ -78,7 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
                     preferenceManager.putString(Constants.KEY_USER_ID,documentReference.getId());
                     preferenceManager.putString(Constants.KEY_NAME,binding.inputName.getText().toString());
-                    preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
+//                    preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -89,39 +84,38 @@ public class SignUpActivity extends AppCompatActivity {
                 });
     }
 
-    private String encodedImage(Bitmap bitmap){
-        int previewWidth =150;
-        int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
-        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap,previewWidth,previewHeight,false);
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        previewBitmap.compress(Bitmap.CompressFormat.JPEG,50,byteArrayOutputStream);
-        byte[] bytes = byteArrayOutputStream.toByteArray();
-        return Base64.encodeToString(bytes,Base64.DEFAULT);
-    }
+//    private String encodedImage(Bitmap bitmap){
+//        int previewWidth =150;
+//        int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
+//        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap,previewWidth,previewHeight,false);
+//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//        previewBitmap.compress(Bitmap.CompressFormat.JPEG,50,byteArrayOutputStream);
+//        byte[] bytes = byteArrayOutputStream.toByteArray();
+//        return Base64.encodeToString(bytes,Base64.DEFAULT);
+//    }
 
-    private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if(result.getResultCode() == RESULT_OK){
-                    Uri imageUri = result.getData().getData();
-                    try {
-                        InputStream inputStream = getContentResolver().openInputStream(imageUri);
-                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                        binding.imageProfile.setImageBitmap(bitmap);
-                        binding.textAddImage.setVisibility(View.GONE);
-                        encodedImage = encodedImage(bitmap);
-                    }catch (FileNotFoundException e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-    );
+//    private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(),
+//            result -> {
+//                if(result.getResultCode() == RESULT_OK){
+//                    Uri imageUri = result.getData().getData();
+//                    try {
+//                        InputStream inputStream = getContentResolver().openInputStream(imageUri);
+//                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+//                        encodedImage = encodedImage(bitmap);
+//                    }catch (FileNotFoundException e){
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//    );
 
     private Boolean isValidSignUpDetails() {
-        if (encodedImage == null) {
-            showToast("Select profile image");
-            return false;
-        } else if (binding.inputName.getText().toString().isEmpty()) {
+//        if (encodedImage == null) {
+//            showToast("Select profile image");
+//            return false;
+//        } else
+        if (binding.inputName.getText().toString().isEmpty()) {
             showToast("Enter name");
             return false;
         } else if (binding.inputEmail.getText().toString().isEmpty()) {
