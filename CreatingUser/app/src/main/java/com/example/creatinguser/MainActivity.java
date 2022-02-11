@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements ConversationListe
         setContentView(binding.getRoot());
         preferenceManager = new PreferenceManager(getApplicationContext());
         init();
-        loadUserDetails();
+//        loadUserDetails();
         getToken();
         setListeners();
         listenConversations();
@@ -67,12 +67,12 @@ public class MainActivity extends AppCompatActivity implements ConversationListe
                 startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
     }
 
-    private void loadUserDetails(){
-        binding.textName.setText(preferenceManager.getString(Constants.KEY_NAME));
-        byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE),Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-        binding.imageProfile.setImageBitmap(bitmap);
-    }
+//    private void loadUserDetails(){
+//        binding.textName.setText(preferenceManager.getString(Constants.KEY_NAME));
+//        byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE),Base64.DEFAULT);
+//        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+//        binding.imageProfile.setImageBitmap(bitmap);
+//    }
 
     private void showToast(String message){
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
@@ -100,11 +100,11 @@ public class MainActivity extends AppCompatActivity implements ConversationListe
                     chatMessage.senderId = senderId;
                     chatMessage.receiverId = receiverId;
                     if (preferenceManager.getString(Constants.KEY_USER_ID).equals(senderId)){
-                        chatMessage.conversionImage = documentChange.getDocument().getString(Constants.KEY_RECEIVER_IMAGE);
+//                        chatMessage.conversionImage = documentChange.getDocument().getString(Constants.KEY_RECEIVER_IMAGE);
                         chatMessage.conversionName = documentChange.getDocument().getString(Constants.KEY_RECEIVER_NAME);
                         chatMessage.conversionId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
                     }else{
-                        chatMessage.conversionImage = documentChange.getDocument().getString(Constants.KEY_SENDER_IMAGE);
+//                        chatMessage.conversionImage = documentChange.getDocument().getString(Constants.KEY_SENDER_IMAGE);
                         chatMessage.conversionName = documentChange.getDocument().getString(Constants.KEY_SENDER_NAME);
                         chatMessage.conversionId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
                     }
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements ConversationListe
         documentReference.update(updates)
                 .addOnSuccessListener(unused -> {
                     preferenceManager.clear();
-                    startActivity(new Intent(getApplicationContext(), SignInActivity.class));
+                    startActivity(new Intent(getApplicationContext(), LoginPage.class));
                     finish();
                 })
                 .addOnFailureListener(e -> showToast("Unable to sign out"));
