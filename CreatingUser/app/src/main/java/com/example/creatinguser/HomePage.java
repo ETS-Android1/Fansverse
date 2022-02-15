@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -21,21 +22,26 @@ public class HomePage extends AppCompatActivity {
     private Button myProfile;
     Button btnNewsfeed;
     private Button logout_button;
+    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-        Title = findViewById(R.id.homePageFansverse);
-        map = findViewById(R.id.buttonMap);
-        liveScores = findViewById(R.id.buttonLScores);
-        stats = findViewById(R.id.buttonStats);
-        myProfile = findViewById(R.id.buttonProfile);
-        btnNewsfeed = findViewById(R.id.btnNewsfeed);
+//        Title = findViewById(R.id.homePageFansverse);
+//        map = findViewById(R.id.buttonMap);
+//        liveScores = findViewById(R.id.buttonLScores);
+//        stats = findViewById(R.id.buttonStats);
+//        myProfile = findViewById(R.id.buttonProfile);
+//        btnNewsfeed = findViewById(R.id.btnNewsfeed);
         logout_button = findViewById(R.id.logout_button);
+        cvMessage = findViewById(R.id.cvMessage);
+        cvMap = findViewById(R.id.cvMap);
+        cvScore = findViewById(R.id.cvScore);
+        cvNews = findViewById(R.id.cvNews);
 
-        btnNewsfeed.setOnClickListener(new View.OnClickListener() {
+        cvNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Newsfeed.class);
@@ -44,16 +50,16 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        logout_button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().getCurrentUser();
-                FirebaseAuth.getInstance().signOut();
-                Toast toast = Toast.makeText(HomePage.this, "Signout Complete", Toast.LENGTH_LONG);
-                toast.show();
-                Intent intent = new Intent(getApplicationContext(), LoginPage.class);
-                startActivity(intent);
-            }
-        });
+//        logout_button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                FirebaseAuth.getInstance().getCurrentUser();
+//                FirebaseAuth.getInstance().signOut();
+//                Toast toast = Toast.makeText(HomePage.this, "Signout Complete", Toast.LENGTH_LONG);
+//                toast.show();
+//                Intent intent = new Intent(getApplicationContext(), LoginPage.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 }
