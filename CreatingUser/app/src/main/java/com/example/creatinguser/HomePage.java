@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +15,7 @@ import com.example.creatinguser.utilities.PreferenceManager;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class HomePage extends AppCompatActivity {
     //
@@ -24,6 +26,8 @@ public class HomePage extends AppCompatActivity {
     private Button myProfile;
     Button btnNewsfeed;
     Button btnmessages;
+
+    private Button logout_button;
 
 
     @Override
@@ -48,12 +52,24 @@ public class HomePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        logout_button = findViewById(R.id.logout_button);
 
         btnNewsfeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Newsfeed.class);
                 //intent.putExtra("message", current_username);
+                startActivity(intent);
+            }
+        });
+
+        logout_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().getCurrentUser();
+                FirebaseAuth.getInstance().signOut();
+                Toast toast = Toast.makeText(HomePage.this, "Signout Complete", Toast.LENGTH_LONG);
+                toast.show();
+                Intent intent = new Intent(getApplicationContext(), LoginPage.class);
                 startActivity(intent);
             }
         });
