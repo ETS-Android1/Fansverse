@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CreatingUser</string>
+    <string name="app_name">Fansverse</string>
 
     <string name="username_error">Enter Username name please</string>
     <string name="email_error">Enter Email</string>
