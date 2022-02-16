@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.creatinguser.databinding.ItemContainerUserBinding;
-import com.example.creatinguser.models.User;
+import com.example.creatinguser.Models.User;
 import com.example.creatinguser.listeners.UserListener;
 
 import java.util.List;

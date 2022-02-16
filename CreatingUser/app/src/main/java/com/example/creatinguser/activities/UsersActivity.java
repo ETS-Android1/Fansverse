@@ -14,7 +14,7 @@ import com.example.creatinguser.utilities.PreferenceManager;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import com.example.creatinguser.models.User;
+import com.example.creatinguser.Models.User;
 import java.util.ArrayList;
 import java.util.List;
 

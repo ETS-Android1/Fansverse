@@ -5,18 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-
-import com.example.creatinguser.adapters.RecentConversationsAdapter;
-import com.example.creatinguser.models.ChatMessage;
-import com.example.creatinguser.utilities.PreferenceManager;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.List;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class HomePage extends AppCompatActivity {
     //

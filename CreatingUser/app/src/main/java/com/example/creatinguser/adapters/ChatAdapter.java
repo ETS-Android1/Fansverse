@@ -1,6 +1,5 @@
 package com.example.creatinguser.adapters;
 
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -9,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.creatinguser.databinding.ItemContainerReceivedMessageBinding;
 import com.example.creatinguser.databinding.ItemContainerSentMessageBinding;
-import com.example.creatinguser.models.ChatMessage;
+import com.example.creatinguser.Models.ChatMessage;
 
 import java.util.List;
 

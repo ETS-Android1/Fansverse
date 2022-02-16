@@ -1,4 +1,4 @@
-package com.example.creatinguser.models;
+package com.example.creatinguser.Models;
 import java.io.Serializable;
 
 public class User implements Serializable {

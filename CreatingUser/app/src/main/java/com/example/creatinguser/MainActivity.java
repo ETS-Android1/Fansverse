@@ -3,23 +3,19 @@ package com.example.creatinguser;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.creatinguser.activities.ChatActivity;
-import com.example.creatinguser.activities.SignInActivity;
 import com.example.creatinguser.activities.UsersActivity;
 import com.example.creatinguser.adapters.RecentConversationsAdapter;
-import com.example.creatinguser.models.User;
+import com.example.creatinguser.Models.User;
 import com.example.creatinguser.utilities.Constants;
 import com.example.creatinguser.utilities.PreferenceManager;
 import com.example.creatinguser.databinding.ActivityMainBinding;
 import com.example.creatinguser.listeners.ConversationListener;
-import com.example.creatinguser.models.ChatMessage;
+import com.example.creatinguser.Models.ChatMessage;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;

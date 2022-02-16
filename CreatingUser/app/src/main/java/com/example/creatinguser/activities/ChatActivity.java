@@ -9,8 +9,8 @@ import android.util.Base64;
 import android.view.View;
 
 import com.example.creatinguser.adapters.ChatAdapter;
-import com.example.creatinguser.models.ChatMessage;
-import com.example.creatinguser.models.User;
+import com.example.creatinguser.Models.ChatMessage;
+import com.example.creatinguser.Models.User;
 import com.example.creatinguser.databinding.ActivityChatBinding;
 import com.example.creatinguser.utilities.Constants;
 import com.example.creatinguser.utilities.PreferenceManager;
