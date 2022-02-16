@@ -23,7 +23,7 @@
         android:baselineAligned="false"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="47dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@drawable/crooked_duck" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
