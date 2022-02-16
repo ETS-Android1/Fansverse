@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.creatinguser.adapters.RecentConversationsAdapter;
 import com.example.creatinguser.models.ChatMessage;
@@ -28,6 +29,7 @@ public class HomePage extends AppCompatActivity {
     Button btnmessages;
 
     private Button logout_button;
+    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews;
 
 
     @Override
@@ -35,26 +37,14 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-        Title = findViewById(R.id.homePageFansverse);
-        map = findViewById(R.id.buttonMap);
-        liveScores = findViewById(R.id.buttonLScores);
-        stats = findViewById(R.id.buttonStats);
-        myProfile = findViewById(R.id.buttonProfile);
-        myProfile = findViewById(R.id.buttonProfile);
-        btnNewsfeed = findViewById(R.id.btnNewsfeed);
-        btnmessages = findViewById(R.id.messages);
 
-        btnmessages.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                //intent.putExtra("message", current_username);
-                startActivity(intent);
-            }
-        });
         logout_button = findViewById(R.id.logout_button);
+        cvMessage = findViewById(R.id.cvMessage);
+        cvMap = findViewById(R.id.cvMap);
+        cvScore = findViewById(R.id.cvScore);
+        cvNews = findViewById(R.id.cvNews);
 
-        btnNewsfeed.setOnClickListener(new View.OnClickListener() {
+        cvNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Newsfeed.class);
@@ -63,16 +53,25 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        logout_button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().getCurrentUser();
-                FirebaseAuth.getInstance().signOut();
-                Toast toast = Toast.makeText(HomePage.this, "Signout Complete", Toast.LENGTH_LONG);
-                toast.show();
-                Intent intent = new Intent(getApplicationContext(), LoginPage.class);
+                cvMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                //intent.putExtra("message", current_username);
                 startActivity(intent);
             }
         });
+
+//        logout_button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                FirebaseAuth.getInstance().getCurrentUser();
+//                FirebaseAuth.getInstance().signOut();
+//                Toast toast = Toast.makeText(HomePage.this, "Signout Complete", Toast.LENGTH_LONG);
+//                toast.show();
+//                Intent intent = new Intent(getApplicationContext(), LoginPage.class);
+//                startActivity(intent);
+//            }
+//        });
 
         
 
