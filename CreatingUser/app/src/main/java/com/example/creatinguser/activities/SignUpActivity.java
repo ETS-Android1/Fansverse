@@ -29,7 +29,7 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.creatinguser.LoginPage;
 import com.example.creatinguser.MainActivity;
 import com.example.creatinguser.R;
-import com.example.creatinguser.databinding.ActivitySignInBinding;
+
 import com.example.creatinguser.databinding.ActivitySignUpBinding;
 import com.example.creatinguser.utilities.Constants;
 import com.example.creatinguser.utilities.PreferenceManager;

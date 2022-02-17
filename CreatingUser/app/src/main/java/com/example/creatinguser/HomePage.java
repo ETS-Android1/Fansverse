@@ -29,7 +29,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
 
-        logout_button = findViewById(R.id.logout_button);
+        //logout_button = findViewById(R.id.logout_button);
         cvMessage = findViewById(R.id.cvMessage);
         cvMap = findViewById(R.id.cvMap);
         cvScore = findViewById(R.id.cvScore);
