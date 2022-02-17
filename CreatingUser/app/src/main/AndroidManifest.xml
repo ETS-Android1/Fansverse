@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CreatingUser">
         <activity
+            android:name=".CreateFanPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FanPageActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity

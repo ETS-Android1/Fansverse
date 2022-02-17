@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,6 +68,11 @@ public class HomePage extends AppCompatActivity {
                     finish();
                 }
 
+                if (id == R.id.fanpage) {
+                    Intent loginIntent = new Intent(HomePage.this, FanPageActivity.class);
+                    startActivity(loginIntent);
+
+                }
 
                 return false;
             }
@@ -76,7 +82,6 @@ public class HomePage extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         loadAndCheckUser();
-        retrieveUserProfile();
 
     }
 
@@ -90,23 +95,5 @@ public class HomePage extends AppCompatActivity {
         }
     }
 
-    private void retrieveUserProfile(){
-        final FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
-        final DocumentReference docRef = db.collection("Profile").document(currentUserID);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot documentSnapshot = task.getResult();
-                if(documentSnapshot.exists()){
-                    if(documentSnapshot.getData().get("firstname") == null){
-                        Intent loginIntent = new Intent(HomePage.this, SetUpProfileActivity.class);
-                        loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(loginIntent);
-                        finish();
-                    }
-                }
-            }
-        });
-    }
+
 }
