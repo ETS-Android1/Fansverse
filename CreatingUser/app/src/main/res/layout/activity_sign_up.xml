@@ -7,6 +7,7 @@
     android:clipToPadding="false"
     android:overScrollMode="never"
     android:padding="24sp"
+    android:background="#AB673AB7"
     android:scrollbars="none"
     tools:context=".activities.SignUpActivity">
 
@@ -39,7 +40,7 @@
             android:paddingStart="16sp"
             android:paddingEnd="16sp"
             android:textColor="@color/primary_text"
-            android:textSize="13sp"/>
+            />
 
         <EditText
             android:id="@+id/inputEmail"
@@ -54,7 +55,7 @@
             android:paddingStart="16sp"
             android:paddingEnd="16sp"
             android:textColor="@color/primary_text"
-            android:textSize="13sp"/>
+            />
 
         <EditText
             android:id="@+id/inputPassword"
@@ -69,7 +70,7 @@
             android:paddingStart="16sp"
             android:paddingEnd="16sp"
             android:textColor="@color/primary_text"
-            android:textSize="13sp"/>
+            />
 
         <EditText
             android:id="@+id/inputConfirmPassword"
@@ -84,7 +85,7 @@
             android:paddingStart="16sp"
             android:paddingEnd="16sp"
             android:textColor="@color/primary_text"
-            android:textSize="13sp"/>
+            />
 
         <FrameLayout
             android:layout_width="match_parent"

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#AB673AB7"
+    android:padding="24sp"
     tools:context=".LoginPage">
 
         <LinearLayout
@@ -44,7 +45,7 @@
                     android:paddingStart="16sp"
                     android:paddingEnd="16sp"
                     android:textColor="@color/primary_text"
-                    android:textSize="13sp"/>
+                    />
 
                 <EditText
                     android:id="@+id/login_pass"
@@ -52,14 +53,14 @@
                     android:layout_height="45sp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/background_input"
-                    android:hint="password"
+                    android:hint="Password"
                     android:inputType="textPassword"
                     android:imeOptions="actionDone"
                     android:importantForAutofill="no"
                     android:paddingStart="16sp"
                     android:paddingEnd="16sp"
                     android:textColor="@color/primary_text"
-                    android:textSize="13sp"/>
+                    />
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
