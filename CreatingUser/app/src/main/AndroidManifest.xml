@@ -19,7 +19,6 @@
             android:exported="false" />
         <activity android:name=".Welcome" />
         <activity android:name=".HomePage" />
-        <activity android:name=".Registration" />
 
         <activity
             android:name=".activities.UsersActivity"
