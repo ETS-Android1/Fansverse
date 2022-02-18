@@ -1,4 +1,27 @@
 <resources>
-    <string name="app_name">CreatingUser</string>
+
     <string name="title_activity_google_maps">GoogleMaps</string>
+    <string name="app_name">Fansverse</string>
+
+    <string name="username_error">Enter Username name please</string>
+    <string name="email_error">Enter Email</string>
+    <string name="password_error">The password should contain at least 8 characters, including at least one lower case letter, one upper case letter, one number and one punctuation mark</string>
+    <string name="password_mismatch">Password did not match</string>
+
+    <string name="edit_message">Enter a message</string>
+    <string name="button_map">Map</string>
+    <string name="select_user">Select User</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="login_to_continue">Login to Continue</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="add_image">Add Image</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="back_to_login">Back to Login</string>
+    <string name="api_key">d4137699118e4f0587afd11d17bb54bf</string>
+    <string name="signuppage">Sign Up Page</string>
 </resources>
