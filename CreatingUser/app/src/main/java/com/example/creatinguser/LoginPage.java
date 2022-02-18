@@ -1,5 +1,7 @@
 package com.example.creatinguser;
 
+import android.content.SharedPreferences;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
@@ -24,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class LoginPage extends AppCompatActivity {
@@ -40,6 +43,8 @@ public class LoginPage extends AppCompatActivity {
     HashMap<String, String> credentials = null;
     Context context;
     private FirebaseAuth mAuth;
+
+    private int totalAttempts = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +65,9 @@ public class LoginPage extends AppCompatActivity {
         //Creating an HashMap object and assigning to the above mentioned 'credentials' hashmap reference.
         credentials = new HashMap<String, String>();
 
+        SharedPreferences pref = this.getSharedPreferences("LoginTracker", Context.MODE_PRIVATE);
+        String time= pref.getString("ATTEMPT_Time",null);
+
         // Setting an onClick listener to Login button
         login_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -69,7 +77,21 @@ public class LoginPage extends AppCompatActivity {
                 if (credentials == null) {
                     toast = Toast.makeText(context, "Please Sign up ", Toast.LENGTH_LONG);
                     toast.show();
-                } else {
+                }
+                else if(time != null && (Long.parseLong(time) > (System.currentTimeMillis()-300000))){
+                    login_button.setEnabled(false);
+                    Toast.makeText(LoginPage.this, "Button still disabled, please wait for the disabled timer to complete.",
+                            Toast.LENGTH_LONG).show();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            login_button.setEnabled(true);
+                            totalAttempts = 2;
+                        }
+                    }, System.currentTimeMillis()-300000);
+                }
+                else {
                     // Retrieving the data associated with the login and password fields
                     String current_username = login_username.getText().toString();
                     String current_password = login_password.getText().toString();
@@ -86,10 +108,32 @@ public class LoginPage extends AppCompatActivity {
                                         startActivity(intent);
 //                                        updateUI(user);
                                     }
+                                    else if(totalAttempts == 0){
+                                        login_button.setEnabled(false);
+
+                                        Toast alert = Toast.makeText(LoginPage.this, "Disabling login for 5 minutes", Toast.LENGTH_SHORT);
+                                        alert.show();
+
+                                        final Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                login_button.setEnabled(true);
+                                                totalAttempts = 2;
+                                            }
+                                        }, 300000);
+
+                                        SharedPreferences.Editor edit = pref.edit();
+                                        edit.putString("ATTEMPT_Time", String.valueOf(System.currentTimeMillis()));
+                                        edit.commit();
+                                    }
                                     else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "signInWithEmail:failure", task.getException());
                                         Toast.makeText(LoginPage.this, "Authentication failed. Check Email or Password",
+                                                Toast.LENGTH_SHORT).show();
+                                        totalAttempts--;
+                                        Toast.makeText(LoginPage.this, "You have " + (totalAttempts+1) + " tries left",
                                                 Toast.LENGTH_SHORT).show();
 //                                        updateUI(null);
                                     }
