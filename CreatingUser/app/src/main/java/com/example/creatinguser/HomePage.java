@@ -44,7 +44,16 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-                cvMessage.setOnClickListener(new View.OnClickListener() {
+        cvMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), GoogleMaps.class);
+                //intent.putExtra("message", current_username);
+                startActivity(intent);
+            }
+        });
+
+        cvMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
