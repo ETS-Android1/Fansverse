@@ -1,16 +1,16 @@
 package com.example.creatinguser;
 
-import androidx.fragment.app.FragmentActivity;
-
 import android.os.Bundle;
 
+import androidx.fragment.app.FragmentActivity;
+
+import com.example.creatinguser.databinding.ActivityGoogleMapsBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.example.creatinguser.databinding.ActivityGoogleMapsBinding;
 
 public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
 
@@ -56,7 +56,21 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
         mMap.addMarker(new MarkerOptions().position(crookedDuck).title("The Crooked Duck"));
         mMap.addMarker(new MarkerOptions().position(mvpGrill).title("MVP Grill"));
 
+
+
         //second value is zoom, can be from 1 to 20
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(interlude, 15));
+
+        //mMap.setOnMarkerClickListener((OnMarkerClickListener) this);
+
+        
+
+
+        //public void openBlondies()
+        //{
+        //    Intent intent = new Intent(this, blondie_info.xml);
+        //    startActivity(intent);
+        //}
+
     }
 }
