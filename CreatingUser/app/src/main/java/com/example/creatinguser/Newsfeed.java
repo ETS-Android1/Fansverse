@@ -1,5 +1,6 @@
 package com.example.creatinguser;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.creatinguser.Models.NewsApiResponse;
 import com.example.creatinguser.Models.NewsHeadlines;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.List;
 
@@ -18,6 +22,7 @@ public class Newsfeed extends AppCompatActivity implements SelectListener{
     RecyclerView recyclerView;
     CustomAdapter adapter;
     ProgressDialog dialog;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,60 @@ public class Newsfeed extends AppCompatActivity implements SelectListener{
 
         RequestManager manager = new RequestManager(this);
         manager.getNewsHeadlines(listener, "sports", null); // sports came from the newsApi.org page
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        // set home
+        bottomNavigationView.setSelectedItemId(R.id.info);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.logout:
+                        startActivity(new Intent(getApplicationContext(), LoginPage.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+
+//                        FirebaseAuth.getInstance().getCurrentUser();
+//                        FirebaseAuth.getInstance().signOut();
+//                        Toast toast = Toast.makeText(HomePage.this, "Signout Complete", Toast.LENGTH_LONG);
+//                        toast.show();
+//                        Intent intent = new Intent(getApplicationContext(), LoginPage.class);
+//                        startActivity(intent);
+//                        overridePendingTransition(0, 0);
+//                        return true;
+
+
+//                        showToast("Signing out.....");
+//                        FirebaseFirestore database = FirebaseFirestore.getInstance();
+//                        DocumentReference documentReference =
+//                                database.collection(Constants.KEY_COLLECTION_USERS).document(
+//                                        preferenceManager.getString(Constants.KEY_USER_ID)
+//                                );
+//                        HashMap<String,Object> updates = new HashMap<>();
+//                        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
+//                        documentReference.update(updates)
+//                                .addOnSuccessListener(unused -> {
+//                                    preferenceManager.clear();
+//                                    startActivity(new Intent(getApplicationContext(), LoginPage.class));
+//                                    finish();
+//                                })
+//                               .addOnFailureListener(e -> showToast("Unable to sign out"));
+
+                    case R.id.info:
+                        return true;
+
+                    // right now it directs to news and it works
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), HomePage.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
     }
 
