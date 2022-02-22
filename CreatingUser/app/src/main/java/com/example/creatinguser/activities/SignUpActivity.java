@@ -59,7 +59,6 @@ public class SignUpActivity extends AppCompatActivity {
     private ActivitySignUpBinding binding;
     private PreferenceManager preferenceManager;
     private FirebaseAuth firebaseAuth;
-    String currentUserId;
 //    private String encodedImage;
 
     @Override
@@ -68,7 +67,6 @@ public class SignUpActivity extends AppCompatActivity {
 
 //        To create a new user and get his UID
         firebaseAuth = FirebaseAuth.getInstance();
-        currentUserId = firebaseAuth.getCurrentUser().getUid();
 
 
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
