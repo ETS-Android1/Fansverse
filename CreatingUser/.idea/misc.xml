@@ -3,9 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_chat.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_details.xml" value="0.15416666666666667" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_google_maps.xml" value="0.1796875" />
-        <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_main.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_groupchat.xml" value="0.1796875" />
+        <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_homepage.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_registration.xml" value="0.14764492753623187" />
+        <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_users.xml" value="0.14764492753623187" />
         <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/activity_google_maps.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/crooked_duck_info.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/interlude_info.xml" value="0.23854166666666668" />

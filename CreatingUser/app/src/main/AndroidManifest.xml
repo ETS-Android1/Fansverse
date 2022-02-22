@@ -47,10 +47,17 @@
             android:name=".activities.UsersActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.GroupUsersActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"/>
         <activity
             android:name=".activities.ChatActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
+        <activity
+            android:name=".activities.GroupChatActivity"
             android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity

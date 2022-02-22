@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.creatinguser.activities.ChatActivity;
+import com.example.creatinguser.activities.GroupChatActivity;
+import com.example.creatinguser.activities.GroupUsersActivity;
 import com.example.creatinguser.activities.UsersActivity;
 import com.example.creatinguser.adapters.RecentConversationsAdapter;
 import com.example.creatinguser.Models.User;
@@ -61,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements ConversationListe
         binding.imageSignOut.setOnClickListener(v -> signOut());
         binding.fabNewChat.setOnClickListener(v ->
                 startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
+        binding.fabNewGroupChat.setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(), GroupUsersActivity.class)));
     }
 
 //    private void loadUserDetails(){
@@ -161,7 +165,8 @@ public class MainActivity extends AppCompatActivity implements ConversationListe
 
     @Override
     public void onConversionClicked(User user) {
-        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+//        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+        Intent intent = new Intent(getApplicationContext(), GroupChatActivity.class);
         intent.putExtra(Constants.KEY_USER,user);
         startActivity(intent);
     }

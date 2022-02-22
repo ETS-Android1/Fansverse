@@ -1,18 +1,21 @@
 package com.example.creatinguser.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 
-import com.example.creatinguser.adapters.ChatAdapter;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.creatinguser.Models.ChatMessage;
 import com.example.creatinguser.Models.User;
+import com.example.creatinguser.adapters.ChatAdapter;
 import com.example.creatinguser.adapters.GroupChatAdapter;
 import com.example.creatinguser.databinding.ActivityChatBinding;
+import com.example.creatinguser.databinding.ActivityGroupchatBinding;
+import com.example.creatinguser.listeners.ConversationListener;
 import com.example.creatinguser.utilities.Constants;
 import com.example.creatinguser.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,13 +34,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+public class GroupChatActivity extends AppCompatActivity implements ConversationListener {
 
-public class ChatActivity extends AppCompatActivity {
-
-    private ActivityChatBinding binding;
+    private ActivityGroupchatBinding binding;
     private User receiverUser;
+    private List<String> groupUsersIds;
+    private List<User> groupUsers;
     private List<ChatMessage> chatMessages;
-    private ChatAdapter chatAdapter;
+    private GroupChatAdapter groupChatAdapter;
     private PreferenceManager preferenceManager;
     private FirebaseFirestore database;
     private String conversionId = null;
@@ -45,7 +49,7 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityChatBinding.inflate(getLayoutInflater());
+        binding = ActivityGroupchatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setListeners();
         loadReceiverDetails();
@@ -56,12 +60,14 @@ public class ChatActivity extends AppCompatActivity {
     private void init(){
         preferenceManager = new PreferenceManager(getApplicationContext());
         chatMessages = new ArrayList<>();
-        chatAdapter = new ChatAdapter(
+        groupChatAdapter = new GroupChatAdapter(
                 chatMessages,
 //                getBitmapFromEncodedString(receiverUser.image),
-                preferenceManager.getString(Constants.KEY_USER_ID)
+//                preferenceManager.getString(Constants.KEY_USER_ID)
+//                preferenceManager.getStrings(Constants.KEY_USER_ID)
+                null
         );
-        binding.chatRecyclerView.setAdapter(chatAdapter);
+        binding.chatRecyclerView.setAdapter(groupChatAdapter);
         database = FirebaseFirestore.getInstance();
     }
 
@@ -117,11 +123,11 @@ public class ChatActivity extends AppCompatActivity {
                     chatMessages.add(chatMessage);
                 }
             }
-            Collections.sort(chatMessages,(obj1,obj2) -> obj1.dateObject.compareTo(obj2.dateObject));
+            Collections.sort(chatMessages,(obj1, obj2) -> obj1.dateObject.compareTo(obj2.dateObject));
             if (count == 0){
-                chatAdapter.notifyDataSetChanged();
+                groupChatAdapter.notifyDataSetChanged();
             }else{
-                chatAdapter.notifyItemRangeInserted(chatMessages.size(),chatMessages.size());
+                groupChatAdapter.notifyItemRangeInserted(chatMessages.size(),chatMessages.size());
                 binding.chatRecyclerView.smoothScrollToPosition(chatMessages.size() -1);
             }
             binding.chatRecyclerView.setVisibility(View.VISIBLE);
@@ -140,11 +146,18 @@ public class ChatActivity extends AppCompatActivity {
     private void loadReceiverDetails() {
         receiverUser = (User) getIntent().getSerializableExtra(Constants.KEY_USER);
         binding.textName.setText(receiverUser.name);
+        groupUsers.add(receiverUser);
     }
 
     private void setListeners(){
         binding.imageBack.setOnClickListener(v -> onBackPressed());
         binding.layoutSend.setOnClickListener(v -> sendMessage());
+        binding.addUser.setOnClickListener(v -> addUser());
+    }
+
+    private void addUser(){
+        startActivity(new Intent(getApplicationContext(), UsersActivity.class));
+
     }
 
     private String getReadableDateTime(Date date){
@@ -192,5 +205,15 @@ public class ChatActivity extends AppCompatActivity {
             conversionId = documentSnapshot.getId();
         }
     };
-}
 
+    @Override
+    public void onConversionClicked(User user) {
+//        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+//        Intent intent = new Intent(getApplicationContext(), GroupChatActivity.class);
+//        intent.putExtra(Constants.KEY_USER,user);
+//        startActivity(intent);
+        groupUsers.add(user);
+//        receiverUser = (User) getIntent().getSerializableExtra(Constants.KEY_USER);
+//        binding.textName.setText(receiverUser.name);
+    }
+}
