@@ -14,14 +14,15 @@ import java.util.List;
 
 public class GroupChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<ChatMessage> chatMessages;
+    private final List<ChatMessage> chatMessages;
     //    private final Bitmap receiverProfileImage;
-    private List<String> senderId;
+//    private final List<String> groupIds;
+    private final String senderId;
 
     public static final int VIEW_TYPE_SENT = 1;
     public static final int VIEW_TYPE_RECEIVED = 2;
 
-    public GroupChatAdapter(List<ChatMessage> chatMessages, List<String> senderId){//} Bitmap receiverProfileImage, String senderId) {
+    public GroupChatAdapter(List<ChatMessage> chatMessages, String senderId){//} Bitmap receiverProfileImage, String senderId) {
         this.chatMessages = chatMessages;
 //        this.receiverProfileImage = receiverProfileImage;
         this.senderId = senderId;
@@ -31,7 +32,7 @@ public class GroupChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_SENT){
-            return new com.example.creatinguser.adapters.GroupChatAdapter.SentMessageViewHolder(
+            return new SentMessageViewHolder(
                     ItemContainerSentMessageBinding.inflate(
                             LayoutInflater.from(parent.getContext()),
                             parent,
@@ -39,7 +40,7 @@ public class GroupChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     )
             );
         }else {
-            return new com.example.creatinguser.adapters.GroupChatAdapter.RecivedMessageViewholder(
+            return new RecivedMessageViewholder(
                     ItemContainerReceivedMessageBinding.inflate(
                             LayoutInflater.from(parent.getContext()),
                             parent,
@@ -52,9 +53,9 @@ public class GroupChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == VIEW_TYPE_SENT){
-            ((com.example.creatinguser.adapters.GroupChatAdapter.SentMessageViewHolder) holder).setData(chatMessages.get(position));
+            ((SentMessageViewHolder) holder).setData(chatMessages.get(position));
         }else {
-            ((com.example.creatinguser.adapters.GroupChatAdapter.RecivedMessageViewholder) holder).setData(chatMessages.get(position));//, receiverProfileImage);
+            ((RecivedMessageViewholder) holder).setData(chatMessages.get(position));//, receiverProfileImage);
         }
     }
 

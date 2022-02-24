@@ -107,7 +107,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     final FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    String currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
+                    String currentUserID = firebaseAuth.getCurrentUser().getUid();
                     Map<String, Object> map = new HashMap<>();
                     map.put("userID", currentUserID);
                     map.put("username", username);
@@ -364,30 +364,4 @@ public class SignUpActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //
-//            // Add a new document with a generated ID
-//            db.collection("users")
-//                    .add(newMember)
-//                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                        @Override
-//                        public void onSuccess(DocumentReference documentReference) {
-//                            Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-//                        }
-//                    })
-//                    .addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                            Log.w(TAG, "Error adding document", e);
-//                        }
-//                    });
-//
-//            //process the data further
-//        }
-//    }
-//
-//    @Override
-//    public void onClick(View view) {
-//        if (view == register_signup_button) {
-//            submitForm();
-//        }
-//    }
-//}
+

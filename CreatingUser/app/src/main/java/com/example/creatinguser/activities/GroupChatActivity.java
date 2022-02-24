@@ -34,11 +34,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class GroupChatActivity extends AppCompatActivity implements ConversationListener {
+public class GroupChatActivity extends AppCompatActivity{//} implements ConversationListener {
 
     private ActivityGroupchatBinding binding;
     private User receiverUser;
-    private List<String> groupUsersIds;
     private List<User> groupUsers;
     private List<ChatMessage> chatMessages;
     private GroupChatAdapter groupChatAdapter;
@@ -62,10 +61,7 @@ public class GroupChatActivity extends AppCompatActivity implements Conversation
         chatMessages = new ArrayList<>();
         groupChatAdapter = new GroupChatAdapter(
                 chatMessages,
-//                getBitmapFromEncodedString(receiverUser.image),
-//                preferenceManager.getString(Constants.KEY_USER_ID)
-//                preferenceManager.getStrings(Constants.KEY_USER_ID)
-                null
+                preferenceManager.getString(Constants.KEY_GROUP_SENDER_ID)
         );
         binding.chatRecyclerView.setAdapter(groupChatAdapter);
         database = FirebaseFirestore.getInstance();
@@ -145,8 +141,8 @@ public class GroupChatActivity extends AppCompatActivity implements Conversation
 
     private void loadReceiverDetails() {
         receiverUser = (User) getIntent().getSerializableExtra(Constants.KEY_USER);
-        binding.textName.setText(receiverUser.name);
-        groupUsers.add(receiverUser);
+        binding.textName.setText("GroupChat");
+//        groupUsers.add(0,receiverUser);
     }
 
     private void setListeners(){
@@ -156,7 +152,7 @@ public class GroupChatActivity extends AppCompatActivity implements Conversation
     }
 
     private void addUser(){
-        startActivity(new Intent(getApplicationContext(), UsersActivity.class));
+        startActivity(new Intent(getApplicationContext(), GroupChatActivity.class));
 
     }
 
@@ -206,14 +202,14 @@ public class GroupChatActivity extends AppCompatActivity implements Conversation
         }
     };
 
-    @Override
-    public void onConversionClicked(User user) {
+//    @Override
+//    public void onConversionClicked(User user) {
 //        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
 //        Intent intent = new Intent(getApplicationContext(), GroupChatActivity.class);
 //        intent.putExtra(Constants.KEY_USER,user);
 //        startActivity(intent);
-        groupUsers.add(user);
+//        groupUsers.add(user);
 //        receiverUser = (User) getIntent().getSerializableExtra(Constants.KEY_USER);
 //        binding.textName.setText(receiverUser.name);
-    }
+//    }
 }

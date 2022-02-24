@@ -18,7 +18,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupUsersActivity extends AppCompatActivity implements UserListener {
+public class AddUserActivity extends AppCompatActivity implements UserListener {
 
     private ActivityUsersBinding binding;
     private PreferenceManager preferenceManager;
@@ -29,26 +29,18 @@ public class GroupUsersActivity extends AppCompatActivity implements UserListene
         binding = ActivityUsersBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         preferenceManager = new PreferenceManager(getApplicationContext());
-        setListeners();
         getUsers();
     }
-
-    private void setListeners() {
-        binding.imageBack.setOnClickListener(v -> onBackPressed());
-    }
-
     private void getUsers(){
-        loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .get()
                 .addOnCompleteListener(task -> {
-                    loading(false);
                     String currentUserId = preferenceManager.getString(Constants.KEY_USER_ID);
-                    if(task.isSuccessful() && task.getResult() != null){
+                    if (task.isSuccessful() && task.getResult() != null) {
                         List<User> users = new ArrayList<>();
                         for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
-                            if (currentUserId.equals(queryDocumentSnapshot.getId())){
+                            if (currentUserId.equals(queryDocumentSnapshot.getId())) {
                                 continue;
                             }
                             User user = new User();
@@ -59,32 +51,21 @@ public class GroupUsersActivity extends AppCompatActivity implements UserListene
                             user.id = queryDocumentSnapshot.getId();
                             users.add(user);
                         }
-                        if (users.size() > 0){
-                            UsersAdapter usersAdapter = new UsersAdapter(users,this);
-                            binding.usersRecyclerView.setAdapter(usersAdapter);
-                            binding.usersRecyclerView.setVisibility(View.VISIBLE);
-                        }else {
-                            showErrorMessage();
-                        }
-                    }else{
-                        showErrorMessage();
+//                        if (users.size() > 0){
+//                            UsersAdapter usersAdapter = new UsersAdapter(users,this);
+//                            binding.usersRecyclerView.setAdapter(usersAdapter);
+//                            binding.usersRecyclerView.setVisibility(View.VISIBLE);
+//                        }
+//                        else {
+//                            com.example.creatinguser.activities.UsersActivity.showErrorMessage();
+//                        }
+//                    }else{
+//                        showErrorMessage();
+//                    }
+//                });
                     }
                 });
     }
-
-    private void showErrorMessage(){
-        binding.textErrorMessage.setText(String.format("%s","No user available"));
-        binding.textErrorMessage.setVisibility(View.VISIBLE);
-    }
-
-    private void loading(Boolean isLoading){
-        if (isLoading){
-            binding.progressBar.setVisibility(View.VISIBLE);
-        }else{
-            binding.progressBar.setVisibility(View.INVISIBLE);
-        }
-    }
-
     @Override
     public void onUserClicked(User user) {
         Intent intent = new Intent(getApplicationContext(), GroupChatActivity.class);
