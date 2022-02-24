@@ -99,7 +99,7 @@ public class HomePage extends AppCompatActivity {
 
         
 
-        liveScores.setOnClickListener(new View.OnClickListener() {
+        cvScore.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LiveScoresPage.class);
                 startActivity(intent);
