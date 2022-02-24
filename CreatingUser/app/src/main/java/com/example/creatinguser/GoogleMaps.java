@@ -10,12 +10,14 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
+public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
     private ActivityGoogleMapsBinding binding;
+    private Marker marker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +52,13 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
         LatLng crookedDuck = new LatLng(33.783980693882555, -118.13390584960761);
         LatLng mvpGrill = new LatLng(33.7957953681204, -118.12622952011328);
 
-        mMap.addMarker(new MarkerOptions().position(interlude).title("Interlude pub"));
+        marker = mMap.addMarker(new MarkerOptions().position(interlude).title("Interlude pub"));
         mMap.addMarker(new MarkerOptions().position(blondies).title("Blondie's"));
         mMap.addMarker(new MarkerOptions().position(portCity).title("Port City Tavern"));
         mMap.addMarker(new MarkerOptions().position(crookedDuck).title("The Crooked Duck"));
         mMap.addMarker(new MarkerOptions().position(mvpGrill).title("MVP Grill"));
 
-
+        mMap.setOnMarkerClickListener(this);
 
         //second value is zoom, can be from 1 to 20
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(interlude, 15));
@@ -72,5 +74,21 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
         //    startActivity(intent);
         //}
 
+    }
+
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+
+        if(marker.getTitle()=="Interlude pub")
+        {
+            setContentView(R.layout.blondie_info);
+        } 
+
+
+        //clicker works
+        //Toast.makeText(this, "My Position: " + marker.getPosition().latitude,Toast.LENGTH_LONG).show();
+
+        return false;
     }
 }
