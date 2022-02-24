@@ -36,8 +36,6 @@ public class LoginPage extends AppCompatActivity {
     private LoginPageBinding binding;
     private PreferenceManager preferenceManager;
     private FirebaseAuth firebaseAuth;
-//    SharedPreferences pref = this.getSharedPreferences("LoginTracker", Context.MODE_PRIVATE);
-//    time= pref.getString("ATTEMPT_Time",null);
     private String time;
 
     private int totalAttempts = 2;
@@ -57,79 +55,6 @@ public class LoginPage extends AppCompatActivity {
         setContentView(binding.getRoot());
         setListeners();
     }
-//        SharedPreferences pref = this.getSharedPreferences("LoginTracker", Context.MODE_PRIVATE);
-//        String time= pref.getString("ATTEMPT_Time",null);
-
-        // Setting an onClick listener to Login button
-//        login_button.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Toast toast;
-//
-//                // If the 'credentials' hashmap has no data in it and login button is clicked,then a toast message saying 'please sign up' will be displayed.
-//                if (credentials == null) {
-//                    toast = Toast.makeText(context, "Please Sign up ", Toast.LENGTH_LONG);
-//                    toast.show();
-//                } else if (time != null && (Long.parseLong(time) > (System.currentTimeMillis() - 300000))) {
-//                    login_button.setEnabled(false);
-//                    Toast.makeText(LoginPage.this, "Button still disabled, please wait for the disabled timer to complete.",
-//                            Toast.LENGTH_LONG).show();
-//                    final Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            login_button.setEnabled(true);
-//                            totalAttempts = 2;
-//                        }
-//                    }, System.currentTimeMillis() - 300000);
-//                } else {
-////                     Retrieving the data associated with the login and password fields
-//                    String current_username = login_username.getText().toString();
-//                    String current_password = login_password.getText().toString();
-//                    mAuth.signInWithEmailAndPassword(current_username, current_password)
-//                            .addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<AuthResult> task) {
-//                                    if (task.isSuccessful()) {
-////                                         Sign in success, update UI with the signed-in user's information
-//                                        Log.d(TAG, "signInWithEmail:success");
-//                                        FirebaseUser user = mAuth.getCurrentUser();
-//                                        Intent intent = new Intent(getApplicationContext(), HomePage.class);
-//                                        //intent.putExtra("message", current_username);
-//                                        startActivity(intent);
-////                                        updateUI(user);
-//                                    } else if (totalAttempts == 0) {
-//                                        login_button.setEnabled(false);
-//
-//                                        Toast alert = Toast.makeText(LoginPage.this, "Disabling login for 5 minutes", Toast.LENGTH_SHORT);
-//                                        alert.show();
-//
-//                                        final Handler handler = new Handler();
-//                                        handler.postDelayed(new Runnable() {
-//                                            @Override
-//                                            public void run() {
-//                                                login_button.setEnabled(true);
-//                                                totalAttempts = 2;
-//                                            }
-//                                        }, 300000);
-//
-//                                        SharedPreferences.Editor edit = pref.edit();
-//                                        edit.putString("ATTEMPT_Time", String.valueOf(System.currentTimeMillis()));
-//                                        edit.commit();
-//                                    } else {
-//                                        // If sign in fails, display a message to the user.
-//                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
-//                                        Toast.makeText(LoginPage.this, "Authentication failed. Check Email or Password",
-//                                                Toast.LENGTH_SHORT).show();
-//                                        totalAttempts--;
-//                                        Toast.makeText(LoginPage.this, "You have " + (totalAttempts + 1) + " tries left",
-//                                                Toast.LENGTH_SHORT).show();
-////                                        updateUI(null);
-//                                    }
-//                                }
-//                            });
-//                }
-//            }
-//        }
 
     private void setListeners() {
         binding.tvRegister.setOnClickListener(v ->
@@ -147,8 +72,6 @@ public class LoginPage extends AppCompatActivity {
         if (time != null && (Long.parseLong(time) > (System.currentTimeMillis() - 300000))) {
             binding.loginButton.setEnabled(false);
             showToast("Button still disabled, please wait for the disabled timer to complete.");
-//            Toast.makeText(LoginPage.this, "Button still disabled, please wait for the disabled timer to complete.",
-//                    Toast.LENGTH_LONG).show();
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -170,8 +93,6 @@ public class LoginPage extends AppCompatActivity {
                     } else if (totalAttempts == 0) {
                         binding.loginButton.setEnabled(false);
                         showToast("Disabling login for 5 minutes");
-//                    Toast alert = Toast.makeText(LoginPage.this, "Disabling login for 5 minutes", Toast.LENGTH_SHORT);
-//                    alert.show();
                         final Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -181,11 +102,7 @@ public class LoginPage extends AppCompatActivity {
                             }
                         }, 300000);
                         preferenceManager.putString("ATTEMPT_Time", String.valueOf(System.currentTimeMillis()));
-//                    SharedPreferences.Editor edit = pref.edit();
-//                    edit.putString("ATTEMPT_Time", String.valueOf(System.currentTimeMillis()));
 
-//                    showToast("ATTEMPT_Time" + String.valueOf(System.currentTimeMillis()));
-//                    edit.commit();
                     } else {
                         loading(false);
                         totalAttempts--;
