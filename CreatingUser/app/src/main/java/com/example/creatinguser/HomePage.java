@@ -23,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
+
 public class HomePage extends AppCompatActivity {
 
     private TextView Title;
@@ -34,6 +35,8 @@ public class HomePage extends AppCompatActivity {
     Button btnmessages;
     BottomNavigationView bottomNavigationView;
     PreferenceManager preferenceManager;
+    private FirebaseFirestore database;
+
 
     private Button logout_button;
     CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews;
@@ -43,6 +46,8 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+        database = FirebaseFirestore.getInstance();
+        preferenceManager = new PreferenceManager(getApplicationContext());
 
 
         //logout_button = findViewById(R.id.logout_button);
@@ -88,36 +93,24 @@ public class HomePage extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.logout:
-                        startActivity(new Intent(getApplicationContext(), LoginPage.class));
-                        overridePendingTransition(0, 0);
-                        return true;
 
-
-//                        FirebaseAuth.getInstance().getCurrentUser();
-//                        FirebaseAuth.getInstance().signOut();
-//                        Toast toast = Toast.makeText(HomePage.this, "Signout Complete", Toast.LENGTH_LONG);
-//                        toast.show();
-//                        Intent intent = new Intent(getApplicationContext(), LoginPage.class);
-//                        startActivity(intent);
-//                        overridePendingTransition(0, 0);
-//                        return true;
 
 
 //                        showToast("Signing out.....");
-//                        FirebaseFirestore database = FirebaseFirestore.getInstance();
-//                        DocumentReference documentReference =
-//                                database.collection(Constants.KEY_COLLECTION_USERS).document(
-//                                        preferenceManager.getString(Constants.KEY_USER_ID)
-//                                );
-//                        HashMap<String,Object> updates = new HashMap<>();
-//                        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
-//                        documentReference.update(updates)
-//                                .addOnSuccessListener(unused -> {
-//                                    preferenceManager.clear();
-//                                    startActivity(new Intent(getApplicationContext(), LoginPage.class));
-//                                    finish();
-//                                })
-//                               .addOnFailureListener(e -> showToast("Unable to sign out"));
+                        FirebaseFirestore database = FirebaseFirestore.getInstance();
+                        DocumentReference documentReference =
+                                database.collection(Constants.KEY_COLLECTION_USERS).document(
+                                        preferenceManager.getString(Constants.KEY_USER_ID)
+                                );
+                        HashMap<String,Object> updates = new HashMap<>();
+                        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
+                        documentReference.update(updates)
+                                .addOnSuccessListener(unused -> {
+                                    preferenceManager.clear();
+                                    startActivity(new Intent(getApplicationContext(), LoginPage.class));
+                                    finish();
+                                });
+                        return true;
 
                     case R.id.home:
                         return true;
@@ -132,21 +125,7 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-//        logout_button.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().getCurrentUser();
-//                FirebaseAuth.getInstance().signOut();
-//                Toast toast = Toast.makeText(HomePage.this, "Signout Complete", Toast.LENGTH_LONG);
-//                toast.show();
-//                Intent intent = new Intent(getApplicationContext(), LoginPage.class);
-//                startActivity(intent);
-//            }
-//        });
-
-
-
-        
-
     }
+
 }
 
