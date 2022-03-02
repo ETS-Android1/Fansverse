@@ -52,16 +52,23 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
     private PreferenceManager preferenceManager;
+    private FirebaseAuth firebaseAuth;
 //    private String encodedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        To create a new user and get his UID
+        firebaseAuth = FirebaseAuth.getInstance();
+
+
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         preferenceManager = new PreferenceManager(getApplicationContext());
@@ -88,23 +95,69 @@ public class SignUpActivity extends AppCompatActivity {
         user.put(Constants.KEY_NAME, binding.inputName.getText().toString());
         user.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
         user.put(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString());
-//        user.put(Constants.KEY_IMAGE, encodedImage);
-        database.collection(Constants.KEY_COLLECTION_USERS)
-                .add(user)
-                .addOnSuccessListener(documentReference -> {
-                    loading(false);
-                    preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,false);
-                    preferenceManager.putString(Constants.KEY_USER_ID,documentReference.getId());
-                    preferenceManager.putString(Constants.KEY_NAME,binding.inputName.getText().toString());
+
+//        get the user email and password and create account
+        String email  = binding.inputEmail.getText().toString();
+        String password = binding.inputPassword.getText().toString();
+        String username = binding.inputName.getText().toString();
+
+
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    String currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("userID", currentUserID);
+                    map.put("username", username);
+                    db.collection("Profile").document(currentUserID)
+                            .set(map)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            String message = e.getMessage();
+                            Toast toast = Toast.makeText(getApplicationContext(),"Error: "+ message, Toast.LENGTH_LONG);
+                            toast.show();
+
+                        }
+                    });
+
+
+                    //        user.put(Constants.KEY_IMAGE, encodedImage);
+                    database.collection(Constants.KEY_COLLECTION_USERS)
+                            .add(user)
+                            .addOnSuccessListener(documentReference -> {
+                                loading(false);
+                                preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,false);
+                                preferenceManager.putString(Constants.KEY_USER_ID,documentReference.getId());
+                                preferenceManager.putString(Constants.KEY_NAME,binding.inputName.getText().toString());
 //                    preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
-                    Intent intent = new Intent(getApplicationContext(), LoginPage.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                })
-                .addOnFailureListener(exception -> {
-                    loading(false);
-                    showToast(exception.getMessage());
-                });
+                                //sign out user after registration and redirect to the login page
+                                firebaseAuth.signOut();
+                                Intent intent = new Intent(getApplicationContext(), LoginPage.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                            })
+                            .addOnFailureListener(exception -> {
+                                loading(false);
+                                showToast(exception.getMessage());
+                            });
+
+                }else{
+
+                    String message = task.getException().getMessage();
+                    Toast toast = Toast.makeText(getApplicationContext(),message, Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            }
+        });
+
     }
 
 //    private String encodedImage(Bitmap bitmap){

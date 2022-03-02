@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+
 import com.example.creatinguser.utilities.Constants;
 import com.example.creatinguser.utilities.PreferenceManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.creatinguser.activities.FanPageActivity;
+import com.example.creatinguser.activities.ProfileActivity;
 
 import java.util.HashMap;
 
@@ -33,6 +36,9 @@ public class HomePage extends AppCompatActivity {
     CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews;
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +50,27 @@ public class HomePage extends AppCompatActivity {
         cvMap = findViewById(R.id.cvMap);
         cvScore = findViewById(R.id.cvScore);
         cvNews = findViewById(R.id.cvNews);
+        cvFanPage = findViewById(R.id.cvFan);
+        cvProfilePage = findViewById(R.id.cvProfile);
+
+
+        cvFanPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), FanPageActivity.class);
+                //intent.putExtra("message", current_username);
+                startActivity(intent);
+            }
+        });
+
+        cvProfilePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                //intent.putExtra("message", current_username);
+                startActivity(intent);
+            }
+        });
 
         cvNews.setOnClickListener(new View.OnClickListener() {
             @Override
