@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/logout"
-        android:title="Logout"
-        android:icon="@drawable/ic_power"/>
+
     <item
         android:id="@+id/home"
         android:title="Home"
@@ -13,5 +10,9 @@
         android:id="@+id/info"
         android:title="Info"
         android:icon="@drawable/ic_info"/>
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/ic_power"/>
 
 </menu>

@@ -26,19 +26,10 @@ import java.util.HashMap;
 
 public class HomePage extends AppCompatActivity {
 
-    private TextView Title;
-    private Button map;
-    private Button liveScores;
-    private Button stats;
-    private Button myProfile;
-    Button btnNewsfeed;
-    Button btnmessages;
     BottomNavigationView bottomNavigationView;
     PreferenceManager preferenceManager;
     private FirebaseFirestore database;
 
-
-    private Button logout_button;
     CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews;
 
 
@@ -49,8 +40,6 @@ public class HomePage extends AppCompatActivity {
         database = FirebaseFirestore.getInstance();
         preferenceManager = new PreferenceManager(getApplicationContext());
 
-
-        //logout_button = findViewById(R.id.logout_button);
         cvMessage = findViewById(R.id.cvMessage);
         cvMap = findViewById(R.id.cvMap);
         cvScore = findViewById(R.id.cvScore);

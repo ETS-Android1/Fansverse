@@ -1,9 +1,11 @@
 package com.example.creatinguser;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,6 +18,8 @@ import com.example.creatinguser.utilities.PreferenceManager;
 import com.example.creatinguser.databinding.ActivityMainBinding;
 import com.example.creatinguser.listeners.ConversationListener;
 import com.example.creatinguser.Models.ChatMessage;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements ConversationListe
     private List<ChatMessage> conversations;
     private RecentConversationsAdapter conversationsAdapter;
     private FirebaseFirestore database;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +48,47 @@ public class MainActivity extends AppCompatActivity implements ConversationListe
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         preferenceManager = new PreferenceManager(getApplicationContext());
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        //bottomNavigationView.setSelectedItemId(R.id.info);
+
         init();
 //        loadUserDetails();
         getToken();
         setListeners();
         listenConversations();
+
+        //bottom nav bar
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.logout:
+                        FirebaseFirestore database = FirebaseFirestore.getInstance();
+                        DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_USERS).document(preferenceManager.getString(Constants.KEY_USER_ID));
+                        HashMap<String,Object> updates = new HashMap<>();
+                        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
+                        documentReference.update(updates)
+                                .addOnSuccessListener(unused -> {
+                                    preferenceManager.clear();
+                                    startActivity(new Intent(getApplicationContext(), LoginPage.class));
+                                    finish();
+                                });
+                        return true;
+                    case R.id.info:
+                        startActivity(new Intent(getApplicationContext(), Newsfeed.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    // right now it directs to news and it works
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), HomePage.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
     }
 
     private void init(){
@@ -58,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements ConversationListe
     }
 
     private void setListeners(){
-        binding.imageSignOut.setOnClickListener(v -> signOut());
+        //binding.imageSignOut.setOnClickListener(v -> signOut());
         binding.fabNewChat.setOnClickListener(v ->
                 startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
     }
