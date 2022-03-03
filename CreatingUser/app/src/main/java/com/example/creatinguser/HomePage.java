@@ -33,7 +33,7 @@ public class HomePage extends AppCompatActivity {
     PreferenceManager preferenceManager;
     private FirebaseFirestore database;
 
-    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews;
+    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews, cvFanPage, cvProfilePage;
 
 
 
@@ -50,8 +50,8 @@ public class HomePage extends AppCompatActivity {
         cvMap = findViewById(R.id.cvMap);
         cvScore = findViewById(R.id.cvScore);
         cvNews = findViewById(R.id.cvNews);
-        cvFanPage = findViewById(R.id.cvFan);
-        cvProfilePage = findViewById(R.id.cvProfile);
+        cvFanPage = findViewById(R.id.cvFanPage);
+        cvProfilePage = findViewById(R.id.cvProfilePage);
 
 
         cvFanPage.setOnClickListener(new View.OnClickListener() {
