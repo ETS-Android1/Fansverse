@@ -8,36 +8,10 @@
     android:background="@color/primary"
     tools:context=".MainActivity">
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/imageProfile"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/background_icon"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:riv_corner_radius="8dp"/>
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageSignOut"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/background_icon"
-        android:padding="6dp"
-        android:src="@drawable/ic_logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:tint="@color/white"/>
-
     <TextView
         android:id="@+id/textName"
-        android:layout_width="0dp"
+        android:text="Messages"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -45,20 +19,21 @@
         android:gravity="center"
         android:maxLines="1"
         android:textColor="@color/white"
-        android:textSize="14dp"
+        android:textSize="25dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageProfile"
-        app:layout_constraintEnd_toStartOf="@+id/imageSignOut"
-        app:layout_constraintStart_toEndOf="@+id/imageProfile"
-        app:layout_constraintTop_toTopOf="@+id/imageProfile"/>
+        app:layout_constraintBottom_toTopOf="@+id/frameLayoutContainer"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
+        android:id="@+id/frameLayoutContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/background_content_bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageProfile">
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintTop_toBottomOf="@id/textName">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/conversationsRecyclerView"
@@ -69,13 +44,13 @@
             android:overScrollMode="never"
             android:padding="20dp"
             android:visibility="gone"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
     </FrameLayout>
 
@@ -85,12 +60,30 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="30dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_add"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         android:tint="@color/white"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_gravity="bottom"
+        android:id="@+id/bottom_navigation"
+        app:itemBackground="@color/purple_500"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/menu_navigation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
