@@ -68,6 +68,7 @@
         android:layout_height="wrap_content"
         android:foregroundGravity="fill_horizontal"
         android:justificationMode="inter_word"
+        android:gravity="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
