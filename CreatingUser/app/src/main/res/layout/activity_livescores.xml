@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#AB673AB7">
 
-    <Button
-        android:id="@+id/buttonHomePage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back to HomePage"
-        app:layout_constraintBottom_toTopOf="@+id/buttoncurrScores"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/liveScoresPageFansverse" />
-
-<!--    <Button
+    <!--    <Button
         android:id="@+id/buttonProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,17 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonStats" /> -->
 
-    <Button
-        android:id="@+id/buttoncurrScores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Current Scores"
-        app:layout_constraintBottom_toTopOf="@+id/currScoresText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonHomePage" />
-
-<!--    <Button
+    <!--    <Button
         android:id="@+id/buttonStats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,32 +27,70 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttoncurrScores" /> -->
 
+    <Button
+        android:id="@+id/buttonHomePage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back to HomePage"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttoncurrScores"
+        app:layout_constraintTop_toBottomOf="@+id/liveScoresPageFansverse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttoncurrScores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Scores"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/buttonHomePage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/liveScoresPageFansverse"
         android:layout_width="248dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="wrap_content"
         android:text="FansVerse LiveScores"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buttonHomePage"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@id/buttonHomePage"
+    />
 
     <TextView
         android:id="@+id/currScoresText"
-        android:layout_width="309dp"
-        android:layout_height="417dp"
-        android:layout_marginTop="108dp"
-        android:layout_marginEnd="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:foregroundGravity="fill_horizontal"
         android:justificationMode="inter_word"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="visible"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttoncurrScores" />
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintTop_toBottomOf="@id/buttoncurrScores"
+    />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:id="@+id/bottom_navigation"
+        app:itemBackground="@color/purple_500"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/menu_navigation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 </androidx.constraintlayout.widget.ConstraintLayout>
