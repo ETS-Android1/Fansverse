@@ -109,10 +109,8 @@ public class HomePage extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.logout:
-
-
-
-//                        showToast("Signing out.....");
+                        Toast toast = Toast.makeText(getApplicationContext(),"Signing out...",Toast.LENGTH_LONG);
+                        toast.show();
                         FirebaseFirestore database = FirebaseFirestore.getInstance();
                         DocumentReference documentReference =
                                 database.collection(Constants.KEY_COLLECTION_USERS).document(
