@@ -22,7 +22,10 @@
 
         android:theme="@style/Theme.CreatingUser" >
         
-        <activity android:name=".LiveScoresPage" />
+        <activity android:name=".LiveScores" />
+        <activity android:name=".CurrentScoresNBA" />
+        <activity android:name=".SportsTeamsMainPage" />
+        <activity android:name=".NBATeamsMainPage" />
         <activity
             android:name=".activities.CreateFanPageActivity"
             android:parentActivityName=".activities.ProfileActivity"

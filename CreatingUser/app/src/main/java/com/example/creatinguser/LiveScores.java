@@ -8,11 +8,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SportsTeamsMainPage extends AppCompatActivity {
+public class LiveScores extends AppCompatActivity {
     private TextView Title;
     private Button homePage;
-    private Button nbaTeams;
-    private Button nflTeams;
+    private Button nbaScores;
+    private Button nflScores;
     //private TextView currScoresText;
     //private Button stats;
     //private Button myProfile;
@@ -20,12 +20,12 @@ public class SportsTeamsMainPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sportsteams);
+        setContentView(R.layout.activity_livescores);
 
         Title = findViewById(R.id.sportsTeamsMainPageFansverse);
         homePage = findViewById(R.id.buttonHomePage);
-        nbaTeams = findViewById(R.id.buttonNBATeams);
-        nflTeams = findViewById(R.id.buttonNFLTeams);
+        nbaScores = findViewById(R.id.buttonNBAScores);
+        nflScores = findViewById(R.id.buttonNFLScores);
         //currScoresText = findViewById(R.id.currScoresText);
         //stats = findViewById(R.id.buttonStats);
         //myProfile = findViewById(R.id.buttonProfile);
@@ -37,9 +37,9 @@ public class SportsTeamsMainPage extends AppCompatActivity {
             }
         });
 
-        nbaTeams.setOnClickListener(new View.OnClickListener() {
+        nbaScores.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NBATeamsMainPage.class);
+                Intent intent = new Intent(getApplicationContext(), CurrentScoresNBA.class);
                 startActivity(intent);
             }
         });

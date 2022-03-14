@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -26,33 +25,26 @@ import java.util.concurrent.CompletableFuture;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.toolbox.HttpResponse;
-import com.google.logging.type.HttpRequest;
-
-public class LiveScoresPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class CurrentScoresNBA extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private TextView Title;
-    private Button homePage;
+    private Button liveScoresPage;
     private Button currScores;
     private TextView currScoresText;
-    private Button stats;
-    private Button myProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_livescores);
+        setContentView(R.layout.activity_livescoresnba);
 
-        Title = findViewById(R.id.liveScoresPageFansverse);
-        homePage = findViewById(R.id.buttonHomePage);
+        Title = findViewById(R.id.liveScoresNBAPageFansverse);
+        liveScoresPage = findViewById(R.id.buttonLiveScoresPage);
         currScores = findViewById(R.id.buttoncurrScores);
         currScoresText = findViewById(R.id.currScoresText);
-        //stats = findViewById(R.id.buttonStats);
-        //myProfile = findViewById(R.id.buttonProfile);
 
-        homePage.setOnClickListener(new View.OnClickListener() {
+        liveScoresPage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), HomePage.class);
+                Intent intent = new Intent(getApplicationContext(), LiveScores.class);
                 startActivity(intent);
             }
         });

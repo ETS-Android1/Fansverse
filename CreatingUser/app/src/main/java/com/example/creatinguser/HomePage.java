@@ -23,7 +23,7 @@ public class HomePage extends AppCompatActivity {
     Button btnmessages;
 
     private Button logout_button;
-    CardView cvMessage, cvMap, cvScore, cvFanPage, cvProfilePage, cvNews;
+    CardView cvMessage, cvMap, cvScore, cvFanPage, cvProfilePage, cvNews, cvTeams;
 
 
     @Override
@@ -39,6 +39,7 @@ public class HomePage extends AppCompatActivity {
         cvNews = findViewById(R.id.cvNews);
         cvFanPage = findViewById(R.id.cvFan);
         cvProfilePage = findViewById(R.id.cvProfile);
+        cvTeams = findViewById(R.id.cvTeams);
 
 
         cvFanPage.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +102,14 @@ public class HomePage extends AppCompatActivity {
 
         cvScore.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LiveScoresPage.class);
+                Intent intent = new Intent(getApplicationContext(), LiveScores.class);
+                startActivity(intent);
+            }
+        });
+
+        cvTeams.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SportsTeamsMainPage.class);
                 startActivity(intent);
             }
         });

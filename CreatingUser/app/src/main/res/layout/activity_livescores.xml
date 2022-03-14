@@ -11,47 +11,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back to HomePage"
-        app:layout_constraintBottom_toTopOf="@+id/buttoncurrScores"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNBAScores"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/liveScoresPageFansverse" />
+        app:layout_constraintTop_toBottomOf="@+id/liveScoresMainPageFansverse" />
 
-<!--    <Button
-        android:id="@+id/buttonProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Profile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonStats" /> -->
+    <!--    <Button
+            android:id="@+id/buttonProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonStats" /> -->
 
     <Button
-        android:id="@+id/buttoncurrScores"
+        android:id="@+id/buttonNBAScores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Current Scores"
-        app:layout_constraintBottom_toTopOf="@+id/currScoresText"
+        android:text="NBA"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNFLScores"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonHomePage" />
 
-<!--    <Button
-        android:id="@+id/buttonStats"
+    <Button
+        android:id="@+id/buttonNFLScores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stats"
-        app:layout_constraintBottom_toTopOf="@+id/buttonProfile"
+        android:text="NFL"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttoncurrScores" /> -->
+        app:layout_constraintTop_toBottomOf="@+id/buttonNBAScores" />
+    <!--    <Button
+            android:id="@+id/buttonStats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stats"
+            app:layout_constraintBottom_toTopOf="@+id/buttonProfile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttoncurrScores" /> -->
 
     <TextView
-        android:id="@+id/liveScoresPageFansverse"
-        android:layout_width="248dp"
-        android:layout_height="42dp"
+        android:id="@+id/liveScoresMainPageFansverse"
+        android:layout_width="259dp"
+        android:layout_height="76dp"
         android:layout_marginTop="40dp"
-        android:text="FansVerse LiveScores"
+        android:text="Check out the Live Games"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/buttonHomePage"
@@ -59,19 +68,4 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/currScoresText"
-        android:layout_width="309dp"
-        android:layout_height="417dp"
-        android:layout_marginTop="108dp"
-        android:layout_marginEnd="48dp"
-        android:foregroundGravity="fill_horizontal"
-        android:justificationMode="inter_word"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttoncurrScores" />
 </androidx.constraintlayout.widget.ConstraintLayout>
