@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.creatinguser.Models.ChatMessage;
+import com.example.creatinguser.Models.GroupChatMessage;
 import com.example.creatinguser.databinding.ItemContainerReceivedMessageBinding;
 import com.example.creatinguser.databinding.ItemContainerSentMessageBinding;
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class GroupChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private final List<ChatMessage> chatMessages;
+    private final List<GroupChatMessage> chatMessages;
     //    private final Bitmap receiverProfileImage;
 //    private final List<String> groupIds;
     private final String senderId;
@@ -22,7 +23,7 @@ public class GroupChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public static final int VIEW_TYPE_SENT = 1;
     public static final int VIEW_TYPE_RECEIVED = 2;
 
-    public GroupChatAdapter(List<ChatMessage> chatMessages, String senderId){//} Bitmap receiverProfileImage, String senderId) {
+    public GroupChatAdapter(List<GroupChatMessage> chatMessages, String senderId){//} Bitmap receiverProfileImage, String senderId) {
         this.chatMessages = chatMessages;
 //        this.receiverProfileImage = receiverProfileImage;
         this.senderId = senderId;
@@ -82,7 +83,7 @@ public class GroupChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             binding = itemContainerSentMessageBinding;
         }
 
-        void setData(ChatMessage chatMessage){
+        void setData(GroupChatMessage chatMessage){
             binding.textMessage.setText(chatMessage.message);
             binding.textDataTime.setText(chatMessage.dateTime);
         }
@@ -97,7 +98,7 @@ public class GroupChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             binding = itemContainerReceivedMessageBinding;
         }
 
-        void setData(ChatMessage chatMessage){//}, Bitmap receiverProfileImage){
+        void setData(GroupChatMessage chatMessage){//}, Bitmap receiverProfileImage){
             binding.textMessage.setText(chatMessage.message);
             binding.textDateTime.setText(chatMessage.dateTime);
 //            binding.imageProfile.setImageBitmap(receiverProfileImage);

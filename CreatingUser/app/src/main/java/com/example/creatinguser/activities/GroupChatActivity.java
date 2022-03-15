@@ -10,6 +10,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.creatinguser.Models.ChatMessage;
+import com.example.creatinguser.Models.GroupChatMessage;
 import com.example.creatinguser.Models.User;
 import com.example.creatinguser.adapters.ChatAdapter;
 import com.example.creatinguser.adapters.GroupChatAdapter;
@@ -39,7 +40,7 @@ public class GroupChatActivity extends AppCompatActivity{//} implements Conversa
     private ActivityGroupchatBinding binding;
     private User receiverUser;
     private List<User> groupUsers;
-    private List<ChatMessage> chatMessages;
+    private List<GroupChatMessage> chatMessages;
     private GroupChatAdapter groupChatAdapter;
     private PreferenceManager preferenceManager;
     private FirebaseFirestore database;
@@ -73,7 +74,8 @@ public class GroupChatActivity extends AppCompatActivity{//} implements Conversa
         message.put(Constants.KEY_RECEIVER_ID,receiverUser.id);
         message.put(Constants.KEY_MESSAGE,binding.inputMessage.getText().toString());
         message.put(Constants.KEY_TIMESTAMP, new Date());
-        database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
+        message.put(Constants.KEY_TYPE_OF_CHAT,"GroupChat");
+        database.collection(Constants.KEY_COLLECTION_GROUPCHAT).add(message);
         if (conversionId != null){
             updateConversion(binding.inputMessage.getText().toString());
         }else{
@@ -86,17 +88,18 @@ public class GroupChatActivity extends AppCompatActivity{//} implements Conversa
             conversion.put(Constants.KEY_RECEIVER_IMAGE, receiverUser.image);
             conversion.put(Constants.KEY_LAST_MESSAGE, binding.inputMessage.getText().toString());
             conversion.put(Constants.KEY_TIMESTAMP, new Date());
+            conversion.put(Constants.KEY_TYPE_OF_CHAT,"GroupChat");
             addConversion(conversion);
         }
         binding.inputMessage.setText(null);
     }
 
     private void listenMessages(){
-        database.collection(Constants.KEY_COLLECTION_CHAT)
+        database.collection(Constants.KEY_COLLECTION_GROUPCHAT)
                 .whereEqualTo(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID))
                 .whereEqualTo(Constants.KEY_RECEIVER_ID,receiverUser.id)
                 .addSnapshotListener(eventListener);
-        database.collection(Constants.KEY_COLLECTION_CHAT)
+        database.collection(Constants.KEY_COLLECTION_GROUPCHAT)
                 .whereEqualTo(Constants.KEY_SENDER_ID,receiverUser.id)
                 .whereEqualTo(Constants.KEY_RECEIVER_ID, preferenceManager.getString(Constants.KEY_USER_ID))
                 .addSnapshotListener(eventListener);
@@ -110,7 +113,7 @@ public class GroupChatActivity extends AppCompatActivity{//} implements Conversa
             int count = chatMessages.size();
             for (DocumentChange documentChange : value.getDocumentChanges()) {
                 if (documentChange.getType() == DocumentChange.Type.ADDED) {
-                    ChatMessage chatMessage = new ChatMessage();
+                    GroupChatMessage chatMessage = new GroupChatMessage();
                     chatMessage.senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
                     chatMessage.receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
                     chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
@@ -161,14 +164,14 @@ public class GroupChatActivity extends AppCompatActivity{//} implements Conversa
     }
 
     private void addConversion(HashMap<String,Object> conversion){
-        database.collection(Constants.KEY_COLLECTION_CONVERSATIONS)
+        database.collection(Constants.KEY_COLLECTION_GROUPCONVERSATIONS)
                 .add(conversion)
                 .addOnSuccessListener(documentReference -> conversionId = documentReference.getId());
     }
 
     private void updateConversion(String message){
         DocumentReference documentReference =
-                database.collection(Constants.KEY_COLLECTION_CONVERSATIONS).document(conversionId);
+                database.collection(Constants.KEY_COLLECTION_GROUPCONVERSATIONS).document(conversionId);
         documentReference.update(
                 Constants.KEY_LAST_MESSAGE, message,
                 Constants.KEY_TIMESTAMP, new Date()
@@ -185,10 +188,14 @@ public class GroupChatActivity extends AppCompatActivity{//} implements Conversa
                     receiverUser.id,
                     preferenceManager.getString(Constants.KEY_USER_ID)
             );
+            checkForConversionRemotely(
+                    "GroupChat",
+                    preferenceManager.getString(Constants.KEY_TYPE_OF_CHAT)
+            );
         }
     }
     private void checkForConversionRemotely(String senderId, String receiverId){
-        database.collection(Constants.KEY_COLLECTION_CONVERSATIONS)
+        database.collection(Constants.KEY_COLLECTION_GROUPCONVERSATIONS)
                 .whereEqualTo(Constants.KEY_SENDER_ID,senderId)
                 .whereEqualTo(Constants.KEY_RECEIVER_ID,receiverId)
                 .get()

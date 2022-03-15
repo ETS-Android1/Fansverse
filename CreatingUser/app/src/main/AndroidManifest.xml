@@ -70,8 +70,10 @@
             android:name=".activities.GroupUsersActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".DirectMessageScreen"
             android:exported="true" />
+        <activity android:name=".GroupMessageScreen"
+            android:exported="true"/>
         <activity
             android:name=".activities.ChatActivity"
             android:exported="false"
