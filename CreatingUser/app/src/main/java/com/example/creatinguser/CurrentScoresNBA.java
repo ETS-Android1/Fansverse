@@ -104,11 +104,13 @@ public class CurrentScoresNBA extends AppCompatActivity implements AdapterView.O
             JSONArray jArrayGames = jAPI.getJSONArray("games");
 
             if(jArrayGames.length() != 0){
-                String currentScores = "There currently is a game in \n";
+                String currentScores = "";
 
                 for(int n = 0; n < jArrayGames.length(); n++){
                     JSONObject games = jArrayGames.getJSONObject(n);
-                    currentScores += games.getString("city") + " in period " + games.getString("currentPeriod") + " \n";
+                    currentScores += games.getString("city") + " in period " + games.getString("currentPeriod") + " \nScore: " +
+                            games.getJSONObject("hTeam").getString("nickName") + " - " + games.getJSONObject("hTeam").getJSONObject("score").getString("points") + "\n" +
+                            games.getJSONObject("vTeam").getString("nickName") + " - " + games.getJSONObject("vTeam").getJSONObject("score").getString("points") + "\n\n";
                 }
                 setText(this.currScoresText, currentScores);
             }

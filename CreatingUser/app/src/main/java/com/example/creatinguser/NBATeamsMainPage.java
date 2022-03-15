@@ -115,10 +115,10 @@ public class NBATeamsMainPage extends AppCompatActivity {
                         if(teams.getString("fullName").equals("Home Team Stephen A")){}
                         else {
                             nbaTeams += teams.getString("fullName") + " \n";
+                            setText(this.nbaTeamsText, nbaTeams);
                         }
                     }
                 }
-                setText(this.nbaTeamsText, nbaTeams);
             }
             else{
                 String nbaTeams = "There are no teams you messed up the code \n";
