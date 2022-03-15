@@ -46,6 +46,7 @@ public class DirectMessageScreen extends AppCompatActivity implements Conversati
     private List<ChatMessage> conversations;
     private RecentConversationsAdapter conversationsAdapter;
     private FirebaseFirestore database;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +54,49 @@ public class DirectMessageScreen extends AppCompatActivity implements Conversati
         binding = ActivityDirectmessageScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         preferenceManager = new PreferenceManager(getApplicationContext());
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        //bottomNavigationView.setSelectedItemId(R.id.info);
+
         init();
 //        loadUserDetails();
         getToken();
         setListeners();
         listenConversations();
+
+        //bottom nav bar
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.logout:
+                        Toast toast = Toast.makeText(getApplicationContext(),"Signing out...",Toast.LENGTH_LONG);
+                        toast.show();
+                        FirebaseFirestore database = FirebaseFirestore.getInstance();
+                        DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_USERS).document(preferenceManager.getString(Constants.KEY_USER_ID));
+                        HashMap<String,Object> updates = new HashMap<>();
+                        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
+                        documentReference.update(updates)
+                                .addOnSuccessListener(unused -> {
+                                    preferenceManager.clear();
+                                    startActivity(new Intent(getApplicationContext(), LoginPage.class));
+                                    finish();
+                                });
+                        return true;
+                    case R.id.info:
+                        startActivity(new Intent(getApplicationContext(), Newsfeed.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    // right now it directs to news and it works
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), HomePage.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
     }
 
     private void init() {
