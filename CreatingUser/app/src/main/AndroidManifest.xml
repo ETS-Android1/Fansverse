@@ -17,6 +17,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CreatingUser">
         <activity
+            android:name=".MVP_Grill_info_v2"
+            android:exported="false" />
+        <activity
+            android:name=".Port_City_info_v2"
+            android:exported="false" />
+        <activity
+            android:name=".CrookedDuck_info_v2"
+            android:exported="false" />
+        <activity
+            android:name=".Blondie_Info_v3"
+            android:exported="false" />
+        <activity
+            android:name=".Blondie_info_v2"
+            android:exported="false"
+            android:label="@string/title_activity_blondie_info_v2"
+            android:theme="@style/Theme.CreatingUser.NoActionBar" />
+        <activity
             android:name=".Interlude_info_v2"
             android:exported="false" />
         <!--

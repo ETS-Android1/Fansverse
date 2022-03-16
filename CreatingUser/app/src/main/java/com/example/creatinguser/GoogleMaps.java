@@ -190,8 +190,32 @@ public class GoogleMaps extends FragmentActivity implements OnMapReadyCallback {
                     case "Interlude":
                         Intent i = new Intent(getApplicationContext(), Interlude_info_v2.class);
                         startActivity(i);
-                        Toast.makeText(GoogleMaps.this, "Interlude pub", Toast.LENGTH_SHORT).show();
                         break;
+
+                    case "Blondies":
+                        Intent j = new Intent(getApplicationContext(),Blondie_Info_v3.class);
+                        startActivity(j);
+                        break;
+
+                    case "Crooked Duck":
+                        Intent k = new Intent(getApplicationContext(),CrookedDuck_info_v2.class);
+                        startActivity(k);
+                        break;
+
+                    case "Port City Tavern":
+                        Intent l = new Intent(getApplicationContext(),Port_City_info_v2.class);
+                        startActivity(l);
+                        break;
+
+                    case "MVP Grill":
+                        Intent m = new Intent(getApplicationContext(),MVP_Grill_info_v2.class);
+                        startActivity(m);
+                        break;
+
+
+
+
+
 
                     default:
                         Toast.makeText(GoogleMaps.this, "Didn't Work", Toast.LENGTH_SHORT).show();

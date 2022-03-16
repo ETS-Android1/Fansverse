@@ -7,57 +7,86 @@
     android:orientation="vertical"
     android:scaleX="1">
 
-    <EditText
+    <TextView
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="406dp"
-        android:layout_height="47dp"
+        android:layout_width="393dp"
+        android:layout_height="50dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Interlude Pub" />
+        android:text="@string/interlude_pub"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="408dp"
-        android:layout_height="205dp"
+        android:layout_height="185dp"
+        android:layout_marginBottom="17dp"
         android:layout_weight="1"
         android:baselineAligned="false"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="47dp"
-        tools:srcCompat="@drawable/" />
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        android:src="@drawable/interlude" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTextTextMultiLine"
-        android:layout_width="389dp"
-        android:layout_height="150dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="14dp"
+        android:autofillHints=""
+        android:textSize="20dp"
+        android:textColor="#000000"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:text="Address: 1710 Clark Ave, Long Beach, CA 90815 \n   \nHours: 6 am - 2 am \n \nWebsite: interludeLB.com"
-        tools:layout_editor_absoluteX="11dp"
-        tools:layout_editor_absoluteY="270dp" />
+        android:text="@string/interlude_address"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="104dp"
-        android:layout_height="41dp"
-        android:text="Photos"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="433dp" />
+        android:layout_width="139dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/photos_button"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="@+id/button2"
+        app:layout_constraintStart_toStartOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="104dp"
-        android:layout_height="45dp"
-        android:text="Menu"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="484dp" />
+        android:layout_width="140dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="9dp"
+        android:text="@string/menu_button"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reviews"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="538dp" />
+        android:layout_width="137dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="17dp"
+        android:text="@string/reviews_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

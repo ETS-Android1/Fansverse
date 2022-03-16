@@ -7,13 +7,16 @@
     android:orientation="vertical"
     android:scaleX="1">
 
-    <EditText
+    <TextView
         android:id="@+id/editTextTextPersonName"
         android:layout_width="393dp"
         android:layout_height="50dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/interlude_pub"
+        android:text="MVP Grill"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,9 +35,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        tools:srcCompat="@drawable/interlude" />
+        android:src="@drawable/mvp_grill" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTextTextMultiLine"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -42,10 +45,12 @@
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="14dp"
         android:autofillHints=""
+        android:textSize="20dp"
+        android:textColor="#000000"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:text="@string/interlude_address"
+        android:text="Address: 5484 E Stearns St, Long Beach, CA 90815 \n   \nHours: 8:30 am - 6 pm \n \nWebsite: mvpgrill.net"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
