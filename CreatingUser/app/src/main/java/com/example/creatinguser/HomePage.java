@@ -93,7 +93,7 @@ public class HomePage extends AppCompatActivity {
         cvMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DirectMessageScreen.class);
                 //intent.putExtra("message", current_username);
                 startActivity(intent);
             }
