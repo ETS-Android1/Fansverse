@@ -52,8 +52,8 @@ public class HomePage extends AppCompatActivity {
         cvMap = findViewById(R.id.cvMap);
         cvScore = findViewById(R.id.cvScore);
         cvNews = findViewById(R.id.cvNews);
-        cvFanPage = findViewById(R.id.cvFan);
-        cvProfilePage = findViewById(R.id.cvProfile);
+        cvFanPage = findViewById(R.id.cvFanPage);
+        cvProfilePage = findViewById(R.id.cvProfilePage);
         cvBarPage = findViewById(R.id.cvBar);
 
 
