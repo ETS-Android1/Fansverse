@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.creatinguser.activities.BarPageActivity;
 import com.example.creatinguser.activities.FanPageActivity;
 import com.example.creatinguser.activities.ProfileActivity;
 
@@ -23,7 +24,7 @@ public class HomePage extends AppCompatActivity {
     Button btnmessages;
 
     private Button logout_button;
-    CardView cvMessage, cvMap, cvScore, cvFanPage, cvProfilePage, cvNews;
+    CardView cvMessage, cvMap, cvScore, cvFanPage, cvProfilePage, cvNews, cvBarPage;
 
 
     @Override
@@ -39,6 +40,16 @@ public class HomePage extends AppCompatActivity {
         cvNews = findViewById(R.id.cvNews);
         cvFanPage = findViewById(R.id.cvFan);
         cvProfilePage = findViewById(R.id.cvProfile);
+        cvBarPage = findViewById(R.id.cvBar);
+
+
+        cvBarPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BarPageActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         cvFanPage.setOnClickListener(new View.OnClickListener() {
