@@ -8,10 +8,12 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="aandroid.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,6 +21,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CreatingUser">
+        <activity
+            android:name=".MVP_Grill_info_v2"
+            android:exported="false" />
+        <activity
+            android:name=".Port_City_info_v2"
+            android:exported="false" />
+        <activity
+            android:name=".CrookedDuck_info_v2"
+            android:exported="false" />
+        <activity
+            android:name=".Blondie_Info_v3"
+            android:exported="false" />
+        <activity
+            android:name=".Blondie_info_v2"
+            android:exported="false"
+            android:label="@string/title_activity_blondie_info_v2"
+            android:theme="@style/Theme.CreatingUser.NoActionBar" />
+        <activity
+            android:name=".Interlude_info_v2"
+            android:exported="false" />
+        <activity android:name=".LiveScoresPage" />
         <activity
             android:name=".activities.CommentsList"
             android:exported="false" />
@@ -95,12 +118,21 @@
             android:name=".activities.UsersActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.GroupUsersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DirectMessageScreen"
             android:exported="true" />
+        <activity android:name=".GroupMessageScreen"
+            android:exported="true"/>
         <activity
             android:name=".activities.ChatActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.GroupChatActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
         <activity
             android:name=".activities.SignUpActivity"
             android:exported="false"
