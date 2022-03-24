@@ -50,16 +50,6 @@ public class CreateFanPageActivity extends AppCompatActivity {
         currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
         initializeViews();
 
-//        toolbar.setTitle("Create Page");
-//
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent mainIntent = new Intent(CreateFanPageActivity.this, ProfileActivity.class);
-//                mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(mainIntent);
-//            }
-//        });
 
 
         createBtn.setOnClickListener(new View.OnClickListener() {

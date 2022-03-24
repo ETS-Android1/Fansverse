@@ -6,24 +6,23 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="@color/primary"
-    tools:context=".MainActivity">
+    tools:context=".DirectMessageScreen">
 
     <TextView
         android:id="@+id/textName"
-        android:text="Messages"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:ellipsize="end"
-        android:gravity="center"
         android:maxLines="1"
+        android:text="Direct Message"
         android:textColor="@color/white"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/frameLayoutContainer"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bottom_navigation"
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
@@ -36,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@id/textName">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/conversationsRecyclerView"
+            android:id="@+id/conversationsRecyclerViewforDirectMessage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
@@ -65,6 +64,20 @@
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
+        android:tint="@color/white"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabNewGroupChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="-60dp"
+        android:layout_marginBottom="30dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_add"
+        android:tintMode="add"
+        android:backgroundTint="@color/primary_dark"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintEnd_toStartOf="parent"
         android:tint="@color/white"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="com.example.creatinguser">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -10,6 +8,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -23,6 +22,26 @@
         android:supportsRtl="true"
 
         android:theme="@style/Theme.CreatingUser">
+        <activity
+            android:name=".MVP_Grill_info_v2"
+            android:exported="false" />
+        <activity
+            android:name=".Port_City_info_v2"
+            android:exported="false" />
+        <activity
+            android:name=".CrookedDuck_info_v2"
+            android:exported="false" />
+        <activity
+            android:name=".Blondie_Info_v3"
+            android:exported="false" />
+        <activity
+            android:name=".Blondie_info_v2"
+            android:exported="false"
+            android:label="@string/title_activity_blondie_info_v2"
+            android:theme="@style/Theme.CreatingUser.NoActionBar" />
+        <activity
+            android:name=".Interlude_info_v2"
+            android:exported="false" />
 
         
         <activity android:name=".LiveScores" />
@@ -30,21 +49,50 @@
         <activity android:name=".SportsTeamsMainPage" />
         <activity android:name=".NBATeamsMainPage" />
         <activity
-            android:name=".activities.CreateFanPageActivity"
-            android:parentActivityName=".activities.ProfileActivity"
+            android:name=".activities.CommentsList"
             android:exported="false" />
+        <activity
+            android:name=".activities.AddCommentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.FanChatActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            android:parentActivityName=".activities.FanPageActivity" />
+        <activity
+            android:name=".activities.PostList"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddPost"
+            android:exported="false" />
+        <activity
+            android:name=".activities.DetailPages"
+            android:exported="false"
+            android:parentActivityName=".activities.FanPageActivity" />
+        <activity
+            android:name=".activities.CreateBarPageActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.BarPageActivity" />
+        <activity
+            android:name=".activities.BarPageActivity"
+            android:exported="false"
+            android:parentActivityName=".HomePage" />
+        <activity
+            android:name=".activities.CreateFanPageActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.ProfileActivity" />
         <activity
             android:name=".activities.UploadProfileActivity"
-            android:parentActivityName=".activities.ProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".activities.ProfileActivity" />
         <activity
             android:name=".activities.SetUpProfileActivity"
-            android:parentActivityName=".activities.ProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".activities.ProfileActivity" />
         <activity
             android:name=".activities.FanPageActivity"
-            android:parentActivityName=".HomePage"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".HomePage" />
         <activity
             android:name=".activities.ProfileActivity"
             android:parentActivityName=".HomePage"
@@ -77,12 +125,21 @@
             android:name=".activities.UsersActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.GroupUsersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DirectMessageScreen"
             android:exported="true" />
+        <activity android:name=".GroupMessageScreen"
+            android:exported="true"/>
         <activity
             android:name=".activities.ChatActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.GroupChatActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
         <activity
             android:name=".activities.SignUpActivity"
             android:exported="false"
@@ -90,7 +147,7 @@
         <activity
             android:name=".LoginPage"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize" >
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
