@@ -71,6 +71,9 @@
             android:exported="false"
             android:parentActivityName=".activities.BarPageActivity" />
         <activity
+            android:name=".activities.CreateGroupChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.BarPageActivity"
             android:exported="false"
             android:parentActivityName=".HomePage" />

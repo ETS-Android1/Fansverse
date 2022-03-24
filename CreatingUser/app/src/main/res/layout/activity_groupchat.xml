@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
     android:background="@color/primary"
     tools:context=".activities.GroupChatActivity">
 
@@ -34,7 +33,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="12dp"
         android:padding="5dp"
-        android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:tint="@color/white"/>
@@ -50,23 +48,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:tint="@color/white"/>
-
-    <TextView
-        android:id="@+id/textName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxLines="1"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageBack"
-        app:layout_constraintEnd_toStartOf="@+id/imageInfo"
-        app:layout_constraintStart_toEndOf="@id/imageBack"
-        app:layout_constraintTop_toTopOf="@+id/imageBack"/>
 
     <View
         android:id="@+id/viewSupporter"
@@ -85,19 +66,9 @@
         android:overScrollMode="never"
         android:padding="20dp"
         app:stackFromEnd="true"
-        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
         app:layout_constraintTop_toBottomOf="@+id/viewSupporter"/>
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
-        app:layout_constraintEnd_toEndOf="@+id/viewBackground"
-        app:layout_constraintStart_toStartOf="@+id/viewBackground"
-        app:layout_constraintTop_toTopOf="@+id/viewBackground"/>
 
     <FrameLayout
         android:id="@+id/layoutSend"
@@ -133,7 +104,7 @@
         android:hint="Type a message"
         android:imeOptions="actionDone"
         android:importantForAutofill="no"
-        android:inputType="text"
+        android:inputType="textCapSentences|textMultiLine"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:textColor="@color/white"
