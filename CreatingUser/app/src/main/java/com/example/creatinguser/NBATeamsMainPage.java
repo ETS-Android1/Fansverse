@@ -106,31 +106,42 @@ public class NBATeamsMainPage extends AppCompatActivity {
             JSONArray jArrayTeams = jAPI.getJSONArray("teams");
 
             if(jArrayTeams.length() != 0){
-                String nbaTeams = "";
 
-                for(int n = 0; n < jArrayTeams.length(); n++){
+                for(int n = 0; n < jArrayTeams.length(); n++) {
                     JSONObject teams = jArrayTeams.getJSONObject(n);
+                    String nbaTeams = "";
                     String teamCheck = teams.getString("nbaFranchise");
-                    if(teamCheck.equals("1")){
-                        if(teams.getString("fullName").equals("Home Team Stephen A")){}
-                        else {
+                    if (teamCheck.equals("1")) {
+                        if (teams.getString("fullName").equals("Home Team Stephen A")) {
+                        } else {
                             nbaTeams += teams.getString("fullName") + " \n";
-                            setText(this.nbaTeamsText, nbaTeams);
+                            setText(this.nbaTeamsText, nbaTeams, teams);
                         }
                     }
                 }
             }
             else{
                 String nbaTeams = "There are no teams you messed up the code \n";
-                setText(this.nbaTeamsText, nbaTeams);
+                setText(this.nbaTeamsText, nbaTeams, null);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    private void setText(TextView text, String value){
+    private void setText(TextView text, String value, JSONObject teams){
         text.setText(value);
+        text.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(), SpecificNBATeam.class);
+                try {
+                    intent.putExtra("teamID", teams.getString("teamId"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                startActivity(intent);
+            }
+        });
     }
 
 }
