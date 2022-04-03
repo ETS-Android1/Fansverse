@@ -23,6 +23,7 @@ public class LocationGallery extends AppCompatActivity {
 
         // getting ImageView by its id
         ImageView rImage = findViewById(R.id.rImage);
+        ImageView secondImage = findViewById(R.id.secondImage);
 
         // we will get the default FirebaseDatabase instance
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -33,6 +34,8 @@ public class LocationGallery extends AppCompatActivity {
         // Here "image" is the child node value we are getting
         // child node data in the getImage variable
         DatabaseReference getImage = databaseReference.child("Interlude1");
+        DatabaseReference getImage2 = databaseReference.child("Interlude2");
+
 
         // Adding listener for a single change
         // in the data at this location.
@@ -48,6 +51,7 @@ public class LocationGallery extends AppCompatActivity {
                 // loading that data into rImage
                 // variable which is ImageView
                 Picasso.get().load(link).into(rImage);
+                Picasso.get().load(link).into(secondImage);
             }
 
             // this will called when any problem
