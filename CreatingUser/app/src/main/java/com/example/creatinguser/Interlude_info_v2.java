@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Interlude_info_v2 extends AppCompatActivity {
 
     private Button button;
+    private Button button2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,15 +18,31 @@ public class Interlude_info_v2 extends AppCompatActivity {
         setContentView(R.layout.activity_interlude_info_v2);
 
         button = (Button) findViewById(R.id.interludePhotosButton);
+        button2 = (Button) findViewById(R.id.interludeMenuButton);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openPhotoActivity();
             }
         });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMenuActivity();
+            }
+        });
     }
         public void openPhotoActivity(){
             Intent intent = new Intent(this,LocationGallery.class);
             startActivity(intent);
+        }
+
+        public void openMenuActivity(){
+            Intent intent = new Intent(this,MenuReader.class);
+            intent.putExtra("path","C:\\Users\\dimon\\Desktop\\Repos\\Fanverse\\Fansverse\\CreatingUser\\app\\src\\main\\java\\com\\example\\creatinguser\\textFiles\\InterludeMenu.txt");
+            startActivity(intent);
+
         }
 }
