@@ -86,28 +86,5 @@ public class CreateGroupChatActivity extends AppCompatActivity {
         Intent mainIntent = new Intent(getApplicationContext(),GroupChatActivity.class);
         mainIntent.putExtra("KEY",title);
         startActivity(mainIntent);
-
-//                .add(map)
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                        progressDialog.dismiss();
-//                        Toast toast = Toast.makeText(getApplicationContext(), "Group Chat Created successfully", Toast.LENGTH_LONG);
-//                        toast.show();
-//                        Intent mainIntent = new Intent(getApplicationContext(), GroupChatActivity.class);
-//                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                        startActivity(mainIntent);
-//                        finish();
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                String message = e.getMessage();
-//                Toast toast = Toast.makeText(getApplicationContext(),"Error: "+ message, Toast.LENGTH_LONG);
-//                toast.show();
-//                progressDialog.dismiss();
-//            }
-//        });
-
     }
 }

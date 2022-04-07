@@ -5,18 +5,22 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.creatinguser.HomePage;
+import com.example.creatinguser.LoginPage;
 import com.example.creatinguser.Models.GroupChatMessage;
 import com.example.creatinguser.R;
 import com.example.creatinguser.utilities.Constants;
@@ -24,6 +28,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.firestore.CollectionReference;
@@ -44,10 +50,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class GroupChatActivity extends AppCompatActivity {//} implements ConversationListener {
     private EditText userMessage;
-    private FrameLayout sendMessageBtn;
+    private ImageButton sendMessageBtn;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private String currentUserID;
+    BottomNavigationView bottomNavigationView;
     FirebaseAuth firebaseAuth;
     String userfromDb;
     String chat_image_url;
@@ -67,6 +74,8 @@ public class GroupChatActivity extends AppCompatActivity {//} implements Convers
         setContentView(R.layout.activity_groupchat);
 
 
+
+
         getSupportActionBar().setTitle("GroupChat");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -74,10 +83,8 @@ public class GroupChatActivity extends AppCompatActivity {//} implements Convers
         currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         currentTime = new SimpleDateFormat("HH:mm aa", Locale.getDefault()).format(new Date());
 
-//        userMessage = findViewById(R.id.chat_activity_message_input);
-//        sendMessageBtn = findViewById(R.id.chat_activity_send_button);
-        userMessage = findViewById(R.id.inputMessage);
-        sendMessageBtn = findViewById(R.id.layoutSend);
+        userMessage = findViewById(R.id.group_activity_message_input);
+        sendMessageBtn = findViewById(R.id.group_activity_send_button);
 
         firebaseAuth = FirebaseAuth.getInstance();
         currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
@@ -90,8 +97,16 @@ public class GroupChatActivity extends AppCompatActivity {//} implements Convers
         CollectionReference chatsRef= db.collection("GroupChatMessageCont");
         query =  chatsRef.whereEqualTo(Constants.KEY_GROUP_CHAT_NAME, key).orderBy("timestamp", Query.Direction.ASCENDING);
 
-        getCurrentUsername();
 
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+       @Override
+       public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+           startActivity(new Intent(getApplicationContext(), HomePage.class));
+           return true;
+       }
+   });
         sendMessageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,7 +115,7 @@ public class GroupChatActivity extends AppCompatActivity {//} implements Convers
         });
 
 
-        recyclerView = findViewById(R.id.chatRecyclerView);
+        recyclerView = findViewById(R.id.group_activity_recyclerView);
 //        recyclerView.hasFixedSize();
         linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         linearLayoutManager.setStackFromEnd(true);
@@ -222,7 +237,7 @@ public class GroupChatActivity extends AppCompatActivity {//} implements Convers
     }
 
     private void getCurrentUsername(){
-//        currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
+        currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         final DocumentReference docRef = db.collection("Profile").document(currentUserID);

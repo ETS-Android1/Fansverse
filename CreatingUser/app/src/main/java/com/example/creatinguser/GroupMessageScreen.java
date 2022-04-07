@@ -141,20 +141,12 @@ public class GroupMessageScreen extends AppCompatActivity implements Conversatio
         firestoreRecyclerAdapter.startListening();
         recyclerView.setAdapter(firestoreRecyclerAdapter);
     }
-
     private static class FanViewHolder extends RecyclerView.ViewHolder {
         View mView;
-        FirebaseAuth firebaseAuth;
-//        String currentUser;
-
         public FanViewHolder(@NonNull View itemView) {
             super(itemView);
             mView = itemView;
-//            firebaseAuth = FirebaseAuth.getInstance();
-//            currentUser = firebaseAuth.getCurrentUser().getUid().toString();
         }
-
-
         public void setTitle(String title) {
             TextView titleTV = mView.findViewById(R.id.single_page_title);
             titleTV.setText(title);
