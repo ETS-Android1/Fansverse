@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="com.example.creatinguser">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -9,20 +8,25 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="aandroid.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/Theme.CreatingUser">
+        <activity
+            android:name=".BracketCell"
+            android:exported="false" />
+        <activity
+            android:name=".PlayoffBracket"
+            android:exported="false" />
         <activity
             android:name=".MVP_Grill_info_v2"
             android:exported="false" />
@@ -36,37 +40,29 @@
             android:name=".Blondie_Info_v3"
             android:exported="false" />
         <activity
-            android:name=".Blondie_info_v2"
-            android:exported="false"
-            android:label="@string/title_activity_blondie_info_v2"
-            android:theme="@style/Theme.CreatingUser.NoActionBar" />
-        <activity
             android:name=".Interlude_info_v2"
             android:exported="false" />
-
-        
         <activity android:name=".LiveScoresPage" />
         <activity
             android:name=".activities.CreateFanPageActivity"
-            android:parentActivityName=".activities.ProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".activities.ProfileActivity" />
         <activity
             android:name=".activities.UploadProfileActivity"
-            android:parentActivityName=".activities.ProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".activities.ProfileActivity" />
         <activity
             android:name=".activities.SetUpProfileActivity"
-            android:parentActivityName=".activities.ProfileActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".activities.ProfileActivity" />
         <activity
             android:name=".activities.FanPageActivity"
-            android:parentActivityName=".HomePage"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".HomePage" />
         <activity
             android:name=".activities.ProfileActivity"
-            android:parentActivityName=".HomePage"
-            android:exported="false" />
-
+            android:exported="false"
+            android:parentActivityName=".HomePage" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -99,16 +95,17 @@
         <activity
             android:name=".DirectMessageScreen"
             android:exported="true" />
-        <activity android:name=".GroupMessageScreen"
-            android:exported="true"/>
+        <activity
+            android:name=".GroupMessageScreen"
+            android:exported="true" />
         <activity
             android:name=".activities.ChatActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.GroupChatActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.SignUpActivity"
             android:exported="false"
@@ -116,7 +113,7 @@
         <activity
             android:name=".LoginPage"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize" >
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

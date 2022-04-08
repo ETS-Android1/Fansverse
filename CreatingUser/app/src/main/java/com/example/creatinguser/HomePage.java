@@ -33,10 +33,8 @@ public class HomePage extends AppCompatActivity {
     PreferenceManager preferenceManager;
     private FirebaseFirestore database;
 
-    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews, cvFanPage, cvProfilePage;
-
-
-
+    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews, cvFanPage, cvProfilePage,
+            cvPlayoffBracket;
 
 
     @Override
@@ -46,14 +44,63 @@ public class HomePage extends AppCompatActivity {
         database = FirebaseFirestore.getInstance();
         preferenceManager = new PreferenceManager(getApplicationContext());
 
+        // id to feature connection
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         cvMessage = findViewById(R.id.cvMessage);
         cvMap = findViewById(R.id.cvMap);
         cvScore = findViewById(R.id.cvScore);
         cvNews = findViewById(R.id.cvNews);
         cvFanPage = findViewById(R.id.cvFanPage);
         cvProfilePage = findViewById(R.id.cvProfilePage);
+        cvPlayoffBracket = findViewById(R.id.cvPlayoffBracket);
+
+        getOnClickListeners();
 
 
+
+        // set home
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.logout:
+                        Toast toast = Toast.makeText(getApplicationContext(),"Signing out...",Toast.LENGTH_LONG);
+                        toast.show();
+                        FirebaseFirestore database = FirebaseFirestore.getInstance();
+                        DocumentReference documentReference =
+                                database.collection(Constants.KEY_COLLECTION_USERS).document(
+                                        preferenceManager.getString(Constants.KEY_USER_ID)
+                                );
+                        HashMap<String,Object> updates = new HashMap<>();
+                        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
+                        documentReference.update(updates)
+                                .addOnSuccessListener(unused -> {
+                                    preferenceManager.clear();
+                                    startActivity(new Intent(getApplicationContext(), LoginPage.class));
+                                    finish();
+                                });
+                        return true;
+
+                    case R.id.home:
+                        return true;
+
+                    // right now it directs to news and it works
+                    case R.id.info:
+                        startActivity(new Intent(getApplicationContext(), Newsfeed.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+
+    }
+
+    // all of the onClickListeners
+    public void getOnClickListeners(){
         cvFanPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,52 +146,22 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        // set home
-        bottomNavigationView.setSelectedItemId(R.id.home);
-
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.logout:
-                        Toast toast = Toast.makeText(getApplicationContext(),"Signing out...",Toast.LENGTH_LONG);
-                        toast.show();
-                        FirebaseFirestore database = FirebaseFirestore.getInstance();
-                        DocumentReference documentReference =
-                                database.collection(Constants.KEY_COLLECTION_USERS).document(
-                                        preferenceManager.getString(Constants.KEY_USER_ID)
-                                );
-                        HashMap<String,Object> updates = new HashMap<>();
-                        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
-                        documentReference.update(updates)
-                                .addOnSuccessListener(unused -> {
-                                    preferenceManager.clear();
-                                    startActivity(new Intent(getApplicationContext(), LoginPage.class));
-                                    finish();
-                                });
-                        return true;
-
-                    case R.id.home:
-                        return true;
-
-                    // right now it directs to news and it works
-                    case R.id.info:
-                        startActivity(new Intent(getApplicationContext(), Newsfeed.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                }
-                return false;
-            }
-        });
-
         cvScore.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LiveScoresPage.class);
                 startActivity(intent);
             }
         });
+
+        // playoff bracket
+        cvPlayoffBracket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BracketCell.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 }

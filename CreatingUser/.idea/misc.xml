@@ -3,9 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/activity_blondie_info_v2.xml" value="0.2246376811594203" />
-        <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/activity_blondie_info_v3.xml" value="0.228125" />
-        <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/activity_crooked_duck_info_v2.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/drawable-v24/favorite_background.xml" value="0.1375" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/drawable-v24/favorite_foreground.xml" value="0.1375" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/drawable-v24/ic_launcher_background.xml" value="0.1375" />
@@ -24,6 +21,9 @@
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_registration.xml" value="0.14764492753623187" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_users.xml" value="0.1" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/login_page.xml" value="0.12" />
+        <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/activity_blondie_info_v2.xml" value="0.2246376811594203" />
+        <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/activity_blondie_info_v3.xml" value="0.228125" />
+        <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/activity_crooked_duck_info_v2.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/activity_google_maps.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/activity_interlude_info_v2.xml" value="0.2421875" />
         <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/activity_mvp_grill_info_v2.xml" value="0.228125" />
@@ -36,21 +36,27 @@
         <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/pub_info.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/drawable/background_input.xml" value="0.3635" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/drawable/selector.xml" value="0.326" />
+        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_bracket_cell.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_chat.xml" value="0.25" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_create_fan_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_details.xml" value="0.264" />
+        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_directmessage_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_fan_page.xml" value="0.20516304347826086" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_google_maps.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_groupchat.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_home_screen2.xml" value="0.2" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_homepage.xml" value="0.264" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_livescores.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_newsfeed.xml" value="0.264" />
+        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_playoff_bracket.xml" value="0.264" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_registration.xml" value="0.3223958333333333" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_users.xml" value="0.264" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_welcome.xml" value="0.284375" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/blondie_info.xml" value="0.3625" />
+        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/cell.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/cell_bracket.xml" value="0.20742753623188406" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/crooked_duck_info.xml" value="0.3625" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/headline_list_items.xml" value="0.264" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/interlude_info.xml" value="0.3625" />
@@ -81,9 +87,6 @@
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.2" />
       </map>
     </option>
-  </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/mvpgrill_info.xml" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
