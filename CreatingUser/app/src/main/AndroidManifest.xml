@@ -60,6 +60,52 @@
             android:exported="false"
             android:parentActivityName=".HomePage" />
         <activity
+            android:name=".activities.CommentsList"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddCommentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.FanChatActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            android:parentActivityName=".activities.FanPageActivity" />
+        <activity
+            android:name=".activities.PostList"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddPost"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.DetailPages"
+            android:exported="false"
+            android:parentActivityName=".activities.FanPageActivity" />
+        <activity
+            android:name=".activities.CreateBarPageActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.BarPageActivity" />
+        <activity
+            android:name=".activities.BarPageActivity"
+            android:exported="false"
+            android:parentActivityName=".HomePage" />
+        <activity
+            android:name=".activities.CreateFanPageActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.ProfileActivity" />
+        <activity
+            android:name=".activities.UploadProfileActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.ProfileActivity" />
+        <activity
+            android:name=".activities.SetUpProfileActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.ProfileActivity" />
+        <activity
+            android:name=".activities.FanPageActivity"
+            android:exported="false"
+            android:parentActivityName=".HomePage" />
+        <activity
             android:name=".activities.ProfileActivity"
             android:exported="false"
             android:parentActivityName=".HomePage" />

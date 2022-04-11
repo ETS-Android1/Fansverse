@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.creatinguser.activities.BarPageActivity;
 
 import com.example.creatinguser.utilities.Constants;
 import com.example.creatinguser.utilities.PreferenceManager;
@@ -29,12 +30,14 @@ import java.util.HashMap;
 
 public class HomePage extends AppCompatActivity {
 
+    private Button logout_button;
     BottomNavigationView bottomNavigationView;
     PreferenceManager preferenceManager;
     private FirebaseFirestore database;
 
-    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews, cvFanPage, cvProfilePage,
-            cvPlayoffBracket;
+    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews, cvFanPage, cvProfilePage, cvBarPage, cvPlayoffBracket;;
+
+
 
 
     @Override
@@ -56,6 +59,16 @@ public class HomePage extends AppCompatActivity {
 
         getOnClickListeners();
 
+        cvBarPage = findViewById(R.id.cvBar);
+
+
+        cvBarPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BarPageActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         // set home
