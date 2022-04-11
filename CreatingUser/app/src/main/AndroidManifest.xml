@@ -90,22 +90,6 @@
             android:exported="false"
             android:parentActivityName=".HomePage" />
         <activity
-            android:name=".activities.CreateFanPageActivity"
-            android:exported="false"
-            android:parentActivityName=".activities.ProfileActivity" />
-        <activity
-            android:name=".activities.UploadProfileActivity"
-            android:exported="false"
-            android:parentActivityName=".activities.ProfileActivity" />
-        <activity
-            android:name=".activities.SetUpProfileActivity"
-            android:exported="false"
-            android:parentActivityName=".activities.ProfileActivity" />
-        <activity
-            android:name=".activities.FanPageActivity"
-            android:exported="false"
-            android:parentActivityName=".HomePage" />
-        <activity
             android:name=".activities.ProfileActivity"
             android:exported="false"
             android:parentActivityName=".HomePage" />
