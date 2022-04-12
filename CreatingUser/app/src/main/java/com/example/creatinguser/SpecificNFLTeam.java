@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -30,54 +29,44 @@ import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-public class SpecificNBATeam extends AppCompatActivity {
-    private ListView nbaTeamList;
-    private ArrayList<String> playerID = new ArrayList<String> ();
+public class SpecificNFLTeam extends AppCompatActivity {
+    private ListView nflTeamList;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nbateam);
+        setContentView(R.layout.activity_nflteam);
 
-        nbaTeamList = (ListView)findViewById(R.id.nbaTeamList);
+        nflTeamList = (ListView)findViewById(R.id.nflTeamList);
 
         URL url = null;
         HttpURLConnection connection;
         StringBuilder urlBuilder = new StringBuilder();
         Bundle extras = getIntent().getExtras();
-        urlBuilder.append("https://api.sportsdata.io/v3/nba/scores/json/Players/");
-        urlBuilder.append(extras.getString("teamShortName"));
+        urlBuilder.append("https://api.sportsdata.io/v3/nfl/scores/json/Players/");
+        urlBuilder.append(extras.getString("teamKey"));
         try {
             url = new URL(urlBuilder.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        callAPINBATeam getNBATeam = new callAPINBATeam();
+        callAPINFLTeam getNFLTeam = new callAPINFLTeam();
         String result = null;
         try {
-            result = getNBATeam.execute(String.valueOf(url)).get();
+            result = getNFLTeam.execute(String.valueOf(url)).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ArrayList<String> nbaTeam = new ArrayList<String>();
-        nbaTeam = onResponseTeam(result);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,nbaTeam);
-        nbaTeamList.setAdapter(arrayAdapter);
-
-        nbaTeamList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(SpecificNBATeam.this, SpecificNFLTeam.class);
-                intent.putExtra("teamKey", playerID.get(position));
-                startActivity(intent);
-            }
-        });
+        ArrayList<String> nflTeam = new ArrayList<String>();
+        nflTeam = onResponseTeam(result);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,nflTeam);
+        nflTeamList.setAdapter(arrayAdapter);
     }
 
-    public class callAPINBATeam extends AsyncTask<String, Void, String> {
+    public class callAPINFLTeam extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
             String stringURL = params[0];
@@ -88,7 +77,7 @@ public class SpecificNBATeam extends AppCompatActivity {
                 URL url = new URL(stringURL);
                 connection = (HttpURLConnection) url.openConnection();
 
-                connection.setRequestProperty("Ocp-Apim-Subscription-Key", "65ed88bbffb9431ca49d73da12737d0b");
+                connection.setRequestProperty("Ocp-Apim-Subscription-Key", "d5cacbee788840cbbd9291a17b6d9dcc");
                 connection.setRequestProperty("content-type", "application/json");
 
                 connection.setRequestMethod("GET");
@@ -118,25 +107,24 @@ public class SpecificNBATeam extends AppCompatActivity {
     }
 
     private ArrayList<String> onResponseTeam(String result){
-        ArrayList<String> nbaTeam = new ArrayList<String> ();
+        ArrayList<String> nflTeam = new ArrayList<String> ();
         try{
-            JSONArray jArrayTeam = new JSONArray(result);
+            JSONArray jArrayTeams = new JSONArray(result);
 
-            if(jArrayTeam.length() != 0){
+            if(jArrayTeams.length() != 0){
 
-                for(int n = 0; n < jArrayTeam.length(); n++) {
-                    JSONObject teams = jArrayTeam.getJSONObject(n);
-                    nbaTeam.add(teams.getString("FirstName") + " " + teams.getString("LastName") + " Position: " +
+                for(int n = 0; n < jArrayTeams.length(); n++) {
+                    JSONObject teams = jArrayTeams.getJSONObject(n);
+                    nflTeam.add(teams.getString("FirstName") + " " + teams.getString("LastName") + " Position: " +
                             teams.getString("Position") + "\n");
-                    playerID.add(teams.getString("PlayerID"));
                 }
             }
             else{
-                String nflTeam = "There are no teams you messed up the code \n";
+                String nflTeam2 = "There are no teams you messed up the code \n";
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return nbaTeam;
+        return nflTeam;
     }
 }

@@ -35,7 +35,7 @@ public class HomePage extends AppCompatActivity {
     PreferenceManager preferenceManager;
     private FirebaseFirestore database;
 
-    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews, cvFanPage, cvProfilePage, cvBarPage;
+    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews, cvFanPage, cvProfilePage, cvBarPage, cvSportsTeams;
 
 
 
@@ -55,7 +55,16 @@ public class HomePage extends AppCompatActivity {
         cvFanPage = findViewById(R.id.cvFanPage);
         cvProfilePage = findViewById(R.id.cvProfilePage);
         cvBarPage = findViewById(R.id.cvBar);
+        cvSportsTeams = findViewById(R.id.cvSportsTeams);
 
+
+        cvSportsTeams.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SportsTeamsMainPage.class);
+                startActivity(intent);
+            }
+        });
 
         cvBarPage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,7 +162,7 @@ public class HomePage extends AppCompatActivity {
 
         cvScore.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LiveScoresPage.class);
+                Intent intent = new Intent(getApplicationContext(), LiveScores.class);
                 startActivity(intent);
             }
         });

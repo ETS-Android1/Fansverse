@@ -48,6 +48,9 @@
         <activity android:name=".CurrentScoresNBA" />
         <activity android:name=".SportsTeamsMainPage" />
         <activity android:name=".NBATeamsMainPage" />
+        <activity android:name=".NFLTeamsMainPage" />
+        <activity android:name=".SpecificNBATeam" />
+        <activity android:name=".SpecificNFLTeam" />
         <activity
             android:name=".activities.CommentsList"
             android:exported="false" />

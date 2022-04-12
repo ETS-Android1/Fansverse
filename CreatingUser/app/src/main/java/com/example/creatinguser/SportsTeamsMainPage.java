@@ -43,5 +43,12 @@ public class SportsTeamsMainPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        nflTeams.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NFLTeamsMainPage.class);
+                startActivity(intent);
+            }
+        });
     }
 }

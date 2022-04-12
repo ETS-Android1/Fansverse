@@ -1,18 +1,13 @@
 package com.example.creatinguser;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +16,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,28 +25,23 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-public class NBATeamsMainPage extends AppCompatActivity {
-    //private TextView Title;
-    //private Button sportsMainPage;
-    //private Button showNBATeams;
-    //private TextView nbaTeamsText;
-    private ListView nbaTeamsList;
-    private ArrayList<String> teamShortName = new ArrayList<String> ();
+public class NFLTeamsMainPage extends AppCompatActivity {
+    private ListView nflTeamsList;
+    private ArrayList<String> teamKeys = new ArrayList<String> ();
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nbateams);
+        setContentView(R.layout.activity_nflteams);
 
         //Title = findViewById(R.id.nbaTeamsPageFansverse);
         //sportsMainPage = findViewById(R.id.buttonSportsTeamMainPage);
         //nbaTeamsText = findViewById(R.id.nbaTeamsText);
         //showNBATeams = findViewById(R.id.buttonShowTeams);
-        nbaTeamsList = (ListView)findViewById(R.id.nbaTeamsList);
+        nflTeamsList = (ListView)findViewById(R.id.nflTeamsList);
 
         /*sportsMainPage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -63,41 +52,41 @@ public class NBATeamsMainPage extends AppCompatActivity {
 
         //showNBATeams.setOnClickListener(new View.OnClickListener(){
 
-            //public void onClick(View v) {
+        //public void onClick(View v) {
         URL myUrl = null;
         try {
-            myUrl = new URL("https://api-nba-v1.p.rapidapi.com/teams/league/standard");
+            myUrl = new URL("https://api.sportsdata.io/v3/nfl/scores/json/Teams");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        callAPINBATeams getNBATeams = new callAPINBATeams();
+        callAPINFLTeams getNFLTeams = new callAPINFLTeams();
         String result = null;
         try {
-            result = getNBATeams.execute(String.valueOf(myUrl)).get();
+            result = getNFLTeams.execute(String.valueOf(myUrl)).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ArrayList<String> nbaTeams = new ArrayList<String> ();
-        nbaTeams = onResponseTeams(result);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,nbaTeams);
-        nbaTeamsList.setAdapter(arrayAdapter);
+        ArrayList<String> nflTeams = new ArrayList<String>();
+        nflTeams = onResponseTeams(result);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,nflTeams);
+        nflTeamsList.setAdapter(arrayAdapter);
 
-        nbaTeamsList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        nflTeamsList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(NBATeamsMainPage.this, SpecificNBATeam.class);
-                intent.putExtra("teamShortName", teamShortName.get(position));
+                Intent intent = new Intent(NFLTeamsMainPage.this, SpecificNFLTeam.class);
+                intent.putExtra("teamKey", teamKeys.get(position));
                 startActivity(intent);
             }
         });
 
-            //}
+        //}
         //});
     }
 
-    public class  callAPINBATeams extends AsyncTask<String, Void, String>{
+    public class  callAPINFLTeams extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
             String stringURL = params[0];
@@ -109,9 +98,7 @@ public class NBATeamsMainPage extends AppCompatActivity {
                 URL url = new URL(stringURL);
                 connection = (HttpURLConnection) url.openConnection();
 
-                connection.setRequestProperty("x-rapidapi-host", "api-nba-v1.p.rapidapi.com");
-
-                connection.setRequestProperty("x-rapidapi-key", "ed43b1ab22msh4caee7f6fe2a8c8p145bfdjsn07ec91a1affb");
+                connection.setRequestProperty("Ocp-Apim-Subscription-Key", "d5cacbee788840cbbd9291a17b6d9dcc");
                 connection.setRequestProperty("content-type", "application/json");
 
                 connection.setRequestMethod("GET");
@@ -139,35 +126,27 @@ public class NBATeamsMainPage extends AppCompatActivity {
         }
     }
     private ArrayList<String> onResponseTeams(String result){
-        ArrayList<String> nbaTeams = new ArrayList<String> ();
+        ArrayList<String> nflTeams = new ArrayList<String> ();
         try{
-            JSONObject jsonResult = new JSONObject(result);
-            JSONObject jAPI = jsonResult.getJSONObject("api");
-            JSONArray jArrayTeams = jAPI.getJSONArray("teams");
+            JSONArray jArrayTeams = new JSONArray(result);
 
             if(jArrayTeams.length() != 0){
 
                 for(int n = 0; n < jArrayTeams.length(); n++) {
                     JSONObject teams = jArrayTeams.getJSONObject(n);
-                    String teamCheck = teams.getString("nbaFranchise");
-                    if (teamCheck.equals("1")) {
-                        if (teams.getString("fullName").equals("Home Team Stephen A")) {
-                        } else {
-                            nbaTeams.add(teams.getString("fullName"));
-                            teamShortName.add(teams.getString("shortName"));
-                            //setText(this.nbaTeamsText, nbaTeams, teams);
-                        }
-                    }
+                    nflTeams.add(teams.getString("City") + " " + teams.getString("Name"));
+                    teamKeys.add(teams.getString("Key"));
+                    //setText(this.nbaTeamsText, nbaTeams, teams);
                 }
             }
             else{
-                String nbaTeamsFail = "There are no teams you messed up the code \n";
+                System.out.println("There are no teams you messed up the code \n");
                 //setText(this.nbaTeamsText, nbaTeams, null);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return nbaTeams;
+        return nflTeams;
     }
 
     /*private void setText(TextView text, String value, JSONObject teams){
