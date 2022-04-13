@@ -254,6 +254,7 @@
                     </TextView>
                 </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cvPlayoffBracket"
                     android:layout_width="wrap_content"
@@ -287,6 +288,10 @@
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cvVideo"
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvSportsTeams"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_rowWeight="1"
@@ -306,12 +311,14 @@
                             android:layout_width="80dp"
                             android:layout_height="80dp"
                             android:src="@drawable/youtube" />
+                            android:src="@drawable/news" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:text="YouTube"
+                            android:text="Sports Teams"
                             android:textColor="@color/black"
                             android:textSize="18sp"></TextView>
                     </LinearLayout>

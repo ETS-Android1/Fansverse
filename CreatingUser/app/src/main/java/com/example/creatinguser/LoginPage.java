@@ -71,7 +71,7 @@ public class LoginPage extends AppCompatActivity {
         loading(true);
         if (time != null && (Long.parseLong(time) > (System.currentTimeMillis() - 300000))) {
             binding.loginButton.setEnabled(false);
-            showToast("Button still disabled, please wait for the disabled timer to complete.");
+            showToast("Button still disabled, please wait for the five minute timer to complete. Resetting.");
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -79,7 +79,7 @@ public class LoginPage extends AppCompatActivity {
                     binding.loginButton.setEnabled(true);
                     totalAttempts = 2;
                 }
-            }, System.currentTimeMillis() - 300000);
+            }, 300000);
             loading(false);
         } else {
             loading(true);

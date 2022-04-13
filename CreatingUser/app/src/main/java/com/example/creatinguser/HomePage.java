@@ -35,7 +35,8 @@ public class HomePage extends AppCompatActivity {
     PreferenceManager preferenceManager;
     private FirebaseFirestore database;
 
-    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews, cvFanPage, cvProfilePage, cvBarPage, cvPlayoffBracket, cvVideo;
+    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews, cvFanPage, cvProfilePage, cvBarPage, cvPlayoffBracket, cvVideo, cvSportsTeams;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class HomePage extends AppCompatActivity {
         cvProfilePage = findViewById(R.id.cvProfilePage);
         cvPlayoffBracket = findViewById(R.id.cvPlayoffBracket);
         cvBarPage = findViewById(R.id.cvBar);
+        cvSportsTeams = findViewById(R.id.cvSportsTeams);
         cvVideo = findViewById(R.id.cvVideo);
 
         getOnClickListeners();
@@ -105,6 +107,14 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), YoutubeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cvSportsTeams.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SportsTeamsMainPage.class);
                 startActivity(intent);
             }
         });
@@ -164,7 +174,7 @@ public class HomePage extends AppCompatActivity {
 
         cvScore.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LiveScoresPage.class);
+                Intent intent = new Intent(getApplicationContext(), LiveScores.class);
                 startActivity(intent);
             }
         });

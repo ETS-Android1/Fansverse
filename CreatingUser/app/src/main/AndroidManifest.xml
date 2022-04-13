@@ -63,7 +63,15 @@
         <activity
             android:name=".Interlude_info_v2"
             android:exported="false" />
-        <activity android:name=".LiveScoresPage" />
+
+        
+        <activity android:name=".LiveScores" />
+        <activity android:name=".CurrentScoresNBA" />
+        <activity android:name=".SportsTeamsMainPage" />
+        <activity android:name=".NBATeamsMainPage" />
+        <activity android:name=".NFLTeamsMainPage" />
+        <activity android:name=".SpecificNBATeam" />
+        <activity android:name=".SpecificNFLTeam" />
         <activity
             android:name=".activities.CreateFanPageActivity"
             android:exported="false"
