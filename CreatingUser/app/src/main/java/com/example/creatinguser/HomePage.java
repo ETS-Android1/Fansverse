@@ -35,10 +35,7 @@ public class HomePage extends AppCompatActivity {
     PreferenceManager preferenceManager;
     private FirebaseFirestore database;
 
-    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews, cvFanPage, cvProfilePage, cvBarPage, cvPlayoffBracket;;
-
-
-
+    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews, cvFanPage, cvProfilePage, cvBarPage, cvPlayoffBracket, cvVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,20 +53,10 @@ public class HomePage extends AppCompatActivity {
         cvFanPage = findViewById(R.id.cvFanPage);
         cvProfilePage = findViewById(R.id.cvProfilePage);
         cvPlayoffBracket = findViewById(R.id.cvPlayoffBracket);
+        cvBarPage = findViewById(R.id.cvBar);
+        cvVideo = findViewById(R.id.cvVideo);
 
         getOnClickListeners();
-
-        cvBarPage = findViewById(R.id.cvBar);
-
-
-        cvBarPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BarPageActivity.class);
-                startActivity(intent);
-            }
-        });
-
 
         // set home
         bottomNavigationView.setSelectedItemId(R.id.home);
@@ -114,6 +101,22 @@ public class HomePage extends AppCompatActivity {
 
     // all of the onClickListeners
     public void getOnClickListeners(){
+        cvVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), YoutubeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cvBarPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BarPageActivity.class);
+                startActivity(intent);
+            }
+        });
+
         cvFanPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
