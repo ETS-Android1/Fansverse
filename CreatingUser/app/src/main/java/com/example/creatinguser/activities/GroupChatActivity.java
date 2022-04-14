@@ -102,7 +102,6 @@ public class GroupChatActivity extends AppCompatActivity {
        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
            Intent intent = new Intent(getApplicationContext(), FriendsListGroupChat.class);
            intent.putExtra("KEY", key);
-           intent.putExtra("Creator",currentUserID);
            startActivity(intent);
 //           startActivity(new Intent(getApplicationContext(), FriendsListGroupChat.class));
 

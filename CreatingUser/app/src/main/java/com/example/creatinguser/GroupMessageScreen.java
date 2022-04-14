@@ -85,6 +85,7 @@ public class GroupMessageScreen extends AppCompatActivity implements Conversatio
             @Override
             public void onClick(View view) {
                 Intent mainIntent = new Intent(com.example.creatinguser.GroupMessageScreen.this, CreateGroupChatActivity.class);
+                mainIntent.putExtra(Constants.KEY_USER_ID,userId);
                 startActivity(mainIntent);
 
             }
@@ -109,7 +110,7 @@ public class GroupMessageScreen extends AppCompatActivity implements Conversatio
 
 
 //        query = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");
-        if (query == db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage")){
+        if (db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage") == null){
             db.collection(Constants.KEY_COLLECTION_GROUPCHAT).add(userId);
             db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");
             query = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");

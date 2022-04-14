@@ -8,7 +8,6 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -39,9 +38,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_API_KEY" />
 
-        <activity
-            android:name=".Youtube"
-            android:exported="false" />
+
         <activity
             android:name=".BracketCell"
             android:exported="false" />
@@ -63,6 +60,8 @@
         <activity
             android:name=".Interlude_info_v2"
             android:exported="false" />
+        <activity android:name=".activities.FriendsListGroupChat"
+            android:exported="false"/>
 
         
         <activity android:name=".LiveScores" />
@@ -124,10 +123,6 @@
             android:name=".activities.ProfileActivity"
             android:exported="false"
             android:parentActivityName=".HomePage" />
-        <activity
-            android:name=".activities.ProfileActivity"
-            android:exported="false"
-            android:parentActivityName=".HomePage" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -136,10 +131,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
         <activity
             android:name=".GoogleMaps"
             android:exported="true"
