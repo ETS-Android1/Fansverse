@@ -34,6 +34,7 @@ public class HomePage extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     PreferenceManager preferenceManager;
     private FirebaseFirestore database;
+    String userId;
 
     CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews, cvFanPage, cvProfilePage, cvBarPage;
 
@@ -47,6 +48,10 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
         database = FirebaseFirestore.getInstance();
         preferenceManager = new PreferenceManager(getApplicationContext());
+        Intent intent = getIntent();
+        userId = intent.getStringExtra(Constants.KEY_USER_ID);
+
+        System.out.println("\n \n Data being passed "+ userId+"\n \n ");
 
         cvMessage = findViewById(R.id.cvMessage);
         cvMap = findViewById(R.id.cvMap);
@@ -106,7 +111,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), DirectMessageScreen.class);
-                //intent.putExtra("message", current_username);
+                intent.putExtra(Constants.KEY_USER_ID, userId);
                 startActivity(intent);
             }
         });

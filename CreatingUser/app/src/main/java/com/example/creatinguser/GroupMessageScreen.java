@@ -58,9 +58,9 @@ public class GroupMessageScreen extends AppCompatActivity implements Conversatio
     Query query;
     FirebaseFirestore db;
     FloatingActionButton switchToDirectMessage, createGroupMessage;
-    String currentUserID;
+//    String currentUserID;
     FirebaseAuth firebaseAuth;
-    String key;
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +75,11 @@ public class GroupMessageScreen extends AppCompatActivity implements Conversatio
         getSupportActionBar().setHomeButtonEnabled(true);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
+//        currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
+
+        Intent intent = getIntent();
+        userId = intent.getStringExtra(Constants.KEY_USER_ID);
+        System.out.println("\n \n data being passed "+userId+"\n \n ");
 
         createGroupMessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,9 +107,15 @@ public class GroupMessageScreen extends AppCompatActivity implements Conversatio
 
         db = FirebaseFirestore.getInstance();
 
-        query = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(currentUserID).collection("GroupMessage");
-//        Intent intent = getIntent();
-//        key = intent.getStringExtra("KEY");
+
+//        query = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");
+        if (query == db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage")){
+            db.collection(Constants.KEY_COLLECTION_GROUPCHAT).add(userId);
+            db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");
+            query = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");
+        }else{
+            query = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");
+        }
     }
 
     @Override
@@ -153,224 +163,6 @@ public class GroupMessageScreen extends AppCompatActivity implements Conversatio
         }
     }
 
-
-//
-//    private ActivityGroupmessageScreenBinding binding;
-//    private PreferenceManager preferenceManager;
-//    private List<GroupChatMessage> conversations;
-//    private RecentConversationsAdapter conversationsAdapter;
-//    private FirebaseFirestore database;
-//    private RecyclerView recyclerView;
-//    FirebaseAuth firebaseAuth;
-//    String key;
-//    Query query;
-//    String currentUserID;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        binding = ActivityGroupmessageScreenBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
-//        preferenceManager = new PreferenceManager(getApplicationContext());
-//        firebaseAuth = FirebaseAuth.getInstance();
-//
-//        Intent intent = getIntent();
-//        key = intent.getStringExtra("KEY");
-//
-//        init();
-////        loadUserDetails();
-//        setListeners();
-////        listenConversations();
-////        retrievePage();
-//
-//        recyclerView = findViewById(R.id.fan_page_recyclerview);
-////        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-//        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-//                new LinearLayoutManager(getApplicationContext()).getOrientation());
-//        recyclerView.addItemDecoration(mDividerItemDecoration);
-//
-//        query = database.collection(Constants.KEY_COLLECTION_GROUPCHAT);
-//    }
-//
-////    @Override
-////    protected void onStart() {
-////        super.onStart();
-////        FirestoreRecyclerOptions<GroupChatMessage> options = new FirestoreRecyclerOptions.Builder<GroupChatMessage>()
-////                .setQuery(query, GroupChatMessage.class)
-////                .build();
-////
-////        FirestoreRecyclerAdapter<GroupChatMessage, GroupChatActivity.Messages> firestoreRecyclerAdapter = new FirestoreRecyclerAdapter<FanPage, FanPageActivity.FanViewHolder>(options) {
-////            @Override
-////            protected void onBindViewHolder(@NonNull @NotNull FanPageActivity.FanViewHolder holder, int position, @NonNull @NotNull FanPage model) {
-////                final String  key = getSnapshots().getSnapshot(position).getId();
-////
-////                holder.setTitle(model.getTitle());
-////                holder.setTotalMembers(model.getTotal_members());
-////
-////
-////
-////
-////                holder.mView.setOnClickListener(new View.OnClickListener() {
-////                    @Override
-////                    public void onClick(View v) {
-////                        Intent intent = new Intent(getApplicationContext(), DetailPages.class);
-////                        intent.putExtra("KEY", key);
-////                        startActivity(intent);
-////                    }
-////                });
-////
-////
-////
-////
-////            }
-////
-////
-////
-////            @NonNull
-////            @Override
-////            public FanPageActivity.FanViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-////                View view = LayoutInflater.from(viewGroup.getContext())
-////                        .inflate(R.layout.single_fan_page, viewGroup, false);
-////                return new FanPageActivity.FanViewHolder(view);
-////            }
-////        };
-////
-////        firestoreRecyclerAdapter.startListening();
-////
-////        recyclerView.setAdapter(firestoreRecyclerAdapter);
-////
-////
-////    }
-////
-////    private static class FanViewHolder extends RecyclerView.ViewHolder {
-////        View mView;
-////        FirebaseAuth firebaseAuth;
-////        String currentUser;
-////
-////        public FanViewHolder(@NonNull View itemView) {
-////            super(itemView);
-////            mView = itemView;
-////
-////
-////            firebaseAuth = FirebaseAuth.getInstance();
-////
-////            currentUser = firebaseAuth.getCurrentUser().getUid().toString();
-////
-////
-////        }
-////
-////
-////        public void setTitle(String title) {
-////            TextView titleTV = mView.findViewById(R.id.single_page_title);
-////            titleTV.setText(title);
-////        }
-////    }
-//
-//    private void init() {
-//        conversations = new ArrayList<>();
-////        conversationsAdapter = new RecentConversationsAdapter(conversations, this);
-//        binding.conversationsRecyclerViewforGroupChat.setAdapter(conversationsAdapter);
-//        database = FirebaseFirestore.getInstance();
-//    }
-//
-//    private void setListeners() {
-//        binding.switchToDirectMessage.setOnClickListener(v ->
-//                startActivity(new Intent(getApplicationContext(), DirectMessageScreen.class)));
-//        binding.fabNewGroupChat.setOnClickListener(v ->
-//                startActivity(new Intent(getApplicationContext(), CreateGroupChatActivity.class)));
-//    }
-//
-////    private void loadUserDetails(){
-////        binding.textName.setText(preferenceManager.getString(Constants.KEY_NAME));
-////        byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE),Base64.DEFAULT);
-////        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-////        binding.imageProfile.setImageBitmap(bitmap);
-////    }
-//
-//    private void showToast(String message) {
-//        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-//    }
-//
-////    private void listenConversations() {
-////        database.collection(Constants.KEY_COLLECTION_GROUPCHAT)
-////                .whereEqualTo(Constants.KEY_USER_ID, preferenceManager.getString(Constants.KEY_USER_ID))
-////                .addSnapshotListener(eventListener);
-////        currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
-////        database.collection(Constants.KEY_COLLECTION_GROUPCHAT)
-////                .whereEqualTo(Constants.KEY_USER_ID, currentUserID)
-////                .
-////        database.collection(Constants.KEY_COLLECTION_GROUPCHAT)
-////                .whereEqualTo(Constants.KEY_RECEIVER_ID, preferenceManager.getString(Constants.KEY_USER_ID))
-////                .addSnapshotListener(eventListener);
-////    }
-////    public void retrievePage() {
-////        final FirebaseFirestore db = FirebaseFirestore.getInstance();
-////        currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
-////        final DocumentReference docRef = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document();
-////
-////        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-////            @Override
-////            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-////                if (value.exists()) {
-////                    String user = value.getData().get("userID").toString();
-////
-////                    if (user.equals(currentUserID)) {
-////                        database.collection(Constants.KEY_COLLECTION_GROUPCHAT)
-////                                .whereEqualTo(Constants.KEY_USER_ID, preferenceManager.getString(Constants.KEY_USER_ID))
-////                                .addSnapshotListener(eventListener);
-////                    }
-////                }
-////
-////            }
-////        });
-////    }
-//
-////    private final EventListener<QuerySnapshot> eventListener = (value, error) -> {
-////        if (error != null) {
-////            return;
-////        }
-////        if (value != null) {
-////            for (DocumentChange documentChange : value.getDocumentChanges()) {
-////                if (documentChange.getType() == DocumentChange.Type.ADDED) {
-////                    String senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
-////                    String receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
-////                    ChatMessage chatMessage = new ChatMessage();
-////                    chatMessage.senderId = senderId;
-////                    chatMessage.receiverId = receiverId;
-////                    if (preferenceManager.getString(Constants.KEY_USER_ID).equals(senderId)) {
-//////                        chatMessage.conversionImage = documentChange.getDocument().getString(Constants.KEY_RECEIVER_IMAGE);
-////                        chatMessage.conversionName = documentChange.getDocument().getString(Constants.KEY_RECEIVER_NAME);
-////                        chatMessage.conversionId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
-////                    } else {
-//////                        chatMessage.conversionImage = documentChange.getDocument().getString(Constants.KEY_SENDER_IMAGE);
-////                        chatMessage.conversionName = documentChange.getDocument().getString(Constants.KEY_SENDER_NAME);
-////                        chatMessage.conversionId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
-////                    }
-////                    chatMessage.message = documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
-////                    chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
-////                    conversations.add(chatMessage);
-////                }
-//////                else if (documentChange.getType() == DocumentChange.Type.MODIFIED) {
-////                    for (int i = 0; i < conversations.size(); i++) {
-////                        String senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
-////                        String receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
-////                        if (conversations.get(i).senderId.equals(senderId) && conversations.get(i).receiverId.equals(receiverId)) {
-////                            conversations.get(i).message = documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
-////                            conversations.get(i).dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
-////                            break;
-////                        }
-////                    }
-////                }
-////            }
-////            Collections.sort(conversations, (obj1, obj2) -> obj2.dateObject.compareTo(obj1.dateObject));
-////            conversationsAdapter.notifyDataSetChanged();
-////            binding.conversationsRecyclerViewforGroupChat.smoothScrollToPosition(0);
-////            binding.conversationsRecyclerViewforGroupChat.setVisibility(View.VISIBLE);
-////            binding.progressBar.setVisibility(View.GONE);
-////        }
-////    };
-//
     @Override
     public void onConversionClicked(User user) {
         Intent intent = new Intent(getApplicationContext(), GroupChatActivity.class);

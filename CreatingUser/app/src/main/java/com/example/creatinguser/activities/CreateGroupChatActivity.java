@@ -42,8 +42,6 @@ public class CreateGroupChatActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         progressDialog = new ProgressDialog(this);
-        firebaseAuth = FirebaseAuth.getInstance();
-        currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
         initializeViews();
 
 
@@ -76,9 +74,10 @@ public class CreateGroupChatActivity extends AppCompatActivity {
 
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        currentUserID = db.collection(Constants.KEY_COLLECTION_USERS).getId();
         Map<String, Object> map = new HashMap<>();
         map.put(Constants.KEY_GROUP_CHAT_NAME, title);
-        map.put(Constants.KEY_USER_ID, currentUserID);
+        map.put(Constants.KEY_USER_ID, currentUserID );
 
 
         DocumentReference ref = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(currentUserID);

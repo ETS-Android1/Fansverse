@@ -8,20 +8,22 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="aandroid.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/Theme.CreatingUser">
+        <activity
+            android:name=".activities.FriendsListGroupChat"
+            android:exported="false" />
         <activity
             android:name=".MVP_Grill_info_v2"
             android:exported="false" />
@@ -42,8 +44,6 @@
         <activity
             android:name=".Interlude_info_v2"
             android:exported="false" />
-
-        
         <activity android:name=".LiveScoresPage" />
         <activity
             android:name=".activities.CommentsList"
@@ -54,8 +54,8 @@
         <activity
             android:name=".activities.FanChatActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"
-            android:parentActivityName=".activities.FanPageActivity" />
+            android:parentActivityName=".activities.FanPageActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.PostList"
             android:exported="false" />
@@ -95,9 +95,8 @@
             android:parentActivityName=".HomePage" />
         <activity
             android:name=".activities.ProfileActivity"
-            android:parentActivityName=".HomePage"
-            android:exported="false" />
-
+            android:exported="false"
+            android:parentActivityName=".HomePage" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -130,16 +129,17 @@
         <activity
             android:name=".DirectMessageScreen"
             android:exported="true" />
-        <activity android:name=".GroupMessageScreen"
-            android:exported="true"/>
+        <activity
+            android:name=".GroupMessageScreen"
+            android:exported="true" />
         <activity
             android:name=".activities.ChatActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.GroupChatActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.SignUpActivity"
             android:exported="false"
