@@ -56,7 +56,7 @@ public class HomePage extends AppCompatActivity {
         cvPlayoffBracket = findViewById(R.id.cvPlayoffBracket);
         cvBarPage = findViewById(R.id.cvBar);
         cvSportsTeams = findViewById(R.id.cvSportsTeams);
-        cvVideo = findViewById(R.id.cvVideo);
+        cvVideo = findViewById(R.id.cvYoutube);
 
         getOnClickListeners();
 
