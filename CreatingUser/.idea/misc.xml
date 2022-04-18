@@ -13,19 +13,14 @@
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1375" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/drawable/ic_logout.xml" value="0.1375" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/drawable/ic_send.xml" value="0.1375" />
-        <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_chat.xml" value="0.1" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_directmessage_screen.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_fan_chat.xml" value="0.1" />
-        <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_friends_list_group_chat.xml" value="0.16259057971014493" />
-        <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_groupchat.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_groupchat.xml" value="0.1" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_groupmessage_screen.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_homepage.xml" value="0.14764492753623187" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_main.xml" value="0.14764492753623187" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_registration.xml" value="0.14764492753623187" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_users.xml" value="0.1" />
         <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/login_page.xml" value="0.12" />
-        <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/menu/menu_adduser.xml" value="0.1796875" />
-        <entry key="..\:/Users/aaron/Documents/GitHub/Fansverse/CreatingUser/app/src/main/res/menu/menu_navigation.xml" value="0.1328125" />
         <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/activity_blondie_info_v2.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/activity_blondie_info_v3.xml" value="0.228125" />
         <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/activity_crooked_duck_info_v2.xml" value="0.2246376811594203" />
@@ -44,11 +39,14 @@
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_bracket_cell.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_chat.xml" value="0.25" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_create_fan_page.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_detail_pages.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_details.xml" value="0.264" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_directmessage_screen.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_fan_chat.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_fan_page.xml" value="0.20516304347826086" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_google_maps.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_groupchat.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_groupchat.xml" value="0.2" />
+        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_groupmessage_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_home_screen2.xml" value="0.2" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_homepage.xml" value="0.2" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_livescores.xml" value="0.25416666666666665" />
