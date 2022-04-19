@@ -16,11 +16,16 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.creatinguser.Models.GroupChatMessage;
 import com.example.creatinguser.R;
 import com.example.creatinguser.utilities.Constants;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +35,6 @@ public class CreateGroupChatActivity extends AppCompatActivity {
     Button createBtn;
     private ProgressDialog progressDialog;
     private String userId;
-    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,17 +80,45 @@ public class CreateGroupChatActivity extends AppCompatActivity {
         progressDialog.show();
 
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection(Constants.KEY_COLLECTION_GROUPCHAT)
+                .document(userId)
+                .collection("GroupMessage")
+                .whereEqualTo(Constants.KEY_GROUP_CHAT_NAME,title)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            if (task.getResult().isEmpty()){
+                                Map<String, Object> map = new HashMap<>();
+                                map.put(Constants.KEY_GROUP_CHAT_NAME, title);
+                                map.put(Constants.KEY_USER_ID, userId);
+                                DocumentReference ref = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId);
+                                ref.collection("GroupMessage").add(map);
+                                Intent mainIntent = new Intent(getApplicationContext(),GroupChatActivity.class);
+                                mainIntent.putExtra("KEY",title);
+                                startActivity(mainIntent);
+                            }
+                            else{
+                                progressDialog.setTitle("Could not create Group Chat");
+                                progressDialog.setMessage("Name already used, please use another name");
+                                progressDialog.setCanceledOnTouchOutside(false);
+                                progressDialog.show();
+                                new Thread(new Runnable() {
+                                    public void run() {
+                                        try {
+                                            Thread.sleep(4000);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        progressDialog.dismiss();
+                                    }
+                                }).start();
+                            }
+                        } else {
+                        }
+                    }
+                });
 
-//        currentUserID = db.collection(Constants.KEY_COLLECTION_USERS).getId();
-        Map<String, Object> map = new HashMap<>();
-        map.put(Constants.KEY_GROUP_CHAT_NAME, title);
-        map.put(Constants.KEY_USER_ID, userId );
-
-
-        DocumentReference ref = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId);
-        ref.collection("GroupMessage").add(map);
-        Intent mainIntent = new Intent(getApplicationContext(),GroupChatActivity.class);
-        mainIntent.putExtra("KEY",title);
-        startActivity(mainIntent);
     }
 }

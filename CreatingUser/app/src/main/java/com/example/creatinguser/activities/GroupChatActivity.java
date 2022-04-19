@@ -53,12 +53,12 @@ public class GroupChatActivity extends AppCompatActivity {
     private ImageButton sendMessageBtn;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
-    private String currentUserID;
+    String currentUserID;
     BottomNavigationView bottomNavigationView;
     FirebaseAuth firebaseAuth;
     String userfromDb;
     String chat_image_url;
-    String key;
+    String key, currentName;
     Query query;
     FirebaseFirestore db;
     String currentDate;
@@ -73,7 +73,10 @@ public class GroupChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groupchat);
 
-        getSupportActionBar().setTitle("GroupChat");
+        Intent intent = getIntent();
+        key = intent.getStringExtra("KEY");
+        currentName = intent.getStringExtra(Constants.KEY_NAME);
+        getSupportActionBar().setTitle(key);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -86,9 +89,7 @@ public class GroupChatActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
 
-        Intent intent = getIntent();
-        key = intent.getStringExtra("KEY");
-
+        getCurrentUsername();
         db = FirebaseFirestore.getInstance();
 
         CollectionReference chatsRef= db.collection("GroupChatMessageCont");
@@ -103,7 +104,6 @@ public class GroupChatActivity extends AppCompatActivity {
            Intent intent = new Intent(getApplicationContext(), FriendsListGroupChat.class);
            intent.putExtra("KEY", key);
            startActivity(intent);
-//           startActivity(new Intent(getApplicationContext(), FriendsListGroupChat.class));
 
            return true;
        }
@@ -264,8 +264,6 @@ public class GroupChatActivity extends AppCompatActivity {
     public void sendMessage(){
         String message = userMessage.getText().toString();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        String currentUserId = firebaseAuth.getCurrentUser().getUid().toString();
         Map<String, Object> map = new HashMap<>();
         map.put("chat_image", chat_image_url);
         map.put("chat_message", message);
@@ -274,7 +272,7 @@ public class GroupChatActivity extends AppCompatActivity {
         map.put("chat_username",userfromDb);
         map.put(Constants.KEY_GROUP_CHAT_NAME,key);
         map.put("timestamp", FieldValue.serverTimestamp());
-        map.put("user_id", currentUserId);
+        map.put("user_id", currentUserID);
         db.collection("GroupChatMessageCont").add(map);
         userMessage.setText("");
     }

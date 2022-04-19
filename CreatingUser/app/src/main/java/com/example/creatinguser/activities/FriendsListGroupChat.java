@@ -1,5 +1,6 @@
 package com.example.creatinguser.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,10 +13,13 @@ import com.example.creatinguser.databinding.ActivityFriendsListGroupChatBinding;
 import com.example.creatinguser.listeners.UserListener;
 import com.example.creatinguser.utilities.Constants;
 import com.example.creatinguser.utilities.PreferenceManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -96,17 +100,47 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
     @Override
     public void onUserClicked(User user) {
         System.out.println("\n \n Clicking on user"+user+"\n \n id"+user.id+"\n \n name"+user.name);
-
+        db.collection(Constants.KEY_COLLECTION_GROUPCHAT)
+                .document(user.id)
+                .collection("GroupMessage")
+                .whereEqualTo(Constants.KEY_GROUP_CHAT_NAME,key)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            if (task.getResult().isEmpty()){
+                                Map<String, Object> map = new HashMap<>();
+                                map.put(Constants.KEY_GROUP_CHAT_NAME, key);
+                                map.put(Constants.KEY_USER_ID, user.id);
+                                DocumentReference ref = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(user.id);
+                                ref.collection("GroupMessage").add(map);
+                                Intent mainIntent = new Intent(getApplicationContext(),GroupChatActivity.class);
+                                mainIntent.putExtra("KEY",key);
+                                startActivity(mainIntent);
+                                finish();
+                            }
+                            else{
+                                Intent mainIntent = new Intent(getApplicationContext(),GroupChatActivity.class);
+                                mainIntent.putExtra("KEY",key);
+                                startActivity(mainIntent);
+                                finish();
+                            }
+                        } else {
+                        }
+                    }
+                });
 //        System.out.println("\n \n "+currentUserID);
-        Map<String, Object> map = new HashMap<>();
-        map.put(Constants.KEY_GROUP_CHAT_NAME, key);
-        map.put(Constants.KEY_USER_ID, user.id);
-//        db.collection("TestingSent").add(map);
-        DocumentReference ref = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(user.id);
-        ref.collection("GroupMessage").add(map);
-        Intent mainIntent = new Intent(getApplicationContext(),GroupChatActivity.class);
-        mainIntent.putExtra("KEY",key);
-        startActivity(mainIntent);
-        finish();
+//        Map<String, Object> map = new HashMap<>();
+//        map.put(Constants.KEY_GROUP_CHAT_NAME, key);
+//        map.put(Constants.KEY_USER_ID, user.id);
+////        db.collection("TestingSent").add(map);
+
+//        DocumentReference ref = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(user.id);
+//        ref.collection("GroupMessage").add(map);
+//        Intent mainIntent = new Intent(getApplicationContext(),GroupChatActivity.class);
+//        mainIntent.putExtra("KEY",key);
+//        startActivity(mainIntent);
+//        finish();
     }
 }

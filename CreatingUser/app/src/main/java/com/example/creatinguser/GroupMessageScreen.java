@@ -95,6 +95,7 @@ public class GroupMessageScreen extends AppCompatActivity implements Conversatio
             @Override
             public void onClick(View v) {
                 Intent mainIntent = new Intent(GroupMessageScreen.this,DirectMessageScreen.class);
+                mainIntent.putExtra(Constants.KEY_USER_ID,userId);
                 startActivity(mainIntent);
             }
         });
@@ -109,14 +110,14 @@ public class GroupMessageScreen extends AppCompatActivity implements Conversatio
         db = FirebaseFirestore.getInstance();
 
 
-//        query = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");
-        if (db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage") == null){
-            db.collection(Constants.KEY_COLLECTION_GROUPCHAT).add(userId);
-            db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");
-            query = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");
-        }else{
-            query = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");
-        }
+        query = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");
+//        if (db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage") == null){
+//            db.collection(Constants.KEY_COLLECTION_GROUPCHAT).add(userId);
+//            db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");
+//            query = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");
+//        }else{
+//            query = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(userId).collection("GroupMessage");
+//        }
     }
 
     @Override
@@ -137,6 +138,7 @@ public class GroupMessageScreen extends AppCompatActivity implements Conversatio
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), GroupChatActivity.class);
                         intent.putExtra("KEY", key);
+                        intent.putExtra(Constants.KEY_NAME,userId);
                         startActivity(intent);
                     }
                 });
