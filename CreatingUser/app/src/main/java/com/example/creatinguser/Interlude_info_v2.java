@@ -40,8 +40,9 @@ public class Interlude_info_v2 extends AppCompatActivity {
         }
 
         public void openMenuActivity(){
-            Intent intent = new Intent(this,MenuReader.class);
-            intent.putExtra("path","C:\\Users\\dimon\\Desktop\\Repos\\Fanverse\\Fansverse\\CreatingUser\\app\\src\\main\\java\\com\\example\\creatinguser\\textFiles\\InterludeMenu.txt");
+            Intent intent = new Intent(this,MenuDisplay.class);
+            intent.putExtra("NameOfPic", "InterludeMenu");
+            intent.putExtra("PicID","interludeMenuPic");
             startActivity(intent);
 
         }
