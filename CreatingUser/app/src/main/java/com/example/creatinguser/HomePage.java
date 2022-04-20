@@ -30,12 +30,12 @@ import java.util.HashMap;
 
 public class HomePage extends AppCompatActivity {
 
-    private Button logout_button;
     BottomNavigationView bottomNavigationView;
     PreferenceManager preferenceManager;
     private FirebaseFirestore database;
+    String userId;
 
-    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews, cvFanPage, cvProfilePage, cvBarPage, cvPlayoffBracket, cvVideo, cvSportsTeams;
+    CardView cvMessage, cvMap, cvScore, cvNews, cvFanPage, cvProfilePage, cvBarPage, cvPlayoffBracket, cvVideo, cvSportsTeams;
 
 
     @Override
@@ -44,6 +44,10 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
         database = FirebaseFirestore.getInstance();
         preferenceManager = new PreferenceManager(getApplicationContext());
+        Intent intent = getIntent();
+        userId = intent.getStringExtra(Constants.KEY_USER_ID);
+
+        System.out.println("\n \n Data being passed "+ userId+"\n \n ");
 
         // id to feature connection
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -58,11 +62,13 @@ public class HomePage extends AppCompatActivity {
         cvSportsTeams = findViewById(R.id.cvSportsTeams);
         cvVideo = findViewById(R.id.cvYoutube);
 
+        bottomNavigationView.setSelectedItemId(R.id.home); // sets highlight on bar
+
         getOnClickListeners();
+        bottomNavBar();
+    }
 
-        // set home
-        bottomNavigationView.setSelectedItemId(R.id.home);
-
+    public void bottomNavBar(){
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -88,16 +94,14 @@ public class HomePage extends AppCompatActivity {
                     case R.id.home:
                         return true;
 
-                    // right now it directs to news and it works
-                    case R.id.info:
-                        startActivity(new Intent(getApplicationContext(), Newsfeed.class));
+                    case R.id.sportsTeams:
+                        startActivity(new Intent(getApplicationContext(), SportsTeamsMainPage.class));
                         overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;
             }
         });
-
 
     }
 
@@ -167,7 +171,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), DirectMessageScreen.class);
-                //intent.putExtra("message", current_username);
+                intent.putExtra(Constants.KEY_USER_ID, userId);
                 startActivity(intent);
             }
         });

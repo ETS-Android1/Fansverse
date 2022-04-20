@@ -8,7 +8,6 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -40,6 +39,7 @@
         <activity
             android:name=".YoutubeActivity"
             android:exported="false" />
+
         <activity
             android:name=".BracketCell"
             android:exported="false" />
@@ -61,6 +61,8 @@
         <activity
             android:name=".Interlude_info_v2"
             android:exported="false" />
+        <activity android:name=".activities.FriendsListGroupChat"
+            android:exported="false"/>
 
         
         <activity android:name=".LiveScores" />
@@ -112,6 +114,9 @@
             android:exported="false"
             android:parentActivityName=".activities.BarPageActivity" />
         <activity
+            android:name=".activities.CreateGroupChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.BarPageActivity"
             android:exported="false"
             android:parentActivityName=".HomePage" />
@@ -119,6 +124,14 @@
             android:name=".activities.ProfileActivity"
             android:exported="false"
             android:parentActivityName=".HomePage" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
         <activity
             android:name=".GoogleMaps"
             android:exported="true"

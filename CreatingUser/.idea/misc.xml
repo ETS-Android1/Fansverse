@@ -35,6 +35,7 @@
         <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/portcity_info.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/dimon/Desktop/Repos/Fanverse/Fansverse/CreatingUser/app/src/main/res/layout/pub_info.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/drawable/background_input.xml" value="0.3635" />
+        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/drawable/ic_football.xml" value="0.247" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/drawable/selector.xml" value="0.326" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_bracket_cell.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_chat.xml" value="0.25" />
@@ -44,8 +45,9 @@
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_fan_page.xml" value="0.20516304347826086" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_google_maps.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_groupchat.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_groupmessage_screen.xml" value="0.23097826086956522" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_home_screen2.xml" value="0.2" />
-        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_homepage.xml" value="0.2" />
+        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_homepage.xml" value="0.264" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_livescores.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_maps.xml" value="0.14356884057971014" />
@@ -53,6 +55,7 @@
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_playoff_bracket.xml" value="0.264" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_registration.xml" value="0.3223958333333333" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
+        <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_sportsteams.xml" value="0.2" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_users.xml" value="0.264" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_welcome.xml" value="0.284375" />
         <entry key="..\:/Users/josej/Desktop/GitHub/Fansverse/CreatingUser/app/src/main/res/layout/activity_youtube.xml" value="0.25416666666666665" />

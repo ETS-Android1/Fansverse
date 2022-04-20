@@ -49,6 +49,7 @@ public class DirectMessageScreen extends AppCompatActivity implements Conversati
     private List<ChatMessage> conversations;
     private RecentConversationsAdapter conversationsAdapter;
     private FirebaseFirestore database;
+    String userId;
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -59,6 +60,8 @@ public class DirectMessageScreen extends AppCompatActivity implements Conversati
         preferenceManager = new PreferenceManager(getApplicationContext());
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         //bottomNavigationView.setSelectedItemId(R.id.info);
+        Intent intent = getIntent();
+        userId = intent.getStringExtra(Constants.KEY_USER_ID);
 
         init();
 //        loadUserDetails();
@@ -112,8 +115,8 @@ public class DirectMessageScreen extends AppCompatActivity implements Conversati
     private void setListeners() {
         binding.fabNewChat.setOnClickListener(v ->
                 startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
-        binding.fabNewGroupChat.setOnClickListener(v ->
-                startActivity(new Intent(getApplicationContext(), GroupMessageScreen.class)));
+        binding.fabNewGroupChat.setOnClickListener(v -> newGroupChatMessage()
+        );
     }
 
 //    private void loadUserDetails(){
@@ -123,6 +126,11 @@ public class DirectMessageScreen extends AppCompatActivity implements Conversati
 //        binding.imageProfile.setImageBitmap(bitmap);
 //    }
 
+    private void newGroupChatMessage(){
+        Intent intent = new Intent(getApplicationContext(), GroupMessageScreen.class);
+        intent.putExtra(Constants.KEY_USER_ID,userId);
+        startActivity(intent);
+    }
     private void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
@@ -194,23 +202,6 @@ public class DirectMessageScreen extends AppCompatActivity implements Conversati
                 .addOnFailureListener(e -> showToast("Unable to update token"));
     }
 
-    private void signOut() {
-        showToast("Signing out.....");
-        FirebaseFirestore database = FirebaseFirestore.getInstance();
-        DocumentReference documentReference =
-                database.collection(Constants.KEY_COLLECTION_USERS).document(
-                        preferenceManager.getString(Constants.KEY_USER_ID)
-                );
-        HashMap<String, Object> updates = new HashMap<>();
-        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
-        documentReference.update(updates)
-                .addOnSuccessListener(unused -> {
-                    preferenceManager.clear();
-                    startActivity(new Intent(getApplicationContext(), LoginPage.class));
-                    finish();
-                })
-                .addOnFailureListener(e -> showToast("Unable to sign out"));
-    }
 
     @Override
     public void onConversionClicked(User user) {
