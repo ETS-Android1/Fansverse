@@ -39,7 +39,6 @@ public class SportsTeamsMainPage extends AppCompatActivity {
         setContentView(R.layout.activity_sportsteams);
 
         Title = findViewById(R.id.sportsTeamsMainPageFansverse);
-        homePage = findViewById(R.id.buttonHomePage);
         nbaTeams = findViewById(R.id.buttonNBATeams);
         nflTeams = findViewById(R.id.buttonNFLTeams);
         //currScoresText = findViewById(R.id.currScoresText);
