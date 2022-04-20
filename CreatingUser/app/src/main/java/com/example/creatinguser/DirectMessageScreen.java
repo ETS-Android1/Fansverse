@@ -88,8 +88,8 @@ public class DirectMessageScreen extends AppCompatActivity implements Conversati
                                     finish();
                                 });
                         return true;
-                    case R.id.info:
-                        startActivity(new Intent(getApplicationContext(), Newsfeed.class));
+                    case R.id.sportsTeams:
+                        startActivity(new Intent(getApplicationContext(), SportsTeamsMainPage.class));
                         overridePendingTransition(0, 0);
                         return true;
 
