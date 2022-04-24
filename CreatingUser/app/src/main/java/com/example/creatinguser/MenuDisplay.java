@@ -34,12 +34,13 @@ public class MenuDisplay extends AppCompatActivity {
 
 
         //need help with!
-        int resID = this.getResources().getIdentifier(idOfPic, "drawable", this.getPackageName());
+
+        int resID = getResources().getIdentifier(idOfPic, "drawable", getPackageName());
 
         System.out.println("\n \n This is the resId:"+ resID);
         // getting ImageView by its id
-        ImageView interludeMenuPic = findViewById(R.id.interludeMenuPic);
-        //ImageView interludeMenuPic = findViewById(resID);
+        //ImageView interludeMenuPic = findViewById(R.id.interludeMenuPic);
+        ImageView interludeMenuPic = findViewById(resID);
 
         // we will get the default FirebaseDatabase instance
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
