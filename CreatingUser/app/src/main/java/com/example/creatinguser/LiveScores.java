@@ -43,5 +43,12 @@ public class LiveScores extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        nflScores.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CurrentScoresNFL.class);
+                startActivity(intent);
+            }
+        });
     }
 }

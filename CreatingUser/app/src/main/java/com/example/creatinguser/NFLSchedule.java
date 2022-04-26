@@ -1,15 +1,10 @@
 package com.example.creatinguser;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,57 +22,44 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-public class SpecificNFLTeam extends AppCompatActivity {
-    private ListView nflTeamList;
-    private ArrayList<String> playerID = new ArrayList<String> ();
+public class NFLSchedule extends AppCompatActivity {
+    private ListView nflSchedule;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nflteam);
+        setContentView(R.layout.activity_nflschedule);
 
-        nflTeamList = (ListView)findViewById(R.id.nflTeamList);
+        nflSchedule = (ListView)findViewById(R.id.nflSchedule);
 
         URL url = null;
         HttpURLConnection connection;
         StringBuilder urlBuilder = new StringBuilder();
-        Bundle extras = getIntent().getExtras();
-        urlBuilder.append("https://api.sportsdata.io/v3/nfl/scores/json/Players/");
-        urlBuilder.append(extras.getString("teamKey"));
+        urlBuilder.append(" https://api.sportsdata.io/v3/nfl/scores/json/Schedules/2021");
         try {
             url = new URL(urlBuilder.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        callAPINFLTeam getNFLTeam = new callAPINFLTeam();
+        callAPINFLSchedule getNFLSchedule = new callAPINFLSchedule();
         String result = null;
         try {
-            result = getNFLTeam.execute(String.valueOf(url)).get();
+            result = getNFLSchedule.execute(String.valueOf(url)).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ArrayList<String> nflTeam = new ArrayList<String>();
-        nflTeam = onResponseTeam(result);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,nflTeam);
-        nflTeamList.setAdapter(arrayAdapter);
-
-        nflTeamList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(SpecificNFLTeam.this, SpecificNFLPlayer.class);
-                intent.putExtra("playerIDNFL", playerID.get(position));
-                startActivity(intent);
-            }
-        });
+        ArrayList<String> nflScheduleList = new ArrayList<String>();
+        nflScheduleList = onResponseTeam(result);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,nflScheduleList);
+        nflSchedule.setAdapter(arrayAdapter);
     }
 
-    public class callAPINFLTeam extends AsyncTask<String, Void, String> {
+    public class callAPINFLSchedule extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
             String stringURL = params[0];
@@ -118,25 +100,24 @@ public class SpecificNFLTeam extends AppCompatActivity {
     }
 
     private ArrayList<String> onResponseTeam(String result){
-        ArrayList<String> nflTeam = new ArrayList<String> ();
+        ArrayList<String> nflSchedule = new ArrayList<String> ();
         try{
-            JSONArray jArrayTeams = new JSONArray(result);
+            JSONArray jArrayTeam = new JSONArray(result);
 
-            if(jArrayTeams.length() != 0){
+            if(jArrayTeam.length() != 0){
 
-                for(int n = 0; n < jArrayTeams.length(); n++) {
-                    JSONObject teams = jArrayTeams.getJSONObject(n);
-                    nflTeam.add(teams.getString("FirstName") + " " + teams.getString("LastName") + " Position: " +
-                            teams.getString("Position") + "\n");
-                    playerID.add(teams.getString("PlayerID"));
+                for(int n = 0; n < jArrayTeam.length(); n++) {
+                    JSONObject teams = jArrayTeam.getJSONObject(n);
+                    nflSchedule.add(teams.getString("Date") + ": " + teams.getString("HomeTeam") + " versus " + teams.getString("AwayTeam") + "\n Status: " +
+                            teams.getString("Status"));
                 }
             }
             else{
-                String nflTeam2 = "There are no teams you messed up the code \n";
+                String nflScheduleFail = "There is no schedule you messed up the code \n";
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return nflTeam;
+        return nflSchedule;
     }
 }

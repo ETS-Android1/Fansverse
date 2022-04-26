@@ -70,8 +70,8 @@ public class SpecificNBATeam extends AppCompatActivity {
         nbaTeamList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(SpecificNBATeam.this, SpecificNFLTeam.class);
-                intent.putExtra("teamKey", playerID.get(position));
+                Intent intent = new Intent(SpecificNBATeam.this, SpecificNBAPlayer.class);
+                intent.putExtra("playerID", playerID.get(position));
                 startActivity(intent);
             }
         });
@@ -132,7 +132,7 @@ public class SpecificNBATeam extends AppCompatActivity {
                 }
             }
             else{
-                String nflTeam = "There are no teams you messed up the code \n";
+                String nbaTeamFail = "There are no teams you messed up the code \n";
             }
         } catch (JSONException e) {
             e.printStackTrace();
