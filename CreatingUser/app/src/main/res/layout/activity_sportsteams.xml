@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     android:background="#AB673AB7">
 
-    <Button
-        android:id="@+id/buttonHomePage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back to HomePage"
-        app:layout_constraintBottom_toTopOf="@+id/buttonNBATeams"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sportsTeamsMainPageFansverse" />
 
     <!--    <Button
             android:id="@+id/buttonProfile"
@@ -26,25 +17,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonStats" /> -->
 
+    <TextView
+        android:id="@+id/sportsTeamsMainPageFansverse"
+        android:layout_width="248dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="40dp"
+        android:text="Check out the Teams"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/buttonNBATeams"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NBA Teams"
+        app:layout_constraintTop_toBottomOf="@+id/sportsTeamsMainPageFansverse"
         app:layout_constraintBottom_toTopOf="@+id/buttonNFLTeams"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonHomePage" />
+        />
 
-    <Button
-        android:id="@+id/buttonNFLTeams"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NFL Teams"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonNBATeams" />
     <!--    <Button
             android:id="@+id/buttonStats"
             android:layout_width="wrap_content"
@@ -55,18 +51,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttoncurrScores" /> -->
 
-    <TextView
-        android:id="@+id/sportsTeamsMainPageFansverse"
-        android:layout_width="248dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="40dp"
-        android:text="Check out the Teams"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buttonHomePage"
+    <Button
+        android:id="@+id/buttonNFLTeams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NFL Teams"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonNBATeams"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"/>
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:id="@+id/bottom_navigation"
+        app:itemBackground="@color/purple_500"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/menu_navigation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -93,13 +93,8 @@ public class FanPageActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull @NotNull FanViewHolder holder, int position, @NonNull @NotNull FanPage model) {
                 final String  key = getSnapshots().getSnapshot(position).getId();
-
                 holder.setTitle(model.getTitle());
                 holder.setTotalMembers(model.getTotal_members());
-
-
-
-
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -108,13 +103,7 @@ public class FanPageActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-
-
-
-
             }
-
-
 
             @NonNull
             @Override
@@ -124,12 +113,8 @@ public class FanPageActivity extends AppCompatActivity {
                 return new FanViewHolder(view);
             }
         };
-
         firestoreRecyclerAdapter.startListening();
-
         recyclerView.setAdapter(firestoreRecyclerAdapter);
-
-
     }
 
     private static class FanViewHolder extends RecyclerView.ViewHolder{

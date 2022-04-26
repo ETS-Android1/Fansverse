@@ -30,15 +30,12 @@ import java.util.HashMap;
 
 public class HomePage extends AppCompatActivity {
 
-    private Button logout_button;
     BottomNavigationView bottomNavigationView;
     PreferenceManager preferenceManager;
     private FirebaseFirestore database;
+    String userId;
 
-    CardView cvMessage, cvMap, cvScore, cvStats, cvProfile, cvNews, cvFanPage, cvProfilePage, cvBarPage, cvSportsTeams;
-
-
-
+    CardView cvMessage, cvMap, cvScore, cvNews, cvFanPage, cvProfilePage, cvBarPage, cvPlayoffBracket, cvVideo, cvSportsTeams;
 
 
     @Override
@@ -47,16 +44,76 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
         database = FirebaseFirestore.getInstance();
         preferenceManager = new PreferenceManager(getApplicationContext());
+        Intent intent = getIntent();
+        userId = intent.getStringExtra(Constants.KEY_USER_ID);
 
+        System.out.println("\n \n Data being passed "+ userId+"\n \n ");
+
+        // id to feature connection
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         cvMessage = findViewById(R.id.cvMessage);
         cvMap = findViewById(R.id.cvMap);
         cvScore = findViewById(R.id.cvScore);
         cvNews = findViewById(R.id.cvNews);
         cvFanPage = findViewById(R.id.cvFanPage);
         cvProfilePage = findViewById(R.id.cvProfilePage);
+        cvPlayoffBracket = findViewById(R.id.cvPlayoffBracket);
         cvBarPage = findViewById(R.id.cvBar);
         cvSportsTeams = findViewById(R.id.cvSportsTeams);
+        cvVideo = findViewById(R.id.cvYoutube);
 
+        bottomNavigationView.setSelectedItemId(R.id.home); // sets highlight on bar
+
+        getOnClickListeners();
+        bottomNavBar();
+    }
+
+    public void bottomNavBar(){
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.logout:
+                        Toast toast = Toast.makeText(getApplicationContext(),"Signing out...",Toast.LENGTH_LONG);
+                        toast.show();
+                        FirebaseFirestore database = FirebaseFirestore.getInstance();
+                        DocumentReference documentReference =
+                                database.collection(Constants.KEY_COLLECTION_USERS).document(
+                                        preferenceManager.getString(Constants.KEY_USER_ID)
+                                );
+                        HashMap<String,Object> updates = new HashMap<>();
+                        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
+                        documentReference.update(updates)
+                                .addOnSuccessListener(unused -> {
+                                    preferenceManager.clear();
+                                    startActivity(new Intent(getApplicationContext(), LoginPage.class));
+                                    finish();
+                                });
+                        return true;
+
+                    case R.id.home:
+                        return true;
+
+                    case R.id.sportsTeams:
+                        startActivity(new Intent(getApplicationContext(), SportsTeamsMainPage.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+    }
+
+    // all of the onClickListeners
+    public void getOnClickListeners(){
+        cvVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), YoutubeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         cvSportsTeams.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +130,6 @@ public class HomePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         cvFanPage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,48 +171,8 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), DirectMessageScreen.class);
-                //intent.putExtra("message", current_username);
+                intent.putExtra(Constants.KEY_USER_ID, userId);
                 startActivity(intent);
-            }
-        });
-
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        // set home
-        bottomNavigationView.setSelectedItemId(R.id.home);
-
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.logout:
-                        Toast toast = Toast.makeText(getApplicationContext(),"Signing out...",Toast.LENGTH_LONG);
-                        toast.show();
-                        FirebaseFirestore database = FirebaseFirestore.getInstance();
-                        DocumentReference documentReference =
-                                database.collection(Constants.KEY_COLLECTION_USERS).document(
-                                        preferenceManager.getString(Constants.KEY_USER_ID)
-                                );
-                        HashMap<String,Object> updates = new HashMap<>();
-                        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
-                        documentReference.update(updates)
-                                .addOnSuccessListener(unused -> {
-                                    preferenceManager.clear();
-                                    startActivity(new Intent(getApplicationContext(), LoginPage.class));
-                                    finish();
-                                });
-                        return true;
-
-                    case R.id.home:
-                        return true;
-
-                    // right now it directs to news and it works
-                    case R.id.info:
-                        startActivity(new Intent(getApplicationContext(), Newsfeed.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                }
-                return false;
             }
         });
 
@@ -166,6 +182,16 @@ public class HomePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // playoff bracket
+        cvPlayoffBracket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BracketCell.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 }
