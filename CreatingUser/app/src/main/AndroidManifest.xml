@@ -22,6 +22,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CreatingUser">
         <activity
+            android:name=".PortCityMenu"
+            android:exported="false" />
+        <activity
+            android:name=".MVPGrillMenu"
+            android:exported="false" />
+        <activity
+            android:name=".crookedDuckMenu"
+            android:exported="false" />
+        <activity
+            android:name=".BlondieMenu"
+            android:exported="false" />
+        <activity
             android:name=".MenuDisplay"
             android:exported="false" />
         <activity

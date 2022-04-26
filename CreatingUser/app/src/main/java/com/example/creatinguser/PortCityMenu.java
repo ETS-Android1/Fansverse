@@ -14,12 +14,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class MenuDisplay extends AppCompatActivity {
+public class PortCityMenu extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_display);
+        setContentView(R.layout.activity_crooked_duck_menu);
 
         String nameOfPicture = getIntent().getStringExtra("NameOfPic");
         //String idOfPic = getIntent().getStringExtra("PicID");
@@ -39,7 +39,7 @@ public class MenuDisplay extends AppCompatActivity {
 
         //System.out.println("\n \n This is the resId:"+ resID);
         // getting ImageView by its id
-        ImageView interludeMenuPic = findViewById(R.id.interludeMenuPic);
+        ImageView viewMenuPic = findViewById(R.id.portCityMenuPic);
         //ImageView interludeMenuPic = findViewById(resID);
 
         // we will get the default FirebaseDatabase instance
@@ -67,7 +67,7 @@ public class MenuDisplay extends AppCompatActivity {
 
                 // loading that data into rImage
                 // variable which is ImageView
-                Picasso.get().load(link).into(interludeMenuPic);
+                Picasso.get().load(link).into(viewMenuPic);
             }
 
             // this will called when any problem
@@ -75,7 +75,7 @@ public class MenuDisplay extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // we are showing that error message in toast
-                Toast.makeText(MenuDisplay.this, "Error Loading Image", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PortCityMenu.this, "Error Loading Image", Toast.LENGTH_SHORT).show();
             }
         });
 

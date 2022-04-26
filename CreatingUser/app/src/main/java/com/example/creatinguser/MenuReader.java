@@ -44,12 +44,12 @@ public class MenuReader extends AppCompatActivity {
         tv.setText(text.toString()); ////Set the text to text view.
     }
 
-/*    public MenuReader(String menuPath)
+    public MenuReader(String menuPath)
     {
         this.path=menuPath;
-    } */
+    }
 
-/*    public void PrintMenu()
+   public void PrintMenu()
     {
         StringBuilder text = new StringBuilder();
         try {
@@ -70,5 +70,5 @@ public class MenuReader extends AppCompatActivity {
         TextView tv = (TextView)findViewById(R.id.menuTextView);
         tv.setText(text.toString()); ////Set the text to text view.
 
-    } */
+    }
 }
