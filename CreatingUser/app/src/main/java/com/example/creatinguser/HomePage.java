@@ -18,6 +18,7 @@ import com.example.creatinguser.utilities.Constants;
 import com.example.creatinguser.utilities.PreferenceManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
@@ -27,6 +28,7 @@ import com.example.creatinguser.activities.ProfileActivity;
 
 import java.util.HashMap;
 
+import com.google.android.youtube.player.YouTubeStandalonePlayer;
 
 public class HomePage extends AppCompatActivity {
 
@@ -110,8 +112,10 @@ public class HomePage extends AppCompatActivity {
         cvVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), YoutubeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), StandaloneActivity.class);
                 startActivity(intent);
+//                Intent intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.YOUTUBE_PLAYLIST);
+//                startActivity(intent);
             }
         });
 
@@ -183,7 +187,6 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        // playoff bracket
         cvPlayoffBracket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -194,5 +197,18 @@ public class HomePage extends AppCompatActivity {
 
     }
 
+//    @Override
+//    public void onClick(View view) {
+//        cvVideo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Intent intent = new Intent(getApplicationContext(), YoutubeActivity.class);
+////                startActivity(intent);
+//                Intent intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.YOUTUBE_PLAYLIST);
+//                startActivity(intent);
+//            }
+//        });
+//
+//    }
 }
 
