@@ -66,11 +66,17 @@
             android:exported="false" />
         <activity android:name=".LiveScores" />
         <activity android:name=".CurrentScoresNBA" />
+        <activity android:name=".CurrentScoresNFL" />
         <activity android:name=".SportsTeamsMainPage" />
         <activity android:name=".NBATeamsMainPage" />
         <activity android:name=".NFLTeamsMainPage" />
         <activity android:name=".SpecificNBATeam" />
         <activity android:name=".SpecificNFLTeam" />
+        <activity android:name=".SpecificNBAPlayer" />
+        <activity android:name=".SpecificNFLPlayer" />
+        <activity android:name=".ScheduleMainPage" />
+        <activity android:name=".NBASchedule" />
+        <activity android:name=".NFLSchedule" />
         <activity
             android:name=".activities.CreateFanPageActivity"
             android:exported="false"

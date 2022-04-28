@@ -1,15 +1,10 @@
 package com.example.creatinguser;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,58 +21,54 @@ import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
-public class SpecificNFLTeam extends AppCompatActivity {
-    private ListView nflTeamList;
-    private ArrayList<String> playerID = new ArrayList<String> ();
+public class CurrentScoresNFL extends AppCompatActivity {
+    private ListView nflLiveScores;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nflteam);
+        setContentView(R.layout.activity_livescoresnfl);
 
-        nflTeamList = (ListView)findViewById(R.id.nflTeamList);
+        nflLiveScores = (ListView)findViewById(R.id.nflLiveScores);
 
         URL url = null;
         HttpURLConnection connection;
         StringBuilder urlBuilder = new StringBuilder();
-        Bundle extras = getIntent().getExtras();
-        urlBuilder.append("https://api.sportsdata.io/v3/nfl/scores/json/Players/");
-        urlBuilder.append(extras.getString("teamKey"));
+        urlBuilder.append(" https://api.sportsdata.io/v3/nfl/scores/json/ScoresByDate/");
+        Date todayDate = Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String date = formatter.format(todayDate);
+        urlBuilder.append(date);
         try {
             url = new URL(urlBuilder.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        callAPINFLTeam getNFLTeam = new callAPINFLTeam();
+        callAPINFLScores getNFLScores = new callAPINFLScores();
         String result = null;
         try {
-            result = getNFLTeam.execute(String.valueOf(url)).get();
+            result = getNFLScores.execute(String.valueOf(url)).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ArrayList<String> nflTeam = new ArrayList<String>();
-        nflTeam = onResponseTeam(result);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,nflTeam);
-        nflTeamList.setAdapter(arrayAdapter);
-
-        nflTeamList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(SpecificNFLTeam.this, SpecificNFLPlayer.class);
-                intent.putExtra("playerIDNFL", playerID.get(position));
-                startActivity(intent);
-            }
-        });
+        ArrayList<String> nflLiveScoresList = new ArrayList<String>();
+        nflLiveScoresList = onResponseTeam(result);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,nflLiveScoresList);
+        nflLiveScores.setAdapter(arrayAdapter);
     }
 
-    public class callAPINFLTeam extends AsyncTask<String, Void, String> {
+    public class callAPINFLScores extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
             String stringURL = params[0];
@@ -118,25 +109,24 @@ public class SpecificNFLTeam extends AppCompatActivity {
     }
 
     private ArrayList<String> onResponseTeam(String result){
-        ArrayList<String> nflTeam = new ArrayList<String> ();
+        ArrayList<String> nflLiveScores = new ArrayList<String> ();
         try{
-            JSONArray jArrayTeams = new JSONArray(result);
+            JSONArray jArrayTeam = new JSONArray(result);
 
-            if(jArrayTeams.length() != 0){
+            if(jArrayTeam.length() != 0){
 
-                for(int n = 0; n < jArrayTeams.length(); n++) {
-                    JSONObject teams = jArrayTeams.getJSONObject(n);
-                    nflTeam.add(teams.getString("FirstName") + " " + teams.getString("LastName") + " Position: " +
-                            teams.getString("Position") + "\n");
-                    playerID.add(teams.getString("PlayerID"));
+                for(int n = 0; n < jArrayTeam.length(); n++) {
+                    JSONObject teams = jArrayTeam.getJSONObject(n);
+                    nflLiveScores.add(teams.getString("Date") + ": " + teams.getString("HomeTeam") + " versus " + teams.getString("AwayTeam") + "\n Status: " +
+                            teams.getString("Status"));
                 }
             }
             else{
-                String nflTeam2 = "There are no teams you messed up the code \n";
+                nflLiveScores.add("There is no live game right now \n");
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return nflTeam;
+        return nflLiveScores;
     }
 }

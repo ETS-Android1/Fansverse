@@ -18,11 +18,11 @@
             app:layout_constraintTop_toBottomOf="@+id/buttonStats" /> -->
 
     <TextView
-        android:id="@+id/liveScoresMainPageFansverse"
+        android:id="@+id/scheduleMainPageFansverse"
         android:layout_width="259dp"
         android:layout_height="76dp"
         android:layout_marginTop="40dp"
-        android:text="Check out the Live Games"
+        android:text="Sports Schedules"
         android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -32,23 +32,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonNBAScores"
+        android:id="@+id/buttonNBASchedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NBA"
-        app:layout_constraintBottom_toTopOf="@+id/buttonNFLScores"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNFLSchedule"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/liveScoresMainPageFansverse" />
+        app:layout_constraintTop_toBottomOf="@+id/scheduleMainPageFansverse" />
 
     <Button
-        android:id="@+id/buttonNFLScores"
+        android:id="@+id/buttonNFLSchedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NFL"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonNBAScores"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNBASchedule"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"/>
     <!--    <Button
             android:id="@+id/buttonStats"

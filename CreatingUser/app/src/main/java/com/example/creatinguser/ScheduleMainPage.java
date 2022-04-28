@@ -21,13 +21,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
-public class LiveScores extends AppCompatActivity {
+public class ScheduleMainPage extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     PreferenceManager preferenceManager;
     private TextView Title;
     private Button homePage;
-    private Button nbaScores;
-    private Button nflScores;
+    private Button nbaSchedule;
+    private Button nflSchedule;
     //private TextView currScoresText;
     //private Button stats;
     //private Button myProfile;
@@ -35,11 +35,11 @@ public class LiveScores extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_livescores);
+        setContentView(R.layout.activity_schedulemainpage);
 
-        Title = findViewById(R.id.liveScoresMainPageFansverse);
-        nbaScores = findViewById(R.id.buttonNBAScores);
-        nflScores = findViewById(R.id.buttonNFLScores);
+        Title = findViewById(R.id.scheduleMainPageFansverse);
+        nbaSchedule = findViewById(R.id.buttonNBASchedule);
+        nflSchedule = findViewById(R.id.buttonNFLSchedule);
         //currScoresText = findViewById(R.id.currScoresText);
         //stats = findViewById(R.id.buttonStats);
         //myProfile = findViewById(R.id.buttonProfile);
@@ -55,16 +55,16 @@ public class LiveScores extends AppCompatActivity {
 //            }
 //        });
 
-        nbaScores.setOnClickListener(new View.OnClickListener() {
+        nbaSchedule.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CurrentScoresNBA.class);
+                Intent intent = new Intent(getApplicationContext(), NBASchedule.class);
                 startActivity(intent);
             }
         });
 
-        nflScores.setOnClickListener(new View.OnClickListener() {
+        nflSchedule.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CurrentScoresNFL.class);
+                Intent intent = new Intent(getApplicationContext(), NFLSchedule.class);
                 startActivity(intent);
             }
         });

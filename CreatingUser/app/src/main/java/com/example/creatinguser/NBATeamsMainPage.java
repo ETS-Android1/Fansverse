@@ -66,7 +66,7 @@ public class NBATeamsMainPage extends AppCompatActivity {
             //public void onClick(View v) {
         URL myUrl = null;
         try {
-            myUrl = new URL("https://api-nba-v1.p.rapidapi.com/teams/league/standard");
+            myUrl = new URL(" https://api.sportsdata.io/v3/nba/scores/json/teams");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -109,9 +109,7 @@ public class NBATeamsMainPage extends AppCompatActivity {
                 URL url = new URL(stringURL);
                 connection = (HttpURLConnection) url.openConnection();
 
-                connection.setRequestProperty("x-rapidapi-host", "api-nba-v1.p.rapidapi.com");
-
-                connection.setRequestProperty("x-rapidapi-key", "ed43b1ab22msh4caee7f6fe2a8c8p145bfdjsn07ec91a1affb");
+                connection.setRequestProperty("Ocp-Apim-Subscription-Key", "65ed88bbffb9431ca49d73da12737d0b");
                 connection.setRequestProperty("content-type", "application/json");
 
                 connection.setRequestMethod("GET");
@@ -141,23 +139,14 @@ public class NBATeamsMainPage extends AppCompatActivity {
     private ArrayList<String> onResponseTeams(String result){
         ArrayList<String> nbaTeams = new ArrayList<String> ();
         try{
-            JSONObject jsonResult = new JSONObject(result);
-            JSONObject jAPI = jsonResult.getJSONObject("api");
-            JSONArray jArrayTeams = jAPI.getJSONArray("teams");
+            JSONArray jArrayTeams = new JSONArray(result);
 
             if(jArrayTeams.length() != 0){
 
                 for(int n = 0; n < jArrayTeams.length(); n++) {
                     JSONObject teams = jArrayTeams.getJSONObject(n);
-                    String teamCheck = teams.getString("nbaFranchise");
-                    if (teamCheck.equals("1")) {
-                        if (teams.getString("fullName").equals("Home Team Stephen A")) {
-                        } else {
-                            nbaTeams.add(teams.getString("fullName"));
-                            teamShortName.add(teams.getString("shortName"));
-                            //setText(this.nbaTeamsText, nbaTeams, teams);
-                        }
-                    }
+                    nbaTeams.add(teams.getString("City") + " " + teams.getString("Name"));
+                    teamShortName.add(teams.getString("Key"));
                 }
             }
             else{
