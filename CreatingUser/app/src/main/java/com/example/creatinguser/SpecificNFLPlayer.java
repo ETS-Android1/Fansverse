@@ -114,6 +114,7 @@ public class SpecificNFLPlayer extends AppCompatActivity {
     private ArrayList<String> onResponseTeam(String result) throws JSONException {
         ArrayList<String> playerStats = new ArrayList<String> ();
         JSONArray jArrayTeam = new JSONArray(result);
+
         if(jArrayTeam.length() != 0){
 
             for(int n = 0; n < jArrayTeam.length(); n++) {
@@ -139,11 +140,19 @@ public class SpecificNFLPlayer extends AppCompatActivity {
                         + "\nInterceptions: " + jsonResult.getString("Interceptions") + "\nInterceptionReturnYards: " + jsonResult.getString("InterceptionReturnYards")
                         + "\nInterceptionReturnTouchdowns: " + jsonResult.getString("InterceptionReturnTouchdowns") + "\nBlockedKicks: " + jsonResult.getString("BlockedKicks") + "\nPunts: " + jsonResult.getString("Punts")
                         + "\nPuntYards: " + jsonResult.getString("PuntYards") + "\nFieldGoalsAttempted: " + jsonResult.getString("FieldGoalsAttempted") + "\nFieldGoalsMade: " + jsonResult.getString("FieldGoalsMade")
-                        + "\nFieldGoalsLongestMade: " + jsonResult.getString("FieldGoalsLongestMade") + "\nKickReturnYardsPerAttempt: " + jsonResult.getString("KickReturnYardsPerAttempt")
-                        + "\nKickReturnTouchdowns: " + jsonResult.getString("KickReturnTouchdowns") + "\nSoloTackles: " + jsonResult.getString("SoloTackles"));
-                setText(this.Title, jsonResult.getString("Name") + ", " + jsonResult.getString("Position"));
+                        + "\nFieldGoalsLongestMade: " + jsonResult.getString("FieldGoalsLongestMade") + "\nExtraPointsMade: " + jsonResult.getString("ExtraPointsMade")
+                        + "\nTwoPointConversionPasses: " + jsonResult.getString("TwoPointConversionPasses") + "\nTwoPointConversionRuns: " + jsonResult.getString("TwoPointConversionRuns")
+                        + "\nOffensiveTouchdowns: " + jsonResult.getString("OffensiveTouchdowns")
+                        + "\nDefensiveTouchdowns: " + jsonResult.getString("DefensiveTouchdowns") + "\nSpecialTeamsTouchdowns: " + jsonResult.getString("SpecialTeamsTouchdowns")
+                        + "\nOffensiveSnapsPlayed: " + jsonResult.getString("OffensiveSnapsPlayed") + "\nDefensiveSnapsPlayed: " + jsonResult.getString("DefensiveSnapsPlayed")
+                        + "\nFieldGoalsMade40to49: " + jsonResult.getString("FieldGoalsMade40to49") + "\nFieldGoalsMade50Plus: " + jsonResult.getString("FieldGoalsMade50Plus"));
             }
         }
+        else{
+            playerStats.add("No info for this player for the season");
+        }
+        JSONObject jsonResult = jArrayTeam.getJSONObject(5);
+        setText(this.Title, jsonResult.getString("Name"));
         return playerStats;
     }
 
