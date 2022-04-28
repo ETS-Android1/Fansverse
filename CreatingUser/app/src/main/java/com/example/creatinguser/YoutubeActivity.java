@@ -22,6 +22,9 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     static final String GOOGLE_API_KEY = "AIzaSyAO9CdtiQeD5l7pmEnrYueVxvkaR-52gpw";
     static final String YOUTUBE_VIDEO_ID = "T0nFoJFn2gA"; // portion of web address
     static final String YOUTUBE_PLAYLIST = "PLn3nHXu50t5zaUJUABsZexD7ki0lADzCU"; // portion of web address
+    static final String NBA_HIGHLIGHTS = "PLlVlyGVtvuVm4_E_faSFuu3nU0F9O6XbR";
+    static final String NBA_PLAYOFFS = "PLn3nHXu50t5wuHX2myLSY5cBdu_v0qNAl";
+    static final String NFL_PLAYLIST = "PL1H2IyN18L0Sig6TkkAqLaoJFVBnukx9X";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

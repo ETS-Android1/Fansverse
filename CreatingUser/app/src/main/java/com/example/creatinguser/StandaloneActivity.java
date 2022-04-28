@@ -23,12 +23,6 @@ public class StandaloneActivity extends AppCompatActivity implements View.OnClic
         cvNba = findViewById(R.id.cvNba);
         cvNfl = findViewById(R.id.cvNfl);
 
-        Button btnPlayVideo = (Button) findViewById(R.id.btnPlayVideo);
-        Button btnPlaylist = (Button) findViewById(R.id.btnPlaylist);
-
-        btnPlayVideo.setOnClickListener(this);
-        btnPlaylist.setOnClickListener(this);
-
         cvNba.setOnClickListener(this);
         cvNfl.setOnClickListener(this);
     }
@@ -38,17 +32,11 @@ public class StandaloneActivity extends AppCompatActivity implements View.OnClic
 
         Intent intent = null;
         switch (view.getId()){
-            case R.id.btnPlayVideo:
-                intent = YouTubeStandalonePlayer.createVideoIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.YOUTUBE_VIDEO_ID);
-                break;
-            case R.id.btnPlaylist:
-                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.YOUTUBE_PLAYLIST);
-                break;
             case R.id.cvNba:
-                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.YOUTUBE_PLAYLIST);
+                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.NBA_HIGHLIGHTS);
                 break;
             case R.id.cvNfl:
-                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.YOUTUBE_PLAYLIST);
+                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.NFL_PLAYLIST);
                 break;
             default:
         }

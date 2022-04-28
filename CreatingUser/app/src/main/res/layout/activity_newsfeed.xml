@@ -6,15 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/universe2"
     tools:context=".DirectMessageScreen">
 
+    <ImageView
+        android:id="@+id/ivNewslgo"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/newslogo" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_main"
-        android:layout_margin="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/ivNewslgo"
+        android:layout_above="@+id/bottom_navigation">
 
     </androidx.recyclerview.widget.RecyclerView>
 
