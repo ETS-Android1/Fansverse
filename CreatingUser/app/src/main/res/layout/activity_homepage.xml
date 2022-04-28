@@ -20,6 +20,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/fansverse">
             </ImageView>
 
