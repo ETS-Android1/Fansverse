@@ -37,7 +37,6 @@ public class LiveScores extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_livescores);
 
-        Title = findViewById(R.id.liveScoresMainPageFansverse);
         nbaScores = findViewById(R.id.buttonNBAScores);
         nflScores = findViewById(R.id.buttonNFLScores);
         //currScoresText = findViewById(R.id.currScoresText);

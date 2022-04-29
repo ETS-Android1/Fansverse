@@ -4,32 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@drawable/universe2">
 
 
-    <!--    <Button
-            android:id="@+id/buttonProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Profile"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonStats" /> -->
-
-    <TextView
-        android:id="@+id/liveScoresMainPageFansverse"
-        android:layout_width="259dp"
-        android:layout_height="76dp"
-        android:layout_marginTop="40dp"
-        android:text="Check out the Live Games"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+    <ImageView
+        android:id="@+id/ivLivescore"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/livescore"/>
+
+    <ImageView
+        android:id="@+id/ivScoreboard"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:layout_constraintTop_toBottomOf="@+id/ivLivescore"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/scoreboard"/>
+
 
     <Button
         android:id="@+id/buttonNBAScores"
@@ -39,7 +34,7 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonNFLScores"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/liveScoresMainPageFansverse" />
+        app:layout_constraintTop_toBottomOf="@+id/ivScoreboard" />
 
     <Button
         android:id="@+id/buttonNFLScores"
@@ -50,15 +45,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonNBAScores"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"/>
-    <!--    <Button
-            android:id="@+id/buttonStats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Stats"
-            app:layout_constraintBottom_toTopOf="@+id/buttonProfile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttoncurrScores" /> -->
 
 
 
