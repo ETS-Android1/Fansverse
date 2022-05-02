@@ -20,6 +20,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CreatingUser">
         <activity
+            android:name=".activities.ReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.BarDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.BarPageActivity" />
+        <activity
+            android:name=".activities.FanMembers"
+            android:exported="false" />
+        <activity
             android:name=".activities.CommentsList"
             android:exported="false" />
         <activity
@@ -28,8 +38,8 @@
         <activity
             android:name=".activities.FanChatActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"
-            android:parentActivityName=".activities.FanPageActivity" />
+            android:parentActivityName=".activities.FanPageActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.PostList"
             android:exported="false" />
