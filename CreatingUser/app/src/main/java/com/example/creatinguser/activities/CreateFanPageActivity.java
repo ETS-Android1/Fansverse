@@ -54,8 +54,8 @@ public class CreateFanPageActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
         initializeViews();
-
         getCurrentUserDets();
+
 
 
         createBtn.setOnClickListener(new View.OnClickListener() {

@@ -130,6 +130,22 @@ public class BarPageActivity extends AppCompatActivity {
 
 
 
+//        public void setButtonText(String currentUserdb){
+//            Button button = mView.findViewById(R.id.single_bar_page_btn);
+//            if(currentUserdb.equals(currentUser)){
+//                button.setVisibility(View.INVISIBLE);
+//            }else{
+//                button.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Intent mainIntent = new Intent(view.getContext(), DetailPages.class);
+//                        view.getContext().startActivity(mainIntent);
+//                    }
+//                });
+//            }
+//        }
+
+
 
 
     }

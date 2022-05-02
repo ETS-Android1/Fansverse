@@ -22,9 +22,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +37,7 @@ public class DetailPages extends AppCompatActivity {
     int numbers_of_members;
     private ProgressDialog progressDialog;
     String chat_image_url, userfromDb, cur_user_id;
+
 
 
 
@@ -105,6 +106,7 @@ public class DetailPages extends AppCompatActivity {
             }
         });
 
+
     }
 
     @Override
@@ -140,6 +142,7 @@ public class DetailPages extends AppCompatActivity {
 //
 //    }
 
+
     public void joinPage(){
         progressDialog.setTitle("Joining Page");
         progressDialog.setMessage("Please wait...");
@@ -169,12 +172,10 @@ public class DetailPages extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Error joining.Try again later", Toast.LENGTH_LONG).show();
 
                 }
-
             }
         });
 
     }
-
 
     private void getCurrentUserDets(){
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -243,6 +244,7 @@ public class DetailPages extends AppCompatActivity {
 //                        posts.setVisibility(View.VISIBLE);
 //                        join.setVisibility(View.INVISIBLE);
 //                    }
+
 
                     numbers_of_members = Integer.parseInt(members);
 
