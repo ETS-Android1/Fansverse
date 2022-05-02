@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/videologo"
+        android:src="@drawable/yt"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
@@ -125,7 +125,7 @@
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvSoccer"
+        android:id="@+id/cvMls"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -148,7 +148,7 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvMlh"
+        android:id="@+id/cvNhl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -167,7 +167,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MLH"/>
+                android:text="NHL"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
