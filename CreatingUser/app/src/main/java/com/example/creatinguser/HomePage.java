@@ -18,7 +18,7 @@ import com.example.creatinguser.utilities.Constants;
 import com.example.creatinguser.utilities.PreferenceManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.youtube.player.YouTubeStandalonePlayer;
+//import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
@@ -28,9 +28,11 @@ import com.example.creatinguser.activities.ProfileActivity;
 
 import java.util.HashMap;
 
-import com.google.android.youtube.player.YouTubeStandalonePlayer;
+//import com.google.android.youtube.player.YouTubeStandalonePlayer;
 
 public class HomePage extends AppCompatActivity {
+
+
 
     BottomNavigationView bottomNavigationView;
     PreferenceManager preferenceManager;
@@ -57,6 +59,17 @@ public class HomePage extends AppCompatActivity {
         cvMap = findViewById(R.id.cvMap);
         cvScore = findViewById(R.id.cvScore);
         cvNews = findViewById(R.id.cvNews);
+
+        cvBarPage = findViewById(R.id.cvBar);
+
+
+        cvBarPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BarPageActivity.class);
+                startActivity(intent);
+            }
+        });
         cvFanPage = findViewById(R.id.cvFanPage);
         cvProfilePage = findViewById(R.id.cvProfilePage);
         cvPlayoffBracket = findViewById(R.id.cvPlayoffBracket);

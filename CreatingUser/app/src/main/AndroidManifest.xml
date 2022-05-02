@@ -20,6 +20,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CreatingUser">
+        <activity
+            android:name=".activities.ReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.BarDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.BarPageActivity" />
+        <activity
+            android:name=".activities.FanMembers"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CommentsList"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddCommentActivity"
+            android:exported="false" />
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -78,6 +95,10 @@
         <activity android:name=".NBASchedule" />
         <activity android:name=".NFLSchedule" />
         <activity
+            android:name=".activities.BarPageActivity"
+            android:exported="false"
+            android:parentActivityName=".HomePage" />
+        <activity
             android:name=".activities.CreateFanPageActivity"
             android:exported="false"
             android:parentActivityName=".activities.ProfileActivity" />
@@ -93,12 +114,7 @@
             android:name=".activities.FanPageActivity"
             android:exported="false"
             android:parentActivityName=".HomePage" />
-        <activity
-            android:name=".activities.CommentsList"
-            android:exported="false" />
-        <activity
-            android:name=".activities.AddCommentActivity"
-            android:exported="false" />
+
         <activity
             android:name=".activities.FanChatActivity"
             android:exported="false"
@@ -114,21 +130,22 @@
             android:name=".activities.DetailPages"
             android:exported="false"
             android:parentActivityName=".activities.FanPageActivity" />
-        <activity
-            android:name=".activities.CreateBarPageActivity"
-            android:exported="false"
-            android:parentActivityName=".activities.BarPageActivity" />
-        <activity
-            android:name=".activities.CreateGroupChatActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.BarPageActivity"
-            android:exported="false"
-            android:parentActivityName=".HomePage" />
+
         <activity
             android:name=".activities.ProfileActivity"
             android:exported="false"
             android:parentActivityName=".HomePage" />
+
+        <activity
+            android:name=".activities.CreateBarPageActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.BarPageActivity" />
+
+
+        <activity
+            android:name=".activities.CreateGroupChatActivity"
+            android:exported="false" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

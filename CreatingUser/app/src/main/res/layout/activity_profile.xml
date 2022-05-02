@@ -22,6 +22,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_gravity="center"
+        android:visibility="invisible"
         android:id="@+id/profile_change_btn"
         android:text="Change Image"
         android:layout_height="wrap_content">
@@ -110,6 +111,7 @@
 
         android:textColor="@color/white"
         android:padding="10dp"
+        android:visibility="invisible"
         android:layout_marginTop="20dp"
         android:text="Create Fan Page"
         android:layout_gravity="center"
@@ -123,6 +125,7 @@
 
         android:textColor="@color/white"
         android:padding="10dp"
+        android:visibility="invisible"
         android:layout_marginTop="20dp"
         android:text="Update Profile"
         android:layout_gravity="center"
