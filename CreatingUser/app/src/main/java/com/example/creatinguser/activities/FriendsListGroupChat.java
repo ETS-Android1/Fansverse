@@ -33,7 +33,6 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
     FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
     private String key;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,8 +101,8 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
         System.out.println("\n \n Clicking on user"+user+"\n \n id"+user.id+"\n \n name"+user.name);
         db.collection(Constants.KEY_COLLECTION_GROUPCHAT)
                 .document(user.id)
-                .collection("GroupMessage")
-                .whereEqualTo(Constants.KEY_GROUP_CHAT_NAME,key)
+                .collection("Friend Lists")
+                .whereEqualTo(Constants.KEY_GROUP_CHAT_NAME,user.id)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -126,21 +125,8 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
                                 startActivity(mainIntent);
                                 finish();
                             }
-                        } else {
                         }
                     }
                 });
-//        System.out.println("\n \n "+currentUserID);
-//        Map<String, Object> map = new HashMap<>();
-//        map.put(Constants.KEY_GROUP_CHAT_NAME, key);
-//        map.put(Constants.KEY_USER_ID, user.id);
-////        db.collection("TestingSent").add(map);
-
-//        DocumentReference ref = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(user.id);
-//        ref.collection("GroupMessage").add(map);
-//        Intent mainIntent = new Intent(getApplicationContext(),GroupChatActivity.class);
-//        mainIntent.putExtra("KEY",key);
-//        startActivity(mainIntent);
-//        finish();
     }
 }
