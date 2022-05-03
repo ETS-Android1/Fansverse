@@ -43,6 +43,7 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
         Intent intent = getIntent();
         key = intent.getStringExtra("KEY");
         currentId = intent.getStringExtra(Constants.KEY_USER_ID);
+        System.out.println("\n \n Data being pulled in friendlistgroupchat.java"+key +"\n \n");
         setListeners();
         getUsers();
     }
@@ -87,7 +88,7 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
                 });
     }
     private void showErrorMessage(){
-        binding.textErrorMessage.setText(String.format("%s","No user available. Add friends in Friends Lists Feature"));
+        binding.textErrorMessage.setText(String.format("%s","No user available"));
         binding.textErrorMessage.setVisibility(View.VISIBLE);
     }
 
@@ -100,6 +101,7 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
     }
     @Override
     public void onUserClicked(User user) {
+        System.out.println("\n \n Clicking on user"+user+"\n \n id"+user.id+"\n \n name"+user.name);
         db.collection(Constants.KEY_COLLECTION_GROUPCHAT)
                 .document(user.id)
                 .collection("Friend Lists")
@@ -117,14 +119,12 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
                                 ref.collection("GroupMessage").add(map);
                                 Intent mainIntent = new Intent(getApplicationContext(),GroupChatActivity.class);
                                 mainIntent.putExtra("KEY",key);
-                                mainIntent.putExtra(Constants.KEY_USER_ID,currentId);
                                 startActivity(mainIntent);
                                 finish();
                             }
                             else{
                                 Intent mainIntent = new Intent(getApplicationContext(),GroupChatActivity.class);
                                 mainIntent.putExtra("KEY",key);
-                                mainIntent.putExtra(Constants.KEY_USER_ID,currentId);
                                 startActivity(mainIntent);
                                 finish();
                             }
