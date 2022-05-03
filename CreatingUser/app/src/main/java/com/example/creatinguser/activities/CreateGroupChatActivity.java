@@ -97,6 +97,7 @@ public class CreateGroupChatActivity extends AppCompatActivity {
                                 ref.collection("GroupMessage").add(map);
                                 Intent mainIntent = new Intent(getApplicationContext(),GroupChatActivity.class);
                                 mainIntent.putExtra("KEY",title);
+                                mainIntent.putExtra(Constants.KEY_USER_ID,userId);
                                 startActivity(mainIntent);
                             }
                             else{
