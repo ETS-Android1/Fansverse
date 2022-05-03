@@ -83,8 +83,10 @@ public class FriendListActivity extends AppCompatActivity implements UserListene
 
                     // right now it directs to news and it works
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), HomePage.class));
+                        Intent intent1 = new Intent(getApplicationContext(), HomePage.class);
+                        intent1.putExtra(Constants.KEY_USER_ID,currentUser);
                         overridePendingTransition(0, 0);
+                        startActivity(intent1);
                         return true;
                 }
                 return false;
@@ -118,16 +120,16 @@ public class FriendListActivity extends AppCompatActivity implements UserListene
                         if (currentUserId.equals(queryDocumentSnapshot.getId())){
                             continue;
                         }
-                      else if (!friendsLists.isEmpty()){
-                            for (DocumentSnapshot data:friendsLists
-                                 ) {
-                                System.out.println(data.getData().get("userId"));
-                                System.out.println(queryDocumentSnapshot.getString(Constants.KEY_NAME));
-                                if (data.getData().get("userId").equals(queryDocumentSnapshot.getString(Constants.KEY_NAME))){
-                                    continue;
-                                }
-                            }
-                        }
+//                      else if (!friendsLists.isEmpty()){
+//                            for (DocumentSnapshot data:friendsLists
+//                                 ) {
+//                                System.out.println(data.getData().get("userId"));
+//                                System.out.println(queryDocumentSnapshot.getString(Constants.KEY_NAME));
+//                                if (data.getData().get("userId").equals(queryDocumentSnapshot.getString(Constants.KEY_NAME))){
+//                                    continue;
+//                                }
+//                            }
+//                        }
                         User user = new User();
                         user.name = queryDocumentSnapshot.getString(Constants.KEY_NAME);
                         user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
@@ -186,7 +188,16 @@ public class FriendListActivity extends AppCompatActivity implements UserListene
                             if (task.getResult().isEmpty()) {
                                 System.out.println("\n\nIs Empty");
                                 Map<String, Object> map = new HashMap<>();
+//                                user.name = queryDocumentSnapshot.getString(Constants.KEY_NAME);
+//                                user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
+//                                user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
+//                                user.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);
+//                                user.id = queryDocumentSnapshot.getId();
                                 map.put(Constants.KEY_USER_ID, user.id);
+                                map.put(Constants.KEY_NAME,user.name);
+                                map.put(Constants.KEY_EMAIL,user.email);
+                                map.put(Constants.KEY_IMAGE,user.image);
+                                map.put(Constants.KEY_FCM_TOKEN,user.token);
                                 DocumentReference ref = db.collection("Friends Lists").document(currentUser);
                                 ref.collection("Friends").add(map);
                                 Intent mainIntent = new Intent(getApplicationContext(), FriendListActivity.class);
@@ -215,6 +226,10 @@ public class FriendListActivity extends AppCompatActivity implements UserListene
                                 }else{
                                     Map<String, Object> map = new HashMap<>();
                                     map.put(Constants.KEY_USER_ID, user.id);
+                                    map.put(Constants.KEY_NAME,user.name);
+                                    map.put(Constants.KEY_EMAIL,user.email);
+                                    map.put(Constants.KEY_IMAGE,user.image);
+                                    map.put(Constants.KEY_FCM_TOKEN,user.token);
                                     DocumentReference ref = db.collection("Friends Lists").document(currentUser);
                                     ref.collection("Friends").add(map);
                                     Intent mainIntent = new Intent(getApplicationContext(), FriendListActivity.class);

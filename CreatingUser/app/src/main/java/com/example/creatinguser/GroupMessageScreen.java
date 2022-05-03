@@ -138,7 +138,7 @@ public class GroupMessageScreen extends AppCompatActivity implements Conversatio
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), GroupChatActivity.class);
                         intent.putExtra("KEY", key);
-                        intent.putExtra(Constants.KEY_NAME,userId);
+                        intent.putExtra(Constants.KEY_USER_ID,userId);
                         startActivity(intent);
                     }
                 });

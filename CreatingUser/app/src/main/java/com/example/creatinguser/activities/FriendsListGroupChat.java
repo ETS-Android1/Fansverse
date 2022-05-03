@@ -32,7 +32,7 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
     private PreferenceManager preferenceManager;
     FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
-    private String key;
+    private String key, currentId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +42,7 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
         preferenceManager = new PreferenceManager(getApplicationContext());
         Intent intent = getIntent();
         key = intent.getStringExtra("KEY");
+        currentId = intent.getStringExtra(Constants.KEY_USER_ID);
         System.out.println("\n \n Data being pulled in friendlistgroupchat.java"+key +"\n \n");
         setListeners();
         getUsers();
@@ -53,7 +54,9 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
     private void getUsers(){
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
-        database.collection(Constants.KEY_COLLECTION_USERS)
+        database.collection("Friends Lists")
+                .document(currentId)
+                .collection("Friends")
                 .get()
                 .addOnCompleteListener(task -> {
                     loading(false);

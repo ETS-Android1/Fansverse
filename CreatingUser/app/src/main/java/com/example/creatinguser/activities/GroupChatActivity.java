@@ -79,7 +79,7 @@ public class GroupChatActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         key = intent.getStringExtra("KEY");
-        currentName = intent.getStringExtra(Constants.KEY_NAME);
+        currentName = intent.getStringExtra(Constants.KEY_USER_ID);
         getSupportActionBar().setTitle(key);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -127,6 +127,7 @@ public class GroupChatActivity extends AppCompatActivity {
                case R.id.addUser:
                    Intent intent = new Intent(getApplicationContext(), FriendsListGroupChat.class);
                    intent.putExtra("KEY", key);
+                   intent.putExtra(Constants.KEY_USER_ID,currentName);
                    overridePendingTransition(0,0);
                    startActivity(intent);
 
