@@ -73,18 +73,9 @@ public class BarPageActivity extends AppCompatActivity {
         FirestoreRecyclerAdapter<BarPage, BarPageActivity.BarViewHolder> firestoreRecyclerAdapter = new FirestoreRecyclerAdapter<BarPage, BarPageActivity.BarViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull @NotNull BarPageActivity.BarViewHolder holder, int position, @NonNull @NotNull BarPage model) {
-                final String  key = getSnapshots().getSnapshot(position).getId();
                 holder.setTitle(model.getTitle());
                 holder.setTotalMembers(model.getTotal_members());
-
-                holder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), BarDetailActivity.class);
-                        intent.putExtra("KEY", key);
-                        startActivity(intent);
-                    }
-                });
+                holder.setButtonText(model.getUserID());
             }
 
             @NonNull
@@ -124,26 +115,23 @@ public class BarPageActivity extends AppCompatActivity {
 
         public void setTotalMembers(int number){
             TextView caption = mView.findViewById(R.id.single_bar_page_count);
-            caption.setText("Open 24/7");
+            caption.setText(String.valueOf(number) + " Member(s)");
         }
 
-
-
-
-//        public void setButtonText(String currentUserdb){
-//            Button button = mView.findViewById(R.id.single_bar_page_btn);
-//            if(currentUserdb.equals(currentUser)){
-//                button.setVisibility(View.INVISIBLE);
-//            }else{
-//                button.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        Intent mainIntent = new Intent(view.getContext(), DetailPages.class);
-//                        view.getContext().startActivity(mainIntent);
-//                    }
-//                });
-//            }
-//        }
+        public void setButtonText(String currentUserdb){
+            Button button = mView.findViewById(R.id.single_bar_page_btn);
+            if(currentUserdb.equals(currentUser)){
+                button.setVisibility(View.INVISIBLE);
+            }else{
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent mainIntent = new Intent(view.getContext(), DetailPages.class);
+                        view.getContext().startActivity(mainIntent);
+                    }
+                });
+            }
+        }
 
 
 

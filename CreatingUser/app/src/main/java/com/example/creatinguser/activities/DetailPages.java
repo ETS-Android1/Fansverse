@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.example.creatinguser.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -23,8 +22,6 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,8 +33,6 @@ public class DetailPages extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     int numbers_of_members;
     private ProgressDialog progressDialog;
-    String chat_image_url, userfromDb, cur_user_id;
-
 
 
 
@@ -96,52 +91,38 @@ public class DetailPages extends AppCompatActivity {
             }
         });
 
-
-        textMembers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent mainIntent = new Intent(getApplicationContext(), FanMembers.class);
-                mainIntent.putExtra("PAGE_ID",key);
-                startActivity(mainIntent);
-            }
-        });
-
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        getCurrentUserDets();
         retrievePage();
-        retrievePage2();
-
+        retrieveMembers();
     }
 
 
-//    public void retrieveMembers(){
-//        final FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
-//        final DocumentReference docRef = db.collection("Page Members").document(key);
-//
-//        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-//                if(value.exists()){
-//                    String user = value.getData().get("userID").toString();
-//
-//                    if(user.equals(currentUserID)){
-//                        chat.setVisibility(View.VISIBLE);
-//                        posts.setVisibility(View.VISIBLE);
-//                        join.setVisibility(View.INVISIBLE);
-//                    }
-//                }
-//            }
-//        });
-//
-//
-//    }
+    public void retrieveMembers(){
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
+        final DocumentReference docRef = db.collection("Page Members").document(key);
 
+        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(value.exists()){
+                    String user = value.getData().get("userID").toString();
+
+                    if(user.equals(currentUserID)){
+                        chat.setVisibility(View.VISIBLE);
+                        posts.setVisibility(View.VISIBLE);
+                        join.setVisibility(View.INVISIBLE);
+                    }
+                }
+            }
+        });
+
+
+    }
 
     public void joinPage(){
         progressDialog.setTitle("Joining Page");
@@ -149,17 +130,15 @@ public class DetailPages extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String, Object> data = new HashMap<>();
-        data.put("userID", currentUserID);
-        data.put("userImage", chat_image_url);
-        data.put("username", userfromDb);
-        data.put("page_id", key);
-
-        db.collection("Page Members").add(data).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("userID", currentUserID);
+        db.collection("Page Members").document(key).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
+            public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     final FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
                     Map<String, Object> map1 = new HashMap<>();
                     int updated_number = numbers_of_members + 1;
                     map1.put("total_members", updated_number);
@@ -177,53 +156,9 @@ public class DetailPages extends AppCompatActivity {
 
     }
 
-    private void getCurrentUserDets(){
-        final FirebaseFirestore db = FirebaseFirestore.getInstance();
-        cur_user_id = firebaseAuth.getCurrentUser().getUid().toString();
-        final DocumentReference docRef = db.collection("Profile").document(cur_user_id);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot documentSnapshot = task.getResult();
-                if(documentSnapshot.exists()){
-                    userfromDb = documentSnapshot.getData().get("username").toString();
-                    if(documentSnapshot.getData().get("imageUrl") != null){
-                        chat_image_url = documentSnapshot.getData().get("imageUrl").toString();
-                    }else{
-                        chat_image_url = "https://firebasestorage.googleapis.com/v0/b/fanverse-7e61e.appspot.com/o/ProfileImages%2Fprofile.png?alt=media&token=dd60c0a2-b023-4f93-805f-0574a5ab6dd4";
-                    }
-                }else{
-                    userfromDb = "Unknown";
-                }
-
-            }
-        });
-    }
 
 
-    public void retrievePage2() {
-        final FirebaseFirestore db = FirebaseFirestore.getInstance();
-        currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
-        db.collection("Page Members")
-                .whereEqualTo("page_id", key)
-                .whereEqualTo("userID", currentUserID)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(value.size() == 0){
-                            chat.setVisibility(View.INVISIBLE);
-                            posts.setVisibility(View.INVISIBLE);
-                            join.setVisibility(View.VISIBLE);
-                        }else{
-                            chat.setVisibility(View.VISIBLE);
-                            posts.setVisibility(View.VISIBLE);
-                            join.setVisibility(View.INVISIBLE);
-                        }
-                    }
-                });
 
-
-    }
     public void retrievePage(){
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
         currentUserID = firebaseAuth.getCurrentUser().getUid().toString();
@@ -239,12 +174,11 @@ public class DetailPages extends AppCompatActivity {
 
                     String user = value.getData().get("userID").toString();
 
-//                    if(user.equals(currentUserID)){
-//                        chat.setVisibility(View.VISIBLE);
-//                        posts.setVisibility(View.VISIBLE);
-//                        join.setVisibility(View.INVISIBLE);
-//                    }
-
+                    if(user.equals(currentUserID)){
+                        chat.setVisibility(View.VISIBLE);
+                        posts.setVisibility(View.VISIBLE);
+                        join.setVisibility(View.INVISIBLE);
+                    }
 
                     numbers_of_members = Integer.parseInt(members);
 

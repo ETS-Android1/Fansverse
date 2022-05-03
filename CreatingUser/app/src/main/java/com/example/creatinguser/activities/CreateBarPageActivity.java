@@ -14,14 +14,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.creatinguser.R;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -34,8 +30,6 @@ public class CreateBarPageActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private String currentUserID;
     FirebaseAuth firebaseAuth;
-    String chat_image_url, cur_user_id, userfromDb;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +86,7 @@ public class CreateBarPageActivity extends AppCompatActivity {
         map.put("total_members", 1);
         map.put("userID", currentUserID);
 
+
         db.collection("BarPages")
                 .add(map)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -115,32 +110,7 @@ public class CreateBarPageActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
-    private void getCurrentUserDets(){
-        final FirebaseFirestore db = FirebaseFirestore.getInstance();
-        cur_user_id = firebaseAuth.getCurrentUser().getUid().toString();
-        final DocumentReference docRef = db.collection("Profile").document(cur_user_id);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot documentSnapshot = task.getResult();
-                if(documentSnapshot.exists()){
-                    userfromDb = documentSnapshot.getData().get("username").toString();
-                    if(documentSnapshot.getData().get("imageUrl") != null){
-                        chat_image_url = documentSnapshot.getData().get("imageUrl").toString();
-                    }else{
-                        chat_image_url = "https://firebasestorage.googleapis.com/v0/b/fanverse-7e61e.appspot.com/o/ProfileImages%2Fprofile.png?alt=media&token=dd60c0a2-b023-4f93-805f-0574a5ab6dd4";
-                    }
-                }else{
-                    userfromDb = "Unknown";
-                }
-
-            }
-        });
-    }
-
 
 
 }
