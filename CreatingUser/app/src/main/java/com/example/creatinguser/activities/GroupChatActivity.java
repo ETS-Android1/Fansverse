@@ -23,7 +23,9 @@ import com.example.creatinguser.HomePage;
 import com.example.creatinguser.LoginPage;
 import com.example.creatinguser.Models.GroupChatMessage;
 import com.example.creatinguser.R;
+import com.example.creatinguser.SportsTeamsMainPage;
 import com.example.creatinguser.utilities.Constants;
+import com.example.creatinguser.utilities.PreferenceManager;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -53,6 +55,7 @@ public class GroupChatActivity extends AppCompatActivity {
     private ImageButton sendMessageBtn;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
+    private PreferenceManager preferenceManager;
     String currentUserID;
     BottomNavigationView bottomNavigationView;
     FirebaseAuth firebaseAuth;
@@ -72,6 +75,7 @@ public class GroupChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groupchat);
+        preferenceManager = new PreferenceManager(getApplicationContext());
 
         Intent intent = getIntent();
         key = intent.getStringExtra("KEY");
@@ -101,13 +105,44 @@ public class GroupChatActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
        @Override
        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-           Intent intent = new Intent(getApplicationContext(), FriendsListGroupChat.class);
-           intent.putExtra("KEY", key);
-           startActivity(intent);
+           switch (menuItem.getItemId()) {
+               case R.id.logout:
+                   Toast toast = Toast.makeText(getApplicationContext(),"Signing out...",Toast.LENGTH_LONG);
+                   toast.show();
+                   FirebaseFirestore database = FirebaseFirestore.getInstance();
+                   DocumentReference documentReference =
+                           database.collection(Constants.KEY_COLLECTION_USERS).document(
+                                   preferenceManager.getString(Constants.KEY_USER_ID)
+                           );
+                   HashMap<String,Object> updates = new HashMap<>();
+                   updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
+                   documentReference.update(updates)
+                           .addOnSuccessListener(unused -> {
+                               preferenceManager.clear();
+                               startActivity(new Intent(getApplicationContext(), LoginPage.class));
+                               finish();
+                           });
+                   return true;
 
-           return true;
+               case R.id.addUser:
+                   Intent intent = new Intent(getApplicationContext(), FriendsListGroupChat.class);
+                   intent.putExtra("KEY", key);
+                   overridePendingTransition(0,0);
+                   startActivity(intent);
+
+                   return true;
+
+               case R.id.home:
+                   Intent intent1 = new Intent(getApplicationContext(), HomePage.class);
+                   intent1.putExtra(Constants.KEY_USER_ID,currentName);
+                   overridePendingTransition(0, 0);
+                   startActivity(intent1);
+                   return true;
+           }
+           return false;
        }
-   });
+        });
+
         sendMessageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

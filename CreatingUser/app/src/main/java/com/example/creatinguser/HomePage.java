@@ -39,7 +39,7 @@ public class HomePage extends AppCompatActivity {
     private FirebaseFirestore database;
     String userId;
 
-    CardView cvMessage, cvMap, cvScore, cvNews, cvFanPage, cvProfilePage, cvBarPage, cvPlayoffBracket, cvVideo, cvSportsTeams, cvSchedule;
+    CardView cvMessage, cvMap, cvScore, cvNews, cvFanPage, cvProfilePage, cvBarPage, cvPlayoffBracket, cvVideo, cvSportsTeams, cvSchedule, cvFriendlist;
 
 
     @Override
@@ -77,6 +77,7 @@ public class HomePage extends AppCompatActivity {
         cvSportsTeams = findViewById(R.id.cvSportsTeams);
         cvVideo = findViewById(R.id.cvYoutube);
         cvSchedule = findViewById(R.id.cvSchedules);
+        cvFriendlist = findViewById(R.id.cvFriendList);
 
         bottomNavigationView.setSelectedItemId(R.id.home); // sets highlight on bar
 
@@ -190,6 +191,15 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), DirectMessageScreen.class);
                 intent.putExtra(Constants.KEY_USER_ID, userId);
+                startActivity(intent);
+            }
+        });
+
+        cvFriendlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FriendListActivity.class);
+                intent.putExtra(Constants.KEY_USER_ID,userId);
                 startActivity(intent);
             }
         });

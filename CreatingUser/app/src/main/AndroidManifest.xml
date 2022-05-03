@@ -171,6 +171,8 @@
         <activity
             android:name=".activities.GroupUsersActivity"
             android:exported="false" />
+        <activity android:name=".FriendListActivity"
+            android:exported="false"/>
         <activity
             android:name=".DirectMessageScreen"
             android:exported="true" />
