@@ -38,11 +38,9 @@ public class FriendListActivity extends AppCompatActivity implements UserListene
     private ActivityFriendListBinding binding;
     private PreferenceManager preferenceManager;
     boolean found;
-    List<DocumentSnapshot> friendsLists;
     BottomNavigationView bottomNavigationView;
     FirebaseFirestore db;
     String currentUser,userBeingAdded;
-    ArrayList<String> listOfFriends;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,16 +75,17 @@ public class FriendListActivity extends AppCompatActivity implements UserListene
                                 });
                         return true;
                     case R.id.sportsTeams:
-                        startActivity(new Intent(getApplicationContext(), SportsTeamsMainPage.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-
-                    // right now it directs to news and it works
-                    case R.id.home:
-                        Intent intent1 = new Intent(getApplicationContext(), HomePage.class);
+                        Intent intent1 = new Intent(getApplicationContext(), SportsTeamsMainPage.class);
                         intent1.putExtra(Constants.KEY_USER_ID,currentUser);
                         overridePendingTransition(0, 0);
                         startActivity(intent1);
+                        return true;
+
+                    case R.id.home:
+                        Intent intent2 = new Intent(getApplicationContext(), HomePage.class);
+                        intent2.putExtra(Constants.KEY_USER_ID,currentUser);
+                        overridePendingTransition(0, 0);
+                        startActivity(intent2);
                         return true;
                 }
                 return false;
@@ -95,20 +94,8 @@ public class FriendListActivity extends AppCompatActivity implements UserListene
     }
 
     private void getUsers(){
-        System.out.println("\n\n in getUsers function");
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
-        database.collection("Friends Lists").document(currentUser).collection("Friends").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                friendsLists = task.getResult().getDocuments();
-                for (DocumentSnapshot data: friendsLists
-                     ) {
-                    System.out.println(data.getData().get("userId"));
-//                    listOfFriends.add(data.getData().get("userId").toString());
-                }
-            }
-        });
         database.collection(Constants.KEY_COLLECTION_USERS)
             .get()
             .addOnCompleteListener(task -> {
@@ -120,16 +107,6 @@ public class FriendListActivity extends AppCompatActivity implements UserListene
                         if (currentUserId.equals(queryDocumentSnapshot.getId())){
                             continue;
                         }
-//                      else if (!friendsLists.isEmpty()){
-//                            for (DocumentSnapshot data:friendsLists
-//                                 ) {
-//                                System.out.println(data.getData().get("userId"));
-//                                System.out.println(queryDocumentSnapshot.getString(Constants.KEY_NAME));
-//                                if (data.getData().get("userId").equals(queryDocumentSnapshot.getString(Constants.KEY_NAME))){
-//                                    continue;
-//                                }
-//                            }
-//                        }
                         User user = new User();
                         user.name = queryDocumentSnapshot.getString(Constants.KEY_NAME);
                         user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
@@ -166,7 +143,6 @@ public class FriendListActivity extends AppCompatActivity implements UserListene
 
     @Override
     public void onUserClicked(User user) {
-        System.out.println("\n \n Clicking on user"+user+"\n \n id"+user.id+"\n \n name"+user.name);
         found=false;
         db.collection("Friends Lists")
                 .document(currentUser)
@@ -176,23 +152,11 @@ public class FriendListActivity extends AppCompatActivity implements UserListene
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            System.out.println("\n\nTASK.ISSUCCESSFUL");
                             System.out.println(task.getResult().toString());
                             System.out.println(task.getResult().getDocuments());
                             List<DocumentSnapshot> docs = task.getResult().getDocuments();
-                            for (DocumentSnapshot data: docs
-                                 ) {
-                                System.out.println(data);
-                                System.out.println(data.getData().get("userId"));
-                            }
                             if (task.getResult().isEmpty()) {
-                                System.out.println("\n\nIs Empty");
                                 Map<String, Object> map = new HashMap<>();
-//                                user.name = queryDocumentSnapshot.getString(Constants.KEY_NAME);
-//                                user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
-//                                user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
-//                                user.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);
-//                                user.id = queryDocumentSnapshot.getId();
                                 map.put(Constants.KEY_USER_ID, user.id);
                                 map.put(Constants.KEY_NAME,user.name);
                                 map.put(Constants.KEY_EMAIL,user.email);
@@ -206,23 +170,26 @@ public class FriendListActivity extends AppCompatActivity implements UserListene
                                 startActivity(mainIntent);
                                 finish();
                             }else{
-                                System.out.println("\n\n Else");
                                 for (DocumentSnapshot data: docs
                                 ) {
-                                    System.out.println(data);
-                                    System.out.println(data.getData().get("userId"));
                                     if (data.getData().get("userId").equals(user.id)){
                                         found=true;
                                         break;
                                     }
                                 }
                                 if (found){
-                                    System.out.println("\\nFriend is already in your friends lists");
-                                    Intent mainIntent = new Intent(getApplicationContext(),FriendListActivity.class);
-                                    mainIntent.putExtra(Constants.KEY_USER_ID,currentUser);
-                                    mainIntent.putExtra("Friend",user.id);
-                                    startActivity(mainIntent);
-                                    finish();
+                                    binding.textErrorMessage.setText(String.format("%s","Friend is already in your friends lists"));
+                                    binding.textErrorMessage.setVisibility(View.VISIBLE);
+                                    new Thread(new Runnable() {
+                                        public void run() {
+                                            try {
+                                                Thread.sleep(4000);
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                            binding.textErrorMessage.setVisibility(View.INVISIBLE);
+                                        }
+                                    }).start();
                                 }else{
                                     Map<String, Object> map = new HashMap<>();
                                     map.put(Constants.KEY_USER_ID, user.id);
