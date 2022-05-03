@@ -17,12 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/fansverse">
-            </ImageView>
+                android:layout_height="250dp"
+                android:src="@drawable/fansverse3"></ImageView>
 
             <GridLayout
                 android:layout_width="match_parent"
