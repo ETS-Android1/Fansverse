@@ -25,7 +25,7 @@ import java.util.HashMap;
 
 public class StandaloneActivity extends AppCompatActivity implements View.OnClickListener {
 
-    CardView cvNba, cvNfl, cvMlb, cvMma, cvMls, cvNhl;
+    CardView cvNba, cvNfl;
     BottomNavigationView bottomNavigationView;
     PreferenceManager preferenceManager;
 
@@ -36,20 +36,10 @@ public class StandaloneActivity extends AppCompatActivity implements View.OnClic
 
         cvNba = findViewById(R.id.cvNba);
         cvNfl = findViewById(R.id.cvNfl);
-        cvMlb = findViewById(R.id.cvMlb);
-        cvMma = findViewById(R.id.cvMls);
-        cvMls = findViewById(R.id.cvMls);
-        cvNhl = findViewById(R.id.cvNhl);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         cvNba.setOnClickListener(this);
         cvNfl.setOnClickListener(this);
-        cvMlb.setOnClickListener(this);
-        cvMma.setOnClickListener(this);
-        cvMls.setOnClickListener(this);
-        cvNhl.setOnClickListener(this);
-
-        bottomNavBar();
     }
 
     @Override
@@ -62,18 +52,6 @@ public class StandaloneActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.cvNfl:
                 intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.NFL_PLAYLIST);
-                break;
-            case R.id.cvMlb:
-                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.MLB_PLAYLIST);
-                break;
-            case R.id.cvMma:
-                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.MMA_PLAYLIST);
-                break;
-            case R.id.cvNhl:
-                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.NHL_PLAYLIST);
-                break;
-            case R.id.cvMls:
-                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.MLS_PLAYLIST);
                 break;
             default:
         }
