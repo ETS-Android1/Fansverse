@@ -101,10 +101,6 @@ public class ProfileActivity extends AppCompatActivity {
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                if(value.getData().get("userID").equals(currentUserID)){
-                    updateProfile.setVisibility(View.VISIBLE);
-                    changeImage.setVisibility(View.VISIBLE);
-                }
                 if(value.getData().get("firstname") == null){
                     Intent loginIntent = new Intent(ProfileActivity.this, SetUpProfileActivity.class);
                     loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

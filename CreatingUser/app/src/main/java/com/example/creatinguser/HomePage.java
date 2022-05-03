@@ -18,7 +18,7 @@ import com.example.creatinguser.utilities.Constants;
 import com.example.creatinguser.utilities.PreferenceManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-//import com.google.android.youtube.player.YouTubeStandalonePlayer;
+import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
@@ -28,18 +28,16 @@ import com.example.creatinguser.activities.ProfileActivity;
 
 import java.util.HashMap;
 
-//import com.google.android.youtube.player.YouTubeStandalonePlayer;
+import com.google.android.youtube.player.YouTubeStandalonePlayer;
 
 public class HomePage extends AppCompatActivity {
-
-
 
     BottomNavigationView bottomNavigationView;
     PreferenceManager preferenceManager;
     private FirebaseFirestore database;
     String userId;
 
-    CardView cvMessage, cvMap, cvScore, cvNews, cvFanPage, cvProfilePage, cvBarPage, cvPlayoffBracket, cvVideo, cvSportsTeams, cvSchedule, cvFriendlist;
+    CardView cvMessage, cvMap, cvScore, cvNews, cvFanPage, cvProfilePage, cvBarPage, cvPlayoffBracket, cvVideo, cvSportsTeams, cvSchedule;
 
 
     @Override
@@ -59,17 +57,6 @@ public class HomePage extends AppCompatActivity {
         cvMap = findViewById(R.id.cvMap);
         cvScore = findViewById(R.id.cvScore);
         cvNews = findViewById(R.id.cvNews);
-
-        cvBarPage = findViewById(R.id.cvBar);
-
-
-        cvBarPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BarPageActivity.class);
-                startActivity(intent);
-            }
-        });
         cvFanPage = findViewById(R.id.cvFanPage);
         cvProfilePage = findViewById(R.id.cvProfilePage);
         cvPlayoffBracket = findViewById(R.id.cvPlayoffBracket);
@@ -77,7 +64,6 @@ public class HomePage extends AppCompatActivity {
         cvSportsTeams = findViewById(R.id.cvSportsTeams);
         cvVideo = findViewById(R.id.cvYoutube);
         cvSchedule = findViewById(R.id.cvSchedules);
-        cvFriendlist = findViewById(R.id.cvFriendList);
 
         bottomNavigationView.setSelectedItemId(R.id.home); // sets highlight on bar
 
@@ -191,15 +177,6 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), DirectMessageScreen.class);
                 intent.putExtra(Constants.KEY_USER_ID, userId);
-                startActivity(intent);
-            }
-        });
-
-        cvFriendlist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), FriendListActivity.class);
-                intent.putExtra(Constants.KEY_USER_ID,userId);
                 startActivity(intent);
             }
         });

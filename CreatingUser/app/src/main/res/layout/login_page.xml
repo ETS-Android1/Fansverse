@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#AB673AB7"
+    android:background="@drawable/universe2"
     android:padding="24sp"
     tools:context=".LoginPage">
 
@@ -13,30 +13,18 @@
             android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/loginView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:text="Fansverse"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40sp"
-                    android:text="@string/login_to_continue"
-                    android:textColor="@color/secondary_text"
-                    android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:src="@drawable/fansverse2"/>
+
 
                 <EditText
                     android:id="@+id/inputEmail"
                     android:layout_width="match_parent"
                     android:layout_height="45sp"
-                    android:layout_marginTop="40sp"
+                    android:layout_marginTop="20dp"
                     android:hint="Email"
                     android:background="@drawable/background_input"
                     android:inputType="textEmailAddress"
@@ -87,31 +75,30 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toBottomOf="@+id/login_button"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="449dp">
+                    app:layout_constraintStart_toStartOf="parent">
 
                         <TextView
                             android:id="@+id/tv_dont_have_account"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
                             android:padding="5dp"
+                            android:textColor="@color/white"
+                            android:textSize="15dp"
                             android:text="Dont have an account?" />
 
                         <TextView
                             android:id="@+id/tv_register"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
                             android:padding="5dp"
                             android:clickable="true"
                             android:foreground="?attr/selectableItemBackground"
                             android:text="Register"
+                            android:textSize="15dp"
+                            android:textColor="@color/white"
                             android:textStyle="bold" />
                 </LinearLayout>
 

@@ -11,11 +11,10 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_above="@+id/sendLinearLayout"
             android:id="@+id/chat_activity_recyclerView"
-            android:layout_height="match_parent">
-
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/sendLinearLayout">
 
         </androidx.recyclerview.widget.RecyclerView>
 

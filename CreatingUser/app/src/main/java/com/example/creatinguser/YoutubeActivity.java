@@ -20,11 +20,13 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
 
     private static final String TAG = "YoutubeActivity";
     static final String GOOGLE_API_KEY = "AIzaSyAO9CdtiQeD5l7pmEnrYueVxvkaR-52gpw";
-    static final String YOUTUBE_VIDEO_ID = "T0nFoJFn2gA"; // portion of web address
-    static final String YOUTUBE_PLAYLIST = "PLn3nHXu50t5zaUJUABsZexD7ki0lADzCU"; // portion of web address
+    static final String YOUTUBE_VIDEO_ID = "T0nFoJFn2gA";
     static final String NBA_HIGHLIGHTS = "PLlVlyGVtvuVm4_E_faSFuu3nU0F9O6XbR";
-    static final String NBA_PLAYOFFS = "PLn3nHXu50t5wuHX2myLSY5cBdu_v0qNAl";
     static final String NFL_PLAYLIST = "PL1H2IyN18L0Sig6TkkAqLaoJFVBnukx9X";
+    static final String MMA_PLAYLIST = "PLqYXv_L7NiEzgd0-1z7RmyZtirWffCZKb";
+    static final String MLB_PLAYLIST = "PLL-lmlkrmJalROhW3PQjrTD6pHX1R0Ub8";
+    static final String MLS_PLAYLIST = "PLcj4z4KsbIoXqdWKX405un2PyALNClE8C";
+    static final String NHL_PLAYLIST = "PL1NbHSfosBuG_HB8WTgFaCVsDWCcnOsUW";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +38,6 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
         ConstraintLayout layout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_youtube, null);
         setContentView(layout);
 
-//        Button button1 = new Button(this);
-//        button1.setLayoutParams(new ConstraintLayout.LayoutParams(300, 80));
-//        button1.setText("Button added");
-//        layout.addView(button1);
 
         YouTubePlayerView playerView = new YouTubePlayerView(this);
         playerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)); // match parent will take all available space in layout
@@ -72,63 +70,4 @@ public class YoutubeActivity extends YouTubeBaseActivity implements YouTubePlaye
 
     }
 
-    // PlaybackEventListener is an interface, methods not required to play videos
-//    private YouTubePlayer.PlaybackEventListener playbackEventListener = new YouTubePlayer.PlaybackEventListener() {
-//        @Override
-//        public void onPlaying() {
-//            Toast.makeText(YoutubeActivity.this, "Video is playing", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        @Override
-//        public void onPaused() {
-//            Toast.makeText(YoutubeActivity.this, "Video has paused", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        @Override
-//        public void onStopped() {
-//
-//        }
-//
-//        @Override
-//        public void onBuffering(boolean b) {
-//
-//        }
-//
-//        @Override
-//        public void onSeekTo(int i) {
-//
-//        }
-//    };
-
-//    private YouTubePlayer.PlayerStateChangeListener playerStateChangeListener = new YouTubePlayer.PlayerStateChangeListener() {
-//        @Override
-//        public void onLoading() {
-//
-//        }
-//
-//        @Override
-//        public void onLoaded(String s) {
-//
-//        }
-//
-//        @Override
-//        public void onAdStarted() {
-//            Toast.makeText(YoutubeActivity.this, "Click on add if you like", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        @Override
-//        public void onVideoStarted() {
-//            Toast.makeText(YoutubeActivity.this, "Video has started", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        @Override
-//        public void onVideoEnded() {
-//            Toast.makeText(YoutubeActivity.this, "Video has ended", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        @Override
-//        public void onError(YouTubePlayer.ErrorReason errorReason) {
-//
-//        }
-//    };
 }

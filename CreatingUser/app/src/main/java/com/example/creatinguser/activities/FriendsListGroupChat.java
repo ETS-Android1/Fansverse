@@ -102,8 +102,8 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
     public void onUserClicked(User user) {
         db.collection(Constants.KEY_COLLECTION_GROUPCHAT)
                 .document(user.id)
-                .collection("Friend Lists")
-                .whereEqualTo(Constants.KEY_GROUP_CHAT_NAME,user.id)
+                .collection("GroupMessage")
+                .whereEqualTo(Constants.KEY_GROUP_CHAT_NAME,key)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -128,8 +128,10 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
                                 startActivity(mainIntent);
                                 finish();
                             }
+                        } else {
                         }
                     }
                 });
+
     }
 }
