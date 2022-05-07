@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.creatinguser.utilities.Constants;
 import com.example.creatinguser.utilities.PreferenceManager;
@@ -33,12 +34,14 @@ public class SportsTeamsMainPage extends AppCompatActivity {
     //private Button stats;
     //private Button myProfile;
 
+    CardView cvNba, cvNfl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sportsteams);
 
-        Title = findViewById(R.id.sportsTeamsMainPageFansverse);
+        //Title = findViewById(R.id.sportsTeamsMainPageFansverse);
         nbaTeams = findViewById(R.id.buttonNBATeams);
         nflTeams = findViewById(R.id.buttonNFLTeams);
         //currScoresText = findViewById(R.id.currScoresText);
@@ -46,6 +49,9 @@ public class SportsTeamsMainPage extends AppCompatActivity {
         //myProfile = findViewById(R.id.buttonProfile);
         preferenceManager = new PreferenceManager(getApplicationContext());
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        cvNba = findViewById(R.id.cvNba);
+        cvNfl = findViewById(R.id.cvNfl);
 
         bottomNavigationView.setSelectedItemId(R.id.sportsTeams);
         bottomNavBar();
@@ -60,6 +66,22 @@ public class SportsTeamsMainPage extends AppCompatActivity {
 
         nflTeams.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NFLTeamsMainPage.class);
+                startActivity(intent);
+            }
+        });
+
+        cvNba.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), NBATeamsMainPage.class);
+                startActivity(intent);
+            }
+        });
+
+        cvNfl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NFLTeamsMainPage.class);
                 startActivity(intent);
             }
