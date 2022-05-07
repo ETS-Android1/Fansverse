@@ -49,9 +49,6 @@
             android:name=".MenuDisplay"
             android:exported="false" />
         <activity
-            android:name=".MenuReader"
-            android:exported="false" />
-        <activity
             android:name=".LocationGallery"
             android:exported="false" />
         <activity    
@@ -84,7 +81,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
+            android:value="${MAPS_API_KEY}"/>
 
         <activity android:name=".StandaloneActivity"/>
 
@@ -112,7 +109,6 @@
         <activity
             android:name=".Interlude_info_v2"
             android:exported="false" />
-        <activity android:name=".LiveScoresPage" />
         <activity
             android:name=".activities.FriendsListGroupChat"
             android:exported="false" />
