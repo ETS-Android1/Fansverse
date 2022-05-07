@@ -14,33 +14,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class MVPGrillMenu extends AppCompatActivity {
+public class BlondieGallery extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mvpgrill_menu);
+        setContentView(R.layout.activity_blondie_gallery);
 
-        String nameOfPicture = getIntent().getStringExtra("NameOfPic");
-        //String idOfPic = getIntent().getStringExtra("PicID");
+        String nameOfPic = getIntent().getStringExtra("FirstPic");
+        String nameOfPic2 = getIntent().getStringExtra("SecondPic");
 
-        //Toast.makeText(MenuDisplay.this, nameOfPicture, Toast.LENGTH_SHORT).show();
-        //Toast.makeText(MenuDisplay.this, idOfPic, Toast.LENGTH_SHORT).show();
-        //System.out.println("\n \n  Name of the picture: " + nameOfPicture);
-        //System.out.println("ID of imagiview: " + idOfPic);
-
-
-        //int resID = getResources().getIdentifier(idOfPic, "id", getPackageName());
-
-
-        //need help with!
-
-        //int resID = getResources().getIdentifier(idOfPic, "drawable", getPackageName());
-
-        //System.out.println("\n \n This is the resId:"+ resID);
         // getting ImageView by its id
-        ImageView viewMenuPic = findViewById(R.id.MvpGrillMenuPic);
-        //ImageView interludeMenuPic = findViewById(resID);
+        ImageView rImage = findViewById(R.id.blondie1);
+        ImageView secondImage = findViewById(R.id.blondie2);
 
         // we will get the default FirebaseDatabase instance
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -50,8 +36,8 @@ public class MVPGrillMenu extends AppCompatActivity {
 
         // Here "image" is the child node value we are getting
         // child node data in the getImage variable
-        DatabaseReference getImage = databaseReference.child(nameOfPicture);
-
+        DatabaseReference getImage = databaseReference.child(nameOfPic);
+        DatabaseReference getImage2 = databaseReference.child(nameOfPic2);
 
 
         // Adding listener for a single change
@@ -67,15 +53,42 @@ public class MVPGrillMenu extends AppCompatActivity {
 
                 // loading that data into rImage
                 // variable which is ImageView
-                Picasso.get().load(link).into(viewMenuPic);
+                Picasso.get().load(link).into(rImage);
+                //Picasso.get().load(link).into(secondImage);
             }
+
+
 
             // this will called when any problem
             // occurs in getting data
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // we are showing that error message in toast
-                Toast.makeText(MVPGrillMenu.this, "Error Loading Image", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BlondieGallery.this, "Error Loading Image", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        getImage2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // getting a DataSnapshot for the location at the specified
+                // relative path and getting in the link variable
+                String link2 = dataSnapshot.getValue(String.class);
+
+                // loading that data into rImage
+                // variable which is ImageView
+                //Picasso.get().load(link).into(rImage);
+                Picasso.get().load(link2).into(secondImage);
+            }
+
+
+
+            // this will called when any problem
+            // occurs in getting data
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // we are showing that error message in toast
+                Toast.makeText(BlondieGallery.this, "Error Loading Image", Toast.LENGTH_SHORT).show();
             }
         });
 

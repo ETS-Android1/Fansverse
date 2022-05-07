@@ -11,21 +11,21 @@
 
 
     <ImageView
-        android:id="@+id/rImage"
+        android:id="@+id/crookedDuck1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="3dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="3dp"
         android:layout_marginBottom="64dp"
-        app:layout_constraintBottom_toTopOf="@+id/secondImage"
+        app:layout_constraintBottom_toTopOf="@+id/crookedDuck2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+         />
 
     <ImageView
-        android:id="@+id/secondImage"
+        android:id="@+id/crookedDuck2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="3dp"
@@ -34,6 +34,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rImage"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/crookedDuck1"
+         />
 </androidx.constraintlayout.widget.ConstraintLayout>

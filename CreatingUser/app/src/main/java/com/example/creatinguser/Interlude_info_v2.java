@@ -36,6 +36,8 @@ public class Interlude_info_v2 extends AppCompatActivity {
     }
         public void openPhotoActivity(){
             Intent intent = new Intent(this,LocationGallery.class);
+            intent.putExtra("FirstPic","Interlude1");
+            intent.putExtra("SecondPic","Interlude2");
             startActivity(intent);
         }
 

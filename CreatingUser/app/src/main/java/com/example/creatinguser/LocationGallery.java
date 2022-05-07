@@ -21,6 +21,9 @@ public class LocationGallery extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_gallery);
 
+        String nameOfPic = getIntent().getStringExtra("FirstPic");
+        String nameOfPic2 = getIntent().getStringExtra("SecondPic");
+
         // getting ImageView by its id
         ImageView rImage = findViewById(R.id.rImage);
         ImageView secondImage = findViewById(R.id.secondImage);
@@ -33,8 +36,8 @@ public class LocationGallery extends AppCompatActivity {
 
         // Here "image" is the child node value we are getting
         // child node data in the getImage variable
-        DatabaseReference getImage = databaseReference.child("Interlude1");
-        DatabaseReference getImage2 = databaseReference.child("Interlude2");
+        DatabaseReference getImage = databaseReference.child(nameOfPic);
+        DatabaseReference getImage2 = databaseReference.child(nameOfPic2);
 
 
         // Adding listener for a single change
@@ -51,8 +54,34 @@ public class LocationGallery extends AppCompatActivity {
                 // loading that data into rImage
                 // variable which is ImageView
                 Picasso.get().load(link).into(rImage);
+                //Picasso.get().load(link).into(secondImage);
+            }
+
+
+
+            // this will called when any problem
+            // occurs in getting data
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // we are showing that error message in toast
+                Toast.makeText(LocationGallery.this, "Error Loading Image", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        getImage2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // getting a DataSnapshot for the location at the specified
+                // relative path and getting in the link variable
+                String link = dataSnapshot.getValue(String.class);
+
+                // loading that data into rImage
+                // variable which is ImageView
+                //Picasso.get().load(link).into(rImage);
                 Picasso.get().load(link).into(secondImage);
             }
+
+
 
             // this will called when any problem
             // occurs in getting data

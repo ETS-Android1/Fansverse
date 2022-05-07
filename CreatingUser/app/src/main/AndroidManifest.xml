@@ -22,6 +22,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CreatingUser">
         <activity
+            android:name=".PortCityGallery"
+            android:exported="false" />
+        <activity
+            android:name=".MVPGallery"
+            android:exported="false" />
+        <activity
+            android:name=".CrookedDuckGallery"
+            android:exported="false" />
+        <activity
+            android:name=".BlondieGallery"
+            android:exported="false" />
+        <activity
             android:name=".PortCityMenu"
             android:exported="false" />
         <activity

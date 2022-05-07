@@ -51,42 +51,42 @@
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:text="@string/crooked_duck_address"
-        app:layout_constraintBottom_toTopOf="@+id/interludePhotosButton"
+        app:layout_constraintBottom_toTopOf="@+id/crookedDuckPhotosButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/interludePhotosButton"
+        android:id="@+id/crookedDuckPhotosButton"
         android:layout_width="139dp"
         android:layout_height="48dp"
         android:layout_marginBottom="10dp"
         android:text="@string/photos_button"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/crookedDuckMenuButton"
+        app:layout_constraintEnd_toEndOf="@+id/crookedDuckMenuButton"
+        app:layout_constraintStart_toStartOf="@+id/crookedDuckMenuButton"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/crookedDuckMenuButton"
         android:layout_width="140dp"
         android:layout_height="48dp"
         android:layout_marginBottom="9dp"
         android:text="@string/menu_button"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/crookedDuckReviewButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/interludePhotosButton" />
+        app:layout_constraintTop_toBottomOf="@+id/crookedDuckPhotosButton" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/crookedDuckReviewButton"
         android:layout_width="137dp"
         android:layout_height="48dp"
         android:layout_marginBottom="17dp"
         android:text="@string/reviews_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintStart_toStartOf="@+id/crookedDuckMenuButton"
+        app:layout_constraintTop_toBottomOf="@+id/crookedDuckMenuButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

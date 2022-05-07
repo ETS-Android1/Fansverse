@@ -19,7 +19,7 @@ public class PortCityMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crooked_duck_menu);
+        setContentView(R.layout.activity_port_city_menu);
 
         String nameOfPicture = getIntent().getStringExtra("NameOfPic");
         //String idOfPic = getIntent().getStringExtra("PicID");

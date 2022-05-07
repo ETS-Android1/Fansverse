@@ -51,42 +51,42 @@
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:text="@string/port_city_address"
-        app:layout_constraintBottom_toTopOf="@+id/interludePhotosButton"
+        app:layout_constraintBottom_toTopOf="@+id/portCityPhotosButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/interludePhotosButton"
+        android:id="@+id/portCityPhotosButton"
         android:layout_width="139dp"
         android:layout_height="48dp"
         android:layout_marginBottom="10dp"
         android:text="@string/photos_button"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/portCityMenuButton"
+        app:layout_constraintEnd_toEndOf="@+id/portCityMenuButton"
+        app:layout_constraintStart_toStartOf="@+id/portCityMenuButton"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/portCityMenuButton"
         android:layout_width="140dp"
         android:layout_height="48dp"
         android:layout_marginBottom="9dp"
         android:text="@string/menu_button"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/portCityReviewButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/interludePhotosButton" />
+        app:layout_constraintTop_toBottomOf="@+id/portCityPhotosButton" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/portCityReviewButton"
         android:layout_width="137dp"
         android:layout_height="48dp"
         android:layout_marginBottom="17dp"
         android:text="@string/reviews_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintStart_toStartOf="@+id/portCityMenuButton"
+        app:layout_constraintTop_toBottomOf="@+id/portCityMenuButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
