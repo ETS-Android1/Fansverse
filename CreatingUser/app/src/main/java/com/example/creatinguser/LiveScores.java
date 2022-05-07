@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.creatinguser.utilities.Constants;
 import com.example.creatinguser.utilities.PreferenceManager;
@@ -25,23 +26,28 @@ public class LiveScores extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     PreferenceManager preferenceManager;
     private TextView Title;
-    private Button homePage;
-    private Button nbaScores;
-    private Button nflScores;
+//    private Button homePage;
+//    private Button nbaScores;
+//    private Button nflScores;
     //private TextView currScoresText;
     //private Button stats;
     //private Button myProfile;
+
+    CardView cvNba, cvNfl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_livescores);
 
-        nbaScores = findViewById(R.id.buttonNBAScores);
-        nflScores = findViewById(R.id.buttonNFLScores);
+//        nbaScores = findViewById(R.id.buttonNBAScores);
+//        nflScores = findViewById(R.id.buttonNFLScores);
         //currScoresText = findViewById(R.id.currScoresText);
         //stats = findViewById(R.id.buttonStats);
         //myProfile = findViewById(R.id.buttonProfile);
+
+        cvNba = findViewById(R.id.cvNba);
+        cvNfl = findViewById(R.id.cvNfl);
 
         preferenceManager = new PreferenceManager(getApplicationContext());
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -54,15 +60,31 @@ public class LiveScores extends AppCompatActivity {
 //            }
 //        });
 
-        nbaScores.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+//        nbaScores.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), CurrentScoresNBA.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        nflScores.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), CurrentScoresNFL.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        cvNba.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CurrentScoresNBA.class);
                 startActivity(intent);
             }
         });
 
-        nflScores.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        cvNfl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CurrentScoresNFL.class);
                 startActivity(intent);
             }
