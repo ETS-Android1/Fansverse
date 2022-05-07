@@ -78,4 +78,5 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation files('libs/YouTubeAndroidPlayerApi.jar') //needed for youtube jar file in libs folder
 }
