@@ -48,7 +48,6 @@ public class LoginPage extends AppCompatActivity {
         time = preferenceManager.getString("ATTEMPT_Time");
         if (preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)) {
             Intent intent = new Intent(getApplicationContext(), HomePage.class);
-            intent.putExtra(Constants.KEY_USER_ID,preferenceManager.getString(Constants.KEY_USER_ID));
             startActivity(intent);
             finish();
         }
@@ -72,7 +71,7 @@ public class LoginPage extends AppCompatActivity {
         loading(true);
         if (time != null && (Long.parseLong(time) > (System.currentTimeMillis() - 300000))) {
             binding.loginButton.setEnabled(false);
-            showToast("Button still disabled, please wait for the five minute timer to complete. Resetting.");
+            showToast("Button still disabled, please wait for the disabled timer to complete.");
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -80,7 +79,7 @@ public class LoginPage extends AppCompatActivity {
                     binding.loginButton.setEnabled(true);
                     totalAttempts = 2;
                 }
-            }, 300000);
+            }, System.currentTimeMillis() - 300000);
             loading(false);
         } else {
             loading(true);
@@ -129,7 +128,6 @@ public class LoginPage extends AppCompatActivity {
                             preferenceManager.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
 //                        preferenceManager.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
                             Intent intent = new Intent(getApplicationContext(), HomePage.class);
-                            intent.putExtra(Constants.KEY_USER_ID,documentSnapshot.getId());
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                         } else {
@@ -169,3 +167,60 @@ public class LoginPage extends AppCompatActivity {
         }
     }
 }
+
+//
+//
+//        mAuth = FirebaseAuth.getInstance();
+//
+//        //getApplicationContext() renders the current context of the Application which can be used in various ways.
+//        context = getApplicationContext();
+//
+//        // Mapping the actual widget objects in the activity_registration.xml to the corresponding mentioned references
+//        login_username = findViewById(R.id.login_uname);
+//        login_password = findViewById(R.id.login_pass);
+//        login_button = findViewById(R.id.login_button);
+//        signup_button = findViewById(R.id.singup_btn);
+//
+//        //Creating an HashMap object and assigning to the above mentioned 'credentials' hashmap reference.
+//        credentials = new HashMap<String, String>();
+//
+//        // Setting an onClick listener to Login button
+//        login_button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Toast toast;
+//
+//                // If the 'credentials' hashmap has no data in it and login button is clicked,then a toast message saying 'please sign up' will be displayed.
+//                if (credentials == null) {
+//                    toast = Toast.makeText(context, "Please Sign up ", Toast.LENGTH_LONG);
+//                    toast.show();
+//                } else {
+//                    // Retrieving the data associated with the login and password fields
+//                    String current_username = login_username.getText().toString();
+//                    String current_password = login_password.getText().toString();
+//                    mAuth.signInWithEmailAndPassword(current_username, current_password)
+//                            .addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<AuthResult> task) {
+//                                    if (task.isSuccessful()) {
+////                                         Sign in success, update UI with the signed-in user's information
+//                                        Log.d(TAG, "signInWithEmail:success");
+//                                        FirebaseUser user = mAuth.getCurrentUser();
+//                                        Intent intent = new Intent(getApplicationContext(), HomePage.class);
+//                                        //intent.putExtra("message", current_username);
+//                                        startActivity(intent);
+////                                        updateUI(user);
+//                                    }
+//                                    else {
+//                                        // If sign in fails, display a message to the user.
+//                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+//                                        Toast.makeText(LoginPage.this, "Authentication failed. Check Email or Password",
+//                                                Toast.LENGTH_SHORT).show();
+////                                        updateUI(null);
+//                                    }
+//                                }
+//                            });
+//                }
+//
+//            }
+//        });
+

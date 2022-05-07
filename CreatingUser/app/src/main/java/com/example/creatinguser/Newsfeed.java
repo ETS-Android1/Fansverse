@@ -69,9 +69,7 @@ public class Newsfeed extends AppCompatActivity implements SelectListener{
                                     finish();
                                 });
                         return true;
-                    case R.id.sportsTeams:
-                        startActivity(new Intent(getApplicationContext(), SportsTeamsMainPage.class));
-                        overridePendingTransition(0, 0);
+                    case R.id.info:
                         return true;
 
                     // right now it directs to news and it works

@@ -7,9 +7,9 @@
         android:title="Home"
         android:icon="@drawable/ic_home"/>
     <item
-        android:id="@+id/sportsTeams"
-        android:title="Sports Teams"
-        android:icon="@drawable/ic_football"/>
+        android:id="@+id/info"
+        android:title="Info"
+        android:icon="@drawable/ic_info"/>
     <item
         android:id="@+id/logout"
         android:title="Logout"
