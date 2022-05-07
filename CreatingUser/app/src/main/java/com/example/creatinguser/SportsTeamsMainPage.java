@@ -26,10 +26,10 @@ public class SportsTeamsMainPage extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     PreferenceManager preferenceManager;
-    private TextView Title;
-    private Button homePage;
-    private Button nbaTeams;
-    private Button nflTeams;
+//    private TextView Title;
+//    private Button homePage;
+//    private Button nbaTeams;
+//    private Button nflTeams;
     //private TextView currScoresText;
     //private Button stats;
     //private Button myProfile;
@@ -42,8 +42,8 @@ public class SportsTeamsMainPage extends AppCompatActivity {
         setContentView(R.layout.activity_sportsteams);
 
         //Title = findViewById(R.id.sportsTeamsMainPageFansverse);
-        nbaTeams = findViewById(R.id.buttonNBATeams);
-        nflTeams = findViewById(R.id.buttonNFLTeams);
+//        nbaTeams = findViewById(R.id.buttonNBATeams);
+//        nflTeams = findViewById(R.id.buttonNFLTeams);
         //currScoresText = findViewById(R.id.currScoresText);
         //stats = findViewById(R.id.buttonStats);
         //myProfile = findViewById(R.id.buttonProfile);
@@ -57,19 +57,19 @@ public class SportsTeamsMainPage extends AppCompatActivity {
         bottomNavBar();
 
 
-        nbaTeams.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NBATeamsMainPage.class);
-                startActivity(intent);
-            }
-        });
-
-        nflTeams.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NFLTeamsMainPage.class);
-                startActivity(intent);
-            }
-        });
+//        nbaTeams.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), NBATeamsMainPage.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        nflTeams.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), NFLTeamsMainPage.class);
+//                startActivity(intent);
+//            }
+//        });
 
         cvNba.setOnClickListener(new View.OnClickListener() {
             @Override
