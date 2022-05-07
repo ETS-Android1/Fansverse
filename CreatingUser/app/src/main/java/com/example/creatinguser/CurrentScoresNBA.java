@@ -3,13 +3,10 @@ package com.example.creatinguser;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,51 +20,31 @@ import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.toolbox.HttpResponse;
-import com.example.creatinguser.utilities.Constants;
-import com.example.creatinguser.utilities.PreferenceManager;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.logging.type.HttpRequest;
-
-public class LiveScoresPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class CurrentScoresNBA extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private TextView Title;
-    private Button homePage;
+    private Button liveScoresPage;
     private Button currScores;
     private TextView currScoresText;
-    private Button stats;
-    private Button myProfile;
-    private PreferenceManager preferenceManager;
-    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_livescores);
+        setContentView(R.layout.activity_livescoresnba);
 
-        Title = findViewById(R.id.liveScoresPageFansverse);
-        homePage = findViewById(R.id.buttonHomePage);
+        Title = findViewById(R.id.liveScoresNBAPageFansverse);
+        liveScoresPage = findViewById(R.id.buttonLiveScoresPage);
         currScores = findViewById(R.id.buttoncurrScores);
         currScoresText = findViewById(R.id.currScoresText);
-        //stats = findViewById(R.id.buttonStats);
-        //myProfile = findViewById(R.id.buttonProfile);
-        preferenceManager = new PreferenceManager(getApplicationContext());
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        homePage.setOnClickListener(new View.OnClickListener() {
+        liveScoresPage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), HomePage.class);
+                Intent intent = new Intent(getApplicationContext(), LiveScores.class);
                 startActivity(intent);
             }
         });
@@ -85,43 +62,7 @@ public class LiveScoresPage extends AppCompatActivity implements AdapterView.OnI
 
             }
         });
-
-        //bottom nav bar
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.logout:
-                        Toast toast = Toast.makeText(getApplicationContext(),"Signing out...",Toast.LENGTH_LONG);
-                        toast.show();
-                        FirebaseFirestore database = FirebaseFirestore.getInstance();
-                        DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_USERS).document(preferenceManager.getString(Constants.KEY_USER_ID));
-                        HashMap<String,Object> updates = new HashMap<>();
-                        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
-                        documentReference.update(updates)
-                                .addOnSuccessListener(unused -> {
-                                    preferenceManager.clear();
-                                    startActivity(new Intent(getApplicationContext(), LoginPage.class));
-                                    finish();
-                                });
-                        return true;
-                    case R.id.info:
-                        startActivity(new Intent(getApplicationContext(), Newsfeed.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-
-                    // right now it directs to news and it works
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), HomePage.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                }
-                return false;
-            }
-        });
-
     }
-
 
     private void callAPINBA(){
         StringBuilder result = new StringBuilder();
@@ -163,11 +104,13 @@ public class LiveScoresPage extends AppCompatActivity implements AdapterView.OnI
             JSONArray jArrayGames = jAPI.getJSONArray("games");
 
             if(jArrayGames.length() != 0){
-                String currentScores = "There currently is a game in \n";
+                String currentScores = "";
 
                 for(int n = 0; n < jArrayGames.length(); n++){
                     JSONObject games = jArrayGames.getJSONObject(n);
-                    currentScores += games.getString("city") + " in period " + games.getString("currentPeriod") + " \n";
+                    currentScores += games.getString("city") + " in period " + games.getString("currentPeriod") + " \nScore: " +
+                            games.getJSONObject("hTeam").getString("nickName") + " - " + games.getJSONObject("hTeam").getJSONObject("score").getString("points") + " " +
+                            games.getJSONObject("vTeam").getString("nickName") + " - " + games.getJSONObject("vTeam").getJSONObject("score").getString("points") + "\n\n";
                 }
                 setText(this.currScoresText, currentScores);
             }
