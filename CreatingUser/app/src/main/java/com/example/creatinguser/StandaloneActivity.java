@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -16,76 +16,67 @@ import com.example.creatinguser.utilities.Constants;
 import com.example.creatinguser.utilities.PreferenceManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
-public class SportsTeamsMainPage extends AppCompatActivity {
+public class StandaloneActivity extends AppCompatActivity implements View.OnClickListener {
 
+    CardView cvNba, cvNfl, cvMlb, cvMma, cvMls, cvNhl;
     BottomNavigationView bottomNavigationView;
     PreferenceManager preferenceManager;
-//    private TextView Title;
-//    private Button homePage;
-//    private Button nbaTeams;
-//    private Button nflTeams;
-    //private TextView currScoresText;
-    //private Button stats;
-    //private Button myProfile;
-
-    CardView cvNba, cvNfl;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sportsteams);
-
-        //Title = findViewById(R.id.sportsTeamsMainPageFansverse);
-//        nbaTeams = findViewById(R.id.buttonNBATeams);
-//        nflTeams = findViewById(R.id.buttonNFLTeams);
-        //currScoresText = findViewById(R.id.currScoresText);
-        //stats = findViewById(R.id.buttonStats);
-        //myProfile = findViewById(R.id.buttonProfile);
-        preferenceManager = new PreferenceManager(getApplicationContext());
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        setContentView(R.layout.activity_standalone);
 
         cvNba = findViewById(R.id.cvNba);
         cvNfl = findViewById(R.id.cvNfl);
+        cvMlb = findViewById(R.id.cvMlb);
+        cvMma = findViewById(R.id.cvMls);
+        cvMls = findViewById(R.id.cvMls);
+        cvNhl = findViewById(R.id.cvNhl);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        bottomNavigationView.setSelectedItemId(R.id.sportsTeams);
+        cvNba.setOnClickListener(this);
+        cvNfl.setOnClickListener(this);
+        cvMlb.setOnClickListener(this);
+        cvMma.setOnClickListener(this);
+        cvMls.setOnClickListener(this);
+        cvNhl.setOnClickListener(this);
+
         bottomNavBar();
+    }
 
+    @Override
+    public void onClick(View view) {
 
-//        nbaTeams.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), NBATeamsMainPage.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        nflTeams.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), NFLTeamsMainPage.class);
-//                startActivity(intent);
-//            }
-//        });
+        Intent intent = null;
+        switch (view.getId()){
+            case R.id.cvNba:
+                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.NBA_HIGHLIGHTS);
+                break;
+            case R.id.cvNfl:
+                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.NFL_PLAYLIST);
+                break;
+            case R.id.cvMma:
+                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.MMA_PLAYLIST);
+            case R.id.cvMlb:
+                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.MLB_PLAYLIST);
+            case R.id.cvMls:
+                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.MLS_PLAYLIST);
+            case R.id.cvNhl:
+                intent = YouTubeStandalonePlayer.createPlaylistIntent(this, YoutubeActivity.GOOGLE_API_KEY, YoutubeActivity.NHL_PLAYLIST);
+            default:
+        }
 
-        cvNba.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), NBATeamsMainPage.class);
-                startActivity(intent);
-            }
-        });
-
-        cvNfl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), NFLTeamsMainPage.class);
-                startActivity(intent);
-            }
-        });
+        if(intent != null){
+            startActivity(intent);
+        }
     }
 
     public void bottomNavBar(){
@@ -111,11 +102,13 @@ public class SportsTeamsMainPage extends AppCompatActivity {
                                 });
                         return true;
 
-                    case R.id.sportsTeams:
-                        return true;
-
                     case R.id.home:
                         startActivity(new Intent(getApplicationContext(), HomePage.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.sportsTeams:
+                        startActivity(new Intent(getApplicationContext(), SportsTeamsMainPage.class));
                         overridePendingTransition(0, 0);
                         return true;
                 }
@@ -124,5 +117,4 @@ public class SportsTeamsMainPage extends AppCompatActivity {
         });
 
     }
-
 }

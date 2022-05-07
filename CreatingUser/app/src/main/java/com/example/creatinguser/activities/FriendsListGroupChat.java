@@ -32,8 +32,7 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
     private PreferenceManager preferenceManager;
     FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
-    private String key;
-
+    private String key, currentId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +42,7 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
         preferenceManager = new PreferenceManager(getApplicationContext());
         Intent intent = getIntent();
         key = intent.getStringExtra("KEY");
-        System.out.println("\n \n Data being pulled in friendlistgroupchat.java"+key +"\n \n");
+        currentId = intent.getStringExtra(Constants.KEY_USER_ID);
         setListeners();
         getUsers();
     }
@@ -54,7 +53,9 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
     private void getUsers(){
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
-        database.collection(Constants.KEY_COLLECTION_USERS)
+        database.collection("Friends Lists")
+                .document(currentId)
+                .collection("Friends")
                 .get()
                 .addOnCompleteListener(task -> {
                     loading(false);
@@ -70,7 +71,7 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
                             user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
                             user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
                             user.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);
-                            user.id = queryDocumentSnapshot.getId();
+                            user.id = queryDocumentSnapshot.getString(Constants.KEY_USER_ID);
                             users.add(user);
                         }
                         if (users.size() > 0){
@@ -86,7 +87,7 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
                 });
     }
     private void showErrorMessage(){
-        binding.textErrorMessage.setText(String.format("%s","No user available"));
+        binding.textErrorMessage.setText(String.format("%s","No user available. Add friends in Friends Lists Feature"));
         binding.textErrorMessage.setVisibility(View.VISIBLE);
     }
 
@@ -99,7 +100,8 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
     }
     @Override
     public void onUserClicked(User user) {
-        System.out.println("\n \n Clicking on user"+user+"\n \n id"+user.id+"\n \n name"+user.name);
+        System.out.println("\n\nTHe key: "+key);
+        System.out.println("The user ID: "+user.id);
         db.collection(Constants.KEY_COLLECTION_GROUPCHAT)
                 .document(user.id)
                 .collection("GroupMessage")
@@ -109,7 +111,13 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            System.out.println("What is the task: "+task);
+                            System.out.println("What is the task result: "+task.getResult());
+
                             if (task.getResult().isEmpty()){
+                                System.out.println("\n\nGroupChat not found");
+                                System.out.println("THe key: "+key);
+                                System.out.println("The user ID: "+user.id);
                                 Map<String, Object> map = new HashMap<>();
                                 map.put(Constants.KEY_GROUP_CHAT_NAME, key);
                                 map.put(Constants.KEY_USER_ID, user.id);
@@ -117,30 +125,20 @@ public class FriendsListGroupChat extends AppCompatActivity implements UserListe
                                 ref.collection("GroupMessage").add(map);
                                 Intent mainIntent = new Intent(getApplicationContext(),GroupChatActivity.class);
                                 mainIntent.putExtra("KEY",key);
+                                mainIntent.putExtra(Constants.KEY_USER_ID,currentId);
                                 startActivity(mainIntent);
                                 finish();
                             }
                             else{
+                                System.out.println("Group chat found");
                                 Intent mainIntent = new Intent(getApplicationContext(),GroupChatActivity.class);
                                 mainIntent.putExtra("KEY",key);
+                                mainIntent.putExtra(Constants.KEY_USER_ID,currentId);
                                 startActivity(mainIntent);
                                 finish();
                             }
-                        } else {
                         }
                     }
                 });
-//        System.out.println("\n \n "+currentUserID);
-//        Map<String, Object> map = new HashMap<>();
-//        map.put(Constants.KEY_GROUP_CHAT_NAME, key);
-//        map.put(Constants.KEY_USER_ID, user.id);
-////        db.collection("TestingSent").add(map);
-
-//        DocumentReference ref = db.collection(Constants.KEY_COLLECTION_GROUPCHAT).document(user.id);
-//        ref.collection("GroupMessage").add(map);
-//        Intent mainIntent = new Intent(getApplicationContext(),GroupChatActivity.class);
-//        mainIntent.putExtra("KEY",key);
-//        startActivity(mainIntent);
-//        finish();
     }
 }

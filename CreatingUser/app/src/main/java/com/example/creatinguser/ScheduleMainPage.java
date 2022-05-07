@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.creatinguser.utilities.Constants;
 import com.example.creatinguser.utilities.PreferenceManager;
@@ -24,28 +25,35 @@ import java.util.HashMap;
 public class ScheduleMainPage extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     PreferenceManager preferenceManager;
-    private TextView Title;
-    private Button homePage;
-    private Button nbaSchedule;
-    private Button nflSchedule;
+//    private TextView Title;
+//    private Button homePage;
+//    private Button nbaSchedule;
+//    private Button nflSchedule;
     //private TextView currScoresText;
     //private Button stats;
     //private Button myProfile;
+
+    CardView cvNba, cvNfl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedulemainpage);
 
-        Title = findViewById(R.id.scheduleMainPageFansverse);
-        nbaSchedule = findViewById(R.id.buttonNBASchedule);
-        nflSchedule = findViewById(R.id.buttonNFLSchedule);
+//        Title = findViewById(R.id.scheduleMainPageFansverse);
+//        nbaSchedule = findViewById(R.id.buttonNBASchedule);
+//        nflSchedule = findViewById(R.id.buttonNFLSchedule);
         //currScoresText = findViewById(R.id.currScoresText);
         //stats = findViewById(R.id.buttonStats);
         //myProfile = findViewById(R.id.buttonProfile);
 
+
         preferenceManager = new PreferenceManager(getApplicationContext());
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        cvNba = findViewById(R.id.cvNba);
+        cvNfl = findViewById(R.id.cvNfl);
+
         bottomNavBar();
 
 //        homePage.setOnClickListener(new View.OnClickListener() {
@@ -55,15 +63,31 @@ public class ScheduleMainPage extends AppCompatActivity {
 //            }
 //        });
 
-        nbaSchedule.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+//        nbaSchedule.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), NBASchedule.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        nflSchedule.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), NFLSchedule.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        cvNba.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NBASchedule.class);
                 startActivity(intent);
             }
         });
 
-        nflSchedule.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        cvNfl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NFLSchedule.class);
                 startActivity(intent);
             }

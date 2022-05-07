@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/universe2"
     tools:context=".DirectMessageScreen">
 
     <androidx.core.widget.NestedScrollView
@@ -16,11 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:src="@drawable/fansverse">
-            </ImageView>
+                android:layout_height="100dp"
+                android:src="@drawable/fansverse0"></ImageView>
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -430,6 +431,5 @@
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 

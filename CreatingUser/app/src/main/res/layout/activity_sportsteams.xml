@@ -4,62 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#AB673AB7">
+    android:background="@drawable/universe2">
 
-
-    <!--    <Button
-            android:id="@+id/buttonProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Profile"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonStats" /> -->
-
-    <TextView
-        android:id="@+id/sportsTeamsMainPageFansverse"
-        android:layout_width="248dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="40dp"
-        android:text="Check out the Teams"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/ivCheckOutTeams"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:src="@drawable/checkoutheteams2"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Button
-        android:id="@+id/buttonNBATeams"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvNba"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NBA Teams"
-        app:layout_constraintTop_toBottomOf="@+id/sportsTeamsMainPageFansverse"
-        app:layout_constraintBottom_toTopOf="@+id/buttonNFLTeams"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivCheckOutTeams"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintEnd_toStartOf="@+id/cvNfl"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="12dp">
 
-    <!--    <Button
-            android:id="@+id/buttonStats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Stats"
-            app:layout_constraintBottom_toTopOf="@+id/buttonProfile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttoncurrScores" /> -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/buttonNFLTeams"
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/basketball" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NBA" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvNfl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NFL Teams"
+        app:layout_constraintTop_toBottomOf="@+id/ivCheckOutTeams"
+        app:layout_constraintStart_toEndOf="@+id/cvNba"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonNBATeams"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"/>
+        android:layout_margin="16dp"
+        app:cardCornerRadius="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/football" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NFL" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+<!--    <Button-->
+<!--        android:id="@+id/buttonNBATeams"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="NBA Teams"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/buttonNFLTeams"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        />-->
+
+
+<!--    <Button-->
+<!--        android:id="@+id/buttonNFLTeams"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="NFL Teams"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/buttonNBATeams"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"/>-->
 
 
 
