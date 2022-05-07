@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ import java.util.concurrent.ExecutionException;
 public class SpecificNFLPlayer extends AppCompatActivity {
     private TextView Title;
     private ListView nflPlayerStats;
+    private Button mainTeamPage;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -40,6 +42,14 @@ public class SpecificNFLPlayer extends AppCompatActivity {
 
         Title = findViewById(R.id.nflPlayerTitle);
         nflPlayerStats = (ListView)findViewById(R.id.nflPlayerStats);
+        mainTeamPage = findViewById(R.id.buttonTeams);
+
+        mainTeamPage.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NFLTeamsMainPage.class);
+                startActivity(intent);
+            }
+        });
 
         URL url = null;
         HttpURLConnection connection;
@@ -151,8 +161,6 @@ public class SpecificNFLPlayer extends AppCompatActivity {
         else{
             playerStats.add("No info for this player for the season");
         }
-        JSONObject jsonResult = jArrayTeam.getJSONObject(5);
-        setText(this.Title, jsonResult.getString("Name"));
         return playerStats;
     }
 

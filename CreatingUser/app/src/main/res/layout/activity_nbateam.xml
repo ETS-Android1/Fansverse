@@ -6,8 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".SpecificNBATeam">
 
+    <Button
+        android:id="@+id/buttonTeam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to Teams" />
+
     <ListView
         android:id="@+id/nbaTeamList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/buttonTeam"/>
 </RelativeLayout>

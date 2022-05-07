@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.RequiresApi;
@@ -30,6 +31,7 @@ import java.util.concurrent.ExecutionException;
 public class NFLTeamsMainPage extends AppCompatActivity {
     private ListView nflTeamsList;
     private ArrayList<String> teamKeys = new ArrayList<String> ();
+    private Button sportsMainPage;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -38,17 +40,17 @@ public class NFLTeamsMainPage extends AppCompatActivity {
         setContentView(R.layout.activity_nflteams);
 
         //Title = findViewById(R.id.nbaTeamsPageFansverse);
-        //sportsMainPage = findViewById(R.id.buttonSportsTeamMainPage);
+        sportsMainPage = findViewById(R.id.buttonLeagues);
         //nbaTeamsText = findViewById(R.id.nbaTeamsText);
         //showNBATeams = findViewById(R.id.buttonShowTeams);
         nflTeamsList = (ListView)findViewById(R.id.nflTeamsList);
 
-        /*sportsMainPage.setOnClickListener(new View.OnClickListener() {
+        sportsMainPage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SportsTeamsMainPage.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
         //showNBATeams.setOnClickListener(new View.OnClickListener(){
 

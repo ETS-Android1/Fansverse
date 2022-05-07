@@ -33,6 +33,7 @@ import java.util.concurrent.ExecutionException;
 public class SpecificNBATeam extends AppCompatActivity {
     private ListView nbaTeamList;
     private ArrayList<String> playerID = new ArrayList<String> ();
+    private Button mainTeamPage;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -41,6 +42,14 @@ public class SpecificNBATeam extends AppCompatActivity {
         setContentView(R.layout.activity_nbateam);
 
         nbaTeamList = (ListView)findViewById(R.id.nbaTeamList);
+        mainTeamPage = findViewById(R.id.buttonTeam);
+
+        mainTeamPage.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NBATeamsMainPage.class);
+                startActivity(intent);
+            }
+        });
 
         URL url = null;
         HttpURLConnection connection;

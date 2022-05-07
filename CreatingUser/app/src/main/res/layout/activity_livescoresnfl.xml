@@ -6,8 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".CurrentScoresNFL">
 
+    <Button
+        android:id="@+id/buttonLiveScoresPage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to All Leagues" />
+
     <ListView
         android:id="@+id/nflLiveScores"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/buttonLiveScoresPage"/>
 </RelativeLayout>

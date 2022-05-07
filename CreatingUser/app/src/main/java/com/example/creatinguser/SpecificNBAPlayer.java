@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ import java.util.concurrent.ExecutionException;
 public class SpecificNBAPlayer extends AppCompatActivity {
     private TextView Title;
     private ListView nbaPlayerStats;
+    private Button mainTeamPage;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -40,6 +42,14 @@ public class SpecificNBAPlayer extends AppCompatActivity {
 
         Title = findViewById(R.id.nbaPlayerTitle);
         nbaPlayerStats = (ListView)findViewById(R.id.nbaPlayerStats);
+        mainTeamPage = findViewById(R.id.buttonTeams);
+
+        mainTeamPage.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NBATeamsMainPage.class);
+                startActivity(intent);
+            }
+        });
 
         URL url = null;
         HttpURLConnection connection;

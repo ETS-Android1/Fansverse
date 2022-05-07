@@ -14,9 +14,14 @@
         android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold" />
+    <Button
+        android:id="@+id/buttonTeams"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to Teams" />
     <ListView
         android:id="@+id/nbaPlayerStats"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/nbaPlayerTitle"/>
+        android:layout_below="@id/buttonTeams"/>
 </RelativeLayout>

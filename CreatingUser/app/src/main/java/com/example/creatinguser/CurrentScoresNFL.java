@@ -1,9 +1,12 @@
 package com.example.creatinguser;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.RequiresApi;
@@ -31,6 +34,7 @@ import java.util.concurrent.ExecutionException;
 
 public class CurrentScoresNFL extends AppCompatActivity {
     private ListView nflLiveScores;
+    private Button liveScoresPage;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -39,6 +43,14 @@ public class CurrentScoresNFL extends AppCompatActivity {
         setContentView(R.layout.activity_livescoresnfl);
 
         nflLiveScores = (ListView)findViewById(R.id.nflLiveScores);
+        liveScoresPage = findViewById(R.id.buttonLiveScoresPage);
+
+        liveScoresPage.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LiveScores.class);
+                startActivity(intent);
+            }
+        });
 
         URL url = null;
         HttpURLConnection connection;

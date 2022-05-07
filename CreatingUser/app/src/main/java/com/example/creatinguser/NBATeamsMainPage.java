@@ -41,6 +41,7 @@ public class NBATeamsMainPage extends AppCompatActivity {
     //private TextView nbaTeamsText;
     private ListView nbaTeamsList;
     private ArrayList<String> teamShortName = new ArrayList<String> ();
+    private Button sportsMainPage;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -49,17 +50,17 @@ public class NBATeamsMainPage extends AppCompatActivity {
         setContentView(R.layout.activity_nbateams);
 
         //Title = findViewById(R.id.nbaTeamsPageFansverse);
-        //sportsMainPage = findViewById(R.id.buttonSportsTeamMainPage);
+        sportsMainPage = findViewById(R.id.buttonLeagues);
         //nbaTeamsText = findViewById(R.id.nbaTeamsText);
         //showNBATeams = findViewById(R.id.buttonShowTeams);
         nbaTeamsList = (ListView)findViewById(R.id.nbaTeamsList);
 
-        /*sportsMainPage.setOnClickListener(new View.OnClickListener() {
+        sportsMainPage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SportsTeamsMainPage.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
         //showNBATeams.setOnClickListener(new View.OnClickListener(){
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.RequiresApi;
@@ -29,6 +30,7 @@ import java.util.concurrent.ExecutionException;
 
 public class NBASchedule extends AppCompatActivity {
     private ListView nbaSchedule;
+    private Button scheduleMainPage;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -37,6 +39,14 @@ public class NBASchedule extends AppCompatActivity {
         setContentView(R.layout.activity_nbaschedule);
 
         nbaSchedule = (ListView)findViewById(R.id.nbaSchedule);
+        scheduleMainPage = findViewById(R.id.buttonLeagues);
+
+        scheduleMainPage.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ScheduleMainPage.class);
+                startActivity(intent);
+            }
+        });
 
         URL url = null;
         HttpURLConnection connection;
