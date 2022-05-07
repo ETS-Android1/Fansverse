@@ -82,25 +82,25 @@
     </androidx.cardview.widget.CardView>
 
 
-    <Button
-        android:id="@+id/buttonNBAScores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NBA"
-        app:layout_constraintBottom_toTopOf="@+id/buttonNFLScores"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivScoreboard" />
+<!--    <Button-->
+<!--        android:id="@+id/buttonNBAScores"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="NBA"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/buttonNFLScores"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/ivScoreboard" />-->
 
-    <Button
-        android:id="@+id/buttonNFLScores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NFL"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonNBAScores"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"/>
+<!--    <Button-->
+<!--        android:id="@+id/buttonNFLScores"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="NFL"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/buttonNBAScores"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"/>-->
 
 
 
